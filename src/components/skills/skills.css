@@ -1,57 +1,43 @@
 .skills-main {
  background-color: #1a1a1a;
- padding: 40px 0px 60px 0px;
+ padding: 2px 0px 0px 0px;
 }
 
 .skillsWrapper {
- width: 80%;
+  margin-top: 0;
+  border: 1px solid white;
+ width: 90%;
  margin: auto;
  text-align: center;
- /* display: flex;
- flex-direction: column; */
- /* align-items: center; */
- /* justify-content: center;
- gap: 40px; */
- border: 0px solid red;
  display: grid;
- grid-template-columns: repeat(2, auto);
- /* gap: 20px; */
+ grid-template-columns: repeat(2, 1fr);
+
 }
 
 .skills-heading {
  color: white;
  font-size: 40px;
- margin-bottom: 60px;
+ margin-bottom: 10px;
 }
 
 .skillsTechnologiesDiv {
- border: 0px solid green;
- /* width: 100%; */
+ border: 2px solid green;
+ width: 100%;
+ margin: auto;
+ display: grid;
+ justify-content: space-evenly;
+ grid-template-columns: repeat(5, 1fr);
+ gap: 5px;
+ padding: 10px 0px;
+}
+
+
+.skillsToolsDiv {
+ border: 0px solid yellow;
  margin: auto;
  display: grid;
  justify-content: space-evenly;
  grid-template-columns: repeat(4, auto);
- gap: 20px;
- padding: 20px 0px;
-}
-
-/* .skillsProficienciesDiv {
-  width: 100%;
-  margin: auto;
- display: grid;
- justify-content: space-evenly;
- grid-template-columns: repeat(3, auto);
- gap: 40px;
- padding: 20px 0px;
-} */
-
-.skillsToolsDiv {
- border: 0px solid yellow;
- /* width: 100%; */
- margin: auto;
- display: grid;
- justify-content: space-evenly;
- grid-template-columns: repeat(2, auto);
  gap: 20px;
  padding: 20px 0px;
 }
@@ -61,19 +47,16 @@
  .skillsWrapper {
   display: grid;
   grid-template-columns: repeat(1, auto);
-  /* width: 100%; */
+
  }
 
  .skillsTechnologiesDiv {
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(4, auto);
  }
 
- /* .skillsProficienciesDiv {
-  grid-template-columns: repeat(3, auto);
- } */
 
  .skillsToolsDiv {
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(4, auto);
  }
 }
 
@@ -83,16 +66,14 @@
  .skillsWrapper {
   display: grid;
   grid-template-columns: repeat(1, auto);
-  /* width: 100%; */
+
  }
 
  .skillsTechnologiesDiv {
   grid-template-columns: repeat(3, auto);
  }
 
- /* .skillsProficienciesDiv {
-  grid-template-columns: repeat(3, auto);
- } */
+
 
  .skillsToolsDiv {
   grid-template-columns: repeat(3, auto);
@@ -101,7 +82,7 @@
 
 @media all and (min-width: 280px) and (max-width: 767px) {
  .skillsWrapper {
-  /* width: 100%; */
+
   display: grid;
   grid-template-columns: repeat(1, auto);
  }

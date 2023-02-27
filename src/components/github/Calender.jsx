@@ -35,8 +35,8 @@ function Calender() {
           transformData={selectLast12Months}
           username="uzairansari11"
           color={"#f66066"}
-          blockSize={20}
-          fontSize={25}
+          blockSize={15}
+          fontSize={20}
           showColorLegend
           hideTotalCount
           style={{ padding: "10px 20px"}}

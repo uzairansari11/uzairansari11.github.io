@@ -7,12 +7,13 @@
 
 .navbar {
  width: 100%;
- background-color: #1a1a1a;
+ /* background-color: #1a1a1a; */
+ background-color: red;
  position: fixed;
  z-index: 100;
  font-size: 18px;
  color: white;
- border-bottom: 1px solid white;
+ /* border-bottom: 1px solid white; */
 }
 
 .navbarScrolled {
@@ -54,7 +55,7 @@
  width: 88%;
 }
 .wrapperRight > div {
- border-bottom: 4px solid #1a1a1a;
+ /* border-bottom: 4px solid #1a1a1a; */
  border-radius: 5px;
  transition: all 0.5s;
 }
@@ -66,10 +67,10 @@
  justify-content: space-between;
  align-items: center;
  background-color: white;
- width: 125px;
+ width: 105px;
  text-align: center;
  color: #1a1a1a;
- padding: 10px;
+ padding: 5px;
  border-radius: 10px;
  font-style: normal;
  cursor: pointer;
