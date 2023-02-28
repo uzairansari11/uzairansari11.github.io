@@ -11,10 +11,11 @@ function Home () {
     <div className="home-main" id="home">
       <div className="homeWrapper">
         <div className="homeLeft">
-          <div id="user-detail-name">Hello, I'm Uzair</div>
+          <div id="user-detail-name">Hello, I'm Uzair Ansari</div>
           <div>
-            A skilled
-            <strong id="user-detail-intro"> Full Stack Web Developer 💻</strong>
+          
+          <img  id="user-detail-intro" src="https://readme-typing-svg.herokuapp.com?font=Archivo&weight=600&size=25&pause=1000&color=000000&background=39393900&width=435&lines=An+Aspiring+Full+Stack+Web+Developer;An+Enthusiast+%26+Life+Long+Learner" alt="Typing SVG" />
+         {/* <strong id="user-detail-intro">  A skilled Full Stack Web Developer 💻</strong> */}
           </div>
           <a
             href="https://drive.google.com/uc?id=1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw&export=download"

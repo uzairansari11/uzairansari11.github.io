@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "./navbar.css";
 import { Link } from "react-scroll";
 import { HiDownload } from "react-icons/hi";
@@ -17,6 +17,7 @@ function Navbar() {
     window.open(url);
   };
   const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <div id="nav-menu" className="navbar">
       <div className="wrapper">
@@ -29,14 +30,13 @@ function Navbar() {
           </Link>
         </div>
         <div className="wrapperRight">
-          <div>
+          <div >
             <Link
               to="home"
               smooth={true}
               offset={-100}
               duration={500}
-              className="nav-link home"
-            >
+              className="nav-link home">
               Home
             </Link>
           </div>
@@ -104,14 +104,17 @@ function Navbar() {
             </a>
           </div>
         </div>
-        <div className="responce">
+        <div className="responce"  >
           <RxHamburgerMenu onClick={onOpen} />
-          <Drawer isOpen={isOpen} placement="right" onClose={onClose}>
+          <Drawer isOpen={isOpen} placement="right" onClose={onClose}
+
+          backgroundColor='black'
+          >
             <DrawerOverlay />
             <DrawerContent>
               <DrawerCloseButton />
               <DrawerBody marginTop={"30px"}>
-                <div className="drawerbody">
+                <div className="drawerbody" >
                   <div>
                     <Link
                       to="home"

@@ -1,14 +1,22 @@
-@import url("https://fonts.cdnfonts.com/css/general-sans");
-@import url("https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap");
 
 body {
  border: 0px solid red;
- font-family: "General Sans", sans-serif;
+
  background-color: #1a1a1a;
  color: white;
  height: 700px;
+
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  font-family: "Archivo";
+
+
+
+
 }
 .App {
+  font-family: "Archivo";
  /* text-align: center; */
 }
 /* a {

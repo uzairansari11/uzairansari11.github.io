@@ -1,22 +1,12 @@
 .about.section {
-  border: 0px solid red;
- background-color: #1a1a1a;
  height: auto;
- padding: 2px 0px 2px 0px;
+ padding: 0px 0px 2px 0px;
  display: flex;
  flex-direction: column;
- color: white;
  font-size: 20px;
 }
 
-.aboutH1 {
- text-align: center;
- color: white;
- font-size: 40px;
-}
-
 .aboutWrapper {
- border: 0px solid wheat;
  width: 80%;
  margin: auto;
  display: flex;
@@ -25,22 +15,20 @@
 }
 
 .aboutWrapperDiv {
-  border: 0px solid green;
  width: 60%;
  display: flex;
  flex-direction: column;
  align-items: center;
- 
+ margin: auto;
  font-size: 20px;
  line-height: 24px;
  text-align: justify;
 }
 
 .aboutMe {
+  margin: auto;
  width: 80%;
- background-color: #1a1a1a;
- color: white;
- padding: 20px;
+ padding: 40px;
  border-radius: 5px;
 }
 
@@ -53,8 +41,7 @@
 }
 
 .about-socialLink img {
-  border: 0px solid red;
- width: 30%;
+ width: 20%;
  cursor: pointer;
 }
 
@@ -67,11 +54,10 @@
 }
 
 .aboutWrapperImg {
- width: 50%;
+ width: 40%;
 }
 
 .aboutWrapperImg > img {
-  border: 0px solid red;
  display: block;
  margin: auto;
 }
@@ -131,11 +117,11 @@
 
 .text-divider-about {
   width: 80%;
-  margin: 2rem auto;
+  margin: .1rem auto;
   display: flex;
   text-align: center;
   align-items: center;
-  color: white;
+  color:black
 }
 
 .text-divider-about span {
@@ -152,6 +138,6 @@
   height: 1px;
   width: 20px;
   flex-grow: 1;
-  background: hsl(240, 4%, 90%);
+  background:black;
   vertical-align: middle;
 }

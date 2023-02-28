@@ -1,6 +1,5 @@
 import React from "react";
 import GitHubCalendar from "react-github-calendar";
-// import ReactTooltip from "react-tooltip";
 import { Tooltip as ReactTooltip } from 'react-tooltip'
 import "./calender.css";
 
@@ -62,7 +61,6 @@ function Calender() {
         <div>
           <img
             src="https://github-readme-stats.vercel.app/api?username=uzairansari11&show_icons=true&title_color=ffffff&text_color=ffffff&icon_color=ffffff&bg_color=8f3e41&border_radius=10&border_color=1a1a1a"
-            // src="https://github-readme-stats.vercel.app/api?username=uzairansari11&count_private=true&show_icons=true&theme=tokyonight"
             alt="Uzair Stats"
             id="github-stats-card"
           />

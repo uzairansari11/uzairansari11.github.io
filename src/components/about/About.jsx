@@ -1,14 +1,12 @@
 import "./about.css";
-
 function About() {
   const openLink = (url) => {
     window.open(url);
   };
-
   return (
     <div className="about section" id="about">
       <div class="text-divider-about"></div>
-      <h1 className="aboutH1">About me</h1>
+      <img src="https://readme-typing-svg.herokuapp.com?font=Archivo&weight=800&size=12&pause=500&color=000000&background=39393900&center=true&vCenter=true&repeat=false&width=435&height=34&lines=About+Me" alt="Typing SVG" />
       <div className="aboutWrapper">
         <div className="aboutWrapperDiv">
           <div className="aboutMe" id="user-detail-intro">
@@ -35,8 +33,7 @@ function About() {
         </div>
         <div className="aboutWrapperImg">
           <img
-            // src={process.env.PUBLIC_URL + "./Images/Right_Side.gif"}
-            src="https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExMWNhY2ExNGM5MjM4ZDFlMTljYWI5NjFmMmViNzhkODA2MzYyY2FkNyZjdD1n/SWoSkN6DxTszqIKEqv/giphy.gif"
+            src="https://technext.github.io/satner/img/about-us.png"
             alt="About"
           />
         </div>
