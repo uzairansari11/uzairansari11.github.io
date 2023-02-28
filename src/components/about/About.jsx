@@ -6,7 +6,7 @@ function About() {
   return (
     <div className="about section" id="about">
       <div class="text-divider-about"></div>
-      <img src="https://readme-typing-svg.herokuapp.com?font=Archivo&weight=800&size=12&pause=500&color=000000&background=39393900&center=true&vCenter=true&repeat=false&width=435&height=34&lines=About+Me" alt="Typing SVG" />
+      <img  src="https://readme-typing-svg.herokuapp.com?font=Archivo&weight=800&size=12&pause=10&color=000000&background=39393900&center=true&vCenter=true&repeat=false&width=435&height=34&lines=About+Me" alt="Typing SVG" />
       <div className="aboutWrapper">
         <div className="aboutWrapperDiv">
           <div className="aboutMe" id="user-detail-intro">

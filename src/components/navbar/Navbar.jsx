@@ -16,6 +16,7 @@ function Navbar() {
   const openLink = (url) => {
     window.open(url);
   };
+  
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -24,7 +25,7 @@ function Navbar() {
         <div className="wrapperLeft">
           <Link to="home" smooth={true} offset={-100} duration={500}>
             <img
-              src={process.env.PUBLIC_URL + "./Images/logo.PNG"}
+              src="./logo.PNG"
               alt="icon"
             />
           </Link>

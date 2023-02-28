@@ -1,34 +1,35 @@
 .skills-main {
- background-color: #1a1a1a;
- padding: 2px 0px 0px 0px;
+ background-color:white;
+ padding: 0px 0px 0px 0px;
+ margin: 0px 0px 0px 0px;
 }
 
 .skillsWrapper {
   margin-top: 0;
-  border: 1px solid white;
  width: 90%;
  margin: auto;
  text-align: center;
  display: grid;
- grid-template-columns: repeat(2, 1fr);
+ grid-template-columns: repeat(2, auto);
 
 }
 
 .skills-heading {
- color: white;
+ color:black;
  font-size: 40px;
  margin-bottom: 10px;
 }
 
 .skillsTechnologiesDiv {
- border: 2px solid green;
+
  width: 100%;
  margin: auto;
  display: grid;
  justify-content: space-evenly;
- grid-template-columns: repeat(5, 1fr);
+ grid-template-columns: repeat(4, auto);
  gap: 5px;
  padding: 10px 0px;
+ 
 }
 
 
@@ -43,7 +44,7 @@
 }
 
 /* meidum screens */
-@media all and (min-width: 768px) and (max-width: 1024px) {
+@media all and (min-width: 768px) and (max-width: 1023px) {
  .skillsWrapper {
   display: grid;
   grid-template-columns: repeat(1, auto);
@@ -51,18 +52,18 @@
  }
 
  .skillsTechnologiesDiv {
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(3, auto);
  }
 
 
  .skillsToolsDiv {
-  grid-template-columns: repeat(4, auto);
+  grid-template-columns: repeat(3, auto);
  }
 }
 
 /* small screens */
 
-@media all and (min-width: 1025px) and (max-width: 1470px) {
+@media all and (min-width: 1024px) and (max-width: 1470px) {
  .skillsWrapper {
   display: grid;
   grid-template-columns: repeat(1, auto);
@@ -70,13 +71,13 @@
  }
 
  .skillsTechnologiesDiv {
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(4, auto);
  }
 
 
 
  .skillsToolsDiv {
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(4, auto);
  }
 }
 
@@ -101,12 +102,13 @@
 }
 
 .text-divider-skill {
+
   width: 80%;
-  margin: 2rem auto 100px auto;
+  margin: 2rem auto 10px auto;
   display: flex;
   text-align: center;
   align-items: center;
-  color: white;
+  color:black;
 }
 
 .text-divider-skill span {
@@ -123,6 +125,6 @@
   height: 1px;
   width: 20px;
   flex-grow: 1;
-  background: hsl(240, 4%, 90%);
+  background: black;
   vertical-align: middle;
 }

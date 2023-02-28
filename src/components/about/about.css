@@ -1,12 +1,15 @@
 .about.section {
+
  height: auto;
- padding: 0px 0px 2px 0px;
+ padding: 0px 0px 0px 0px;
  display: flex;
  flex-direction: column;
  font-size: 20px;
+ margin-top: 0px;
 }
 
 .aboutWrapper {
+
  width: 80%;
  margin: auto;
  display: flex;
@@ -15,6 +18,7 @@
 }
 
 .aboutWrapperDiv {
+
  width: 60%;
  display: flex;
  flex-direction: column;
@@ -26,13 +30,15 @@
 }
 
 .aboutMe {
+
   margin: auto;
- width: 80%;
+ width: 100%;
  padding: 40px;
  border-radius: 5px;
 }
 
 .about-socialLink {
+
  width: 25%;
  height: 82px;
  display: flex;
@@ -41,6 +47,7 @@
 }
 
 .about-socialLink img {
+
  width: 20%;
  cursor: pointer;
 }
@@ -54,7 +61,8 @@
 }
 
 .aboutWrapperImg {
- width: 40%;
+
+ width: 30%;
 }
 
 .aboutWrapperImg > img {
