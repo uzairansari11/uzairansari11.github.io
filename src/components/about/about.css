@@ -1,7 +1,11 @@
-.about.section {
 
+@import url('https://fonts.googleapis.com/css2?family=Oxygen&display=swap');
+
+
+.about.section {
+/* border: 1px solid rgb(53, 32, 134); */
  height: auto;
- padding: 0px 0px 0px 0px;
+ padding: 0px 0px 40px 0px;
  display: flex;
  flex-direction: column;
  font-size: 20px;
@@ -9,6 +13,7 @@
 }
 
 .aboutWrapper {
+  /* border: 1px solid rgb(45, 196, 25); */
 
  width: 80%;
  margin: auto;
@@ -18,8 +23,9 @@
 }
 
 .aboutWrapperDiv {
+  /* border: 1px solid rgb(223, 36, 170); */
 
- width: 60%;
+ width: 50%;
  display: flex;
  flex-direction: column;
  align-items: center;
@@ -30,14 +36,17 @@
 }
 
 .aboutMe {
+/* border: 1px solid rgb(11, 242, 169); */
 
+  font-family: 'Oxygen', sans-serif;
   margin: auto;
  width: 100%;
- padding: 40px;
+ padding: 0px;
  border-radius: 5px;
 }
 
 .about-socialLink {
+  /* border: 1px solid rgb(15, 9, 84); */
 
  width: 25%;
  height: 82px;
@@ -47,8 +56,9 @@
 }
 
 .about-socialLink img {
+  /* border: 1px solid rgb(0, 1, 0); */
 
- width: 20%;
+ width: 25%;
  cursor: pointer;
 }
 
@@ -61,22 +71,21 @@
 }
 
 .aboutWrapperImg {
+  /* border: 1px solid rgb(243, 11, 255); */
 
- width: 30%;
+ width: 35%;
 }
 
 .aboutWrapperImg > img {
  display: block;
  margin: auto;
+ width: 100%;
 }
 
 /* meidum screens */
 @media all and (min-width: 768px) and (max-width: 1024px) {
  .aboutMe {
-  /* width: 100%; */
-  background-color: #1a1a1a;
-  color: white;
-  padding: 20px;
+  padding: 0px;
   border-radius: 5px;
  }
 
@@ -91,8 +100,6 @@
   display: flex;
   flex-direction: column-reverse;
   justify-content: center;
-  /* gap: 20px; */
-  /* width: 100%; */
   margin: auto;
  }
 
@@ -108,8 +115,6 @@
 
  .aboutMe {
   width: 100%;
-  background-color: #1a1a1a;
-  color: white;
   padding: 0px;
   border-radius: 5px;
  }
@@ -125,7 +130,6 @@
 
 .text-divider-about {
   width: 80%;
-  margin: .1rem auto;
   display: flex;
   text-align: center;
   align-items: center;
@@ -137,7 +141,6 @@
   letter-spacing: 0.1em;
   text-transform: uppercase;
   white-space: nowrap;
-  padding: 0 1rem;
 }
 
 .text-divider-about::before, .text-divider-about::after {

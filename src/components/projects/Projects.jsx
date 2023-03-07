@@ -1,8 +1,6 @@
 import "./projects.css";
-import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { FaGithub} from "react-icons/fa";
 import { HiExternalLink } from "react-icons/hi";
-// import ProjectSet from "./ProjectSet";
-// import data from "../../db.json";
 
 function Projects () {
   const openLink = (url) => {
@@ -10,12 +8,9 @@ function Projects () {
   };
   return (
     <div className="projects-projects" id="projects">
-      <div class="text-divider-project"></div>
+      {/* <div class="text-divider-project"></div> */}
       <h1 className="projects-heading">My Projects</h1>
       <div className="projects-container">
-        {/* {data.projects.map((elm) => {
-          return <ProjectSet key={elm.id} {...elm} />;
-        })} */}
         <div className="project-card">
           <div className="project-card-container">
             <div className="project-img">
@@ -35,7 +30,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">HTML</p>
+                  {/* <p className="project-skills-card-name">HTML</p> */}
                 </div>
                 <div className="project-skills-card" key={Date.now() + Math.random()}>
                   <img
@@ -43,7 +38,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">CSS</p>
+                  {/* <p className="project-skills-card-name">CSS</p> */}
                 </div>
                 <div className="project-skills-card" key={Date.now() + Math.random()}>
                   <img
@@ -51,7 +46,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">JavaScript</p>
+                  {/* <p className="project-skills-card-name">JavaScript</p> */}
                 </div>
                 <div className="project-skills-card" key={Date.now() + Math.random()}>
                   <img
@@ -59,7 +54,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">React Js</p>
+                  {/* <p className="project-skills-card-name">React Js</p> */}
                 </div>
                 <div className="project-skills-card" key={Date.now() + Math.random()}>
                   <img
@@ -67,7 +62,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">JSON</p>
+                  {/* <p className="project-skills-card-name">JSON</p> */}
                 </div>
                 <div className="project-skills-card" key={Date.now() + Math.random()}>
                   <img
@@ -75,7 +70,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">Chakra UI</p>
+                  {/* <p className="project-skills-card-name">Chakra UI</p> */}
                 </div>
               </div>
               <div className="project-card-btn">
@@ -106,7 +101,7 @@ function Projects () {
               <p className="project-description">
               CrocsLand is a E-commerce website that sells a wide range of footware products 
               having unique and attrative design at very low prices.
-              It also make available custom products for customers.
+
                 </p>
               <div className="project-tech-stack">
                 <div key={Date.now() + Math.random()}
@@ -116,7 +111,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">HTML</p>
+                  {/* <p className="project-skills-card-name">HTML</p> */}
                 </div>
                 <div className="project-skills-card" key={Date.now() + Math.random()}>
                   <img
@@ -124,7 +119,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">CSS</p>
+                  {/* <p className="project-skills-card-name">CSS</p> */}
                 </div>
                 <div className="project-skills-card" key={Date.now() + Math.random()}>
                   <img
@@ -132,7 +127,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">JavaScript</p>
+                  {/* <p className="project-skills-card-name">JavaScript</p> */}
                 </div>
                 <div className="project-skills-card" key={Date.now() + Math.random()}>
                   <img
@@ -140,7 +135,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">JSON</p>
+                  {/* <p className="project-skills-card-name">JSON</p> */}
                 </div>
               </div>
               <div className="project-card-btn">
@@ -180,7 +175,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">HTML</p>
+                  {/* <p className="project-skills-card-name">HTML</p> */}
                 </div>
                 <div className="project-skills-card" key={Date.now() + Math.random()}>
                   <img
@@ -188,7 +183,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">CSS</p>
+                  {/* <p className="project-skills-card-name">CSS</p> */}
                 </div>
                 <div className="project-skills-card" key={Date.now() + Math.random()}>
                   <img
@@ -196,7 +191,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">JavaScript</p>
+                  {/* <p className="project-skills-card-name">JavaScript</p> */}
                 </div>
               </div>
               <div className="project-card-btn">
@@ -235,7 +230,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">HTML</p>
+                  {/* <p className="project-skills-card-name">HTML</p> */}
                 </div>
                 <div className="project-skills-card" key={Date.now() + Math.random()}>
                   <img
@@ -243,7 +238,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">CSS</p>
+                  {/* <p className="project-skills-card-name">CSS</p> */}
                 </div>
                 <div className="project-skills-card" key={Date.now() + Math.random()}>
                   <img
@@ -251,7 +246,7 @@ function Projects () {
                     alt=""
                     className="project-skills-card-img"
                   />
-                  <p className="project-skills-card-name">JavaScript</p>
+                  {/* <p className="project-skills-card-name">JavaScript</p> */}
                 </div>
               </div>
               <div className="project-card-btn">

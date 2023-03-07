@@ -25,7 +25,7 @@ function Navbar() {
         <div className="wrapperLeft">
           <Link to="home" smooth={true} offset={-100} duration={500}>
             <img
-              src="./logo.PNG"
+              src="./logo.png"
               alt="icon"
             />
           </Link>

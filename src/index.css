@@ -1,10 +1,9 @@
 body {
   margin: 0;
-  font-family: 'Archivo';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
 code {
-  font-family: Archivo;
+  /* font-family: Archivo; */
 }

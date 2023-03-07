@@ -5,17 +5,18 @@ function About() {
   };
   return (
     <div className="about section" id="about">
-      <div class="text-divider-about"></div>
+      {/* <div class="text-divider-about"></div> */}
       <img  src="https://readme-typing-svg.herokuapp.com?font=Archivo&weight=800&size=12&pause=10&color=000000&background=39393900&center=true&vCenter=true&repeat=false&width=435&height=34&lines=About+Me" alt="Typing SVG" />
       <div className="aboutWrapper">
         <div className="aboutWrapperDiv">
           <div className="aboutMe" id="user-detail-intro">
-            <span id="user-detail-name">I am Uzair Ansari</span> a passionate and
-            adaptable full stack web developer, skilled in JavaScript, Node JS,
-            Express, MongoDB, with proficiency in problem-solving. A dependable
-            and responsible team player with an eye to detail. Looking for a
-            position to enhance once skills while significantly contributing to
-            the company's growth.
+            <span id="user-detail-name">I am Uzair Ansari</span> A Passionate aspiring Full Stack Web Developer skilled
+in MERN Stack. Is proficient in developing websites
+using HTML, CSS, JavaScript, React, Redux, and
+ChakraUI. Looking forward to working in an
+organization that can challenge my abilities as a web
+developer.
+
           </div>
           <div className="about-socialLink">
             <img
@@ -26,7 +27,7 @@ function About() {
             />
             <img
               onClick={() => openLink("www.linkedin.com/in/uzairansari11")}
-              src={process.env.PUBLIC_URL + "./Images/linkedin.png"}
+              src={process.env.PUBLIC_URL + "./Images/linkedin1.png"}
               alt="About"
             />
           </div>

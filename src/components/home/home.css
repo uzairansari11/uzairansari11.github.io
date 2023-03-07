@@ -1,40 +1,42 @@
 .home-main {
-margin-bottom: 100px;
- padding: 120px 0px 0px 0px;
+    /* border:2px solid red; */
+
+ padding: 120px 0px 75px 0px;
+/* height: 100vh; */
 }
 
 .homeWrapper {
+    /* border:2px solid green; */
  width: 80%;
  margin: auto;
  display: flex;
  justify-content: space-between;
  align-items: center;
+ margin-bottom: 10px
 }
 
 .homeLeft {
-   
+    /* border:2px solid yellow; */
  width: 80%;
  display: flex;
  flex-direction: column;
  gap: 20px;
+justify-content: space-between;
 }
 
 .homeLeft > div:nth-child(1) {
-
+    /* border:2px solid blue; */
  width: 100%;
  font-size: 70px;
  font-style: normal;
  font-weight: 1000;
-
- color: white;
- background: #2578c2;
  background: repeating-linear-gradient(to top left, #161617 0%, #9b9b9b 100%);
  -webkit-background-clip: text;
  -webkit-text-fill-color: transparent;
 }
 
 .homeLeft > div:nth-child(2) {
-    margin-left: 13px;
+    /* border:2px solid cyan; */
  font-size: 20px;
  font-style: normal;
  line-height: 25px;
@@ -47,14 +49,15 @@ margin-bottom: 100px;
 }
 
 .home-resume {
+    /* border:2px solid purple; */
     background: repeating-linear-gradient(to top left, #161617 0%, #9b9b9b 100%);
-    margin-left: 13px;
  display: flex;
  justify-content: space-between;
  align-items: center;
  text-align: center;
  color: white;
- padding: 5px;
+ padding: 7px 10px ;
+ width: 80%;
  border-radius: 10px;
  font-size: 18px;
  font-style: normal;
@@ -62,7 +65,7 @@ margin-bottom: 100px;
 }
 
 .home-resume:hover {
- padding: 8px;
+
  background: linear-gradient(to right, #000000, #434343);
  -moz-transition: all 0.2s ease-in-out;
  -o-transition: all 0.2s ease-in-out;
@@ -73,10 +76,15 @@ margin-bottom: 100px;
 
 .homeright {
  width: 500px;
- border-radius: 50%;
+
 }
 
+ .homeright>img{
+     border-radius: 50%;
+    border: 1px solid  #434343;
+ }
 .home-img {
+   
  width: 60%;
  display: block;
  margin: auto;
@@ -105,7 +113,7 @@ margin-bottom: 100px;
 /* small screens */
 @media all and (min-width: 280px) and (max-width: 767px) {
  .home-main {
-  padding: 100px 0px 10px 0px;
+  padding: 100px 0px 0px 0px;
  }
 
  .homeWrapper {
@@ -117,7 +125,7 @@ margin-bottom: 100px;
 
  .homeLeft {
   width: 100%;
-  padding: 30px;
+  padding: 0px;
  }
 
  .homeright {
