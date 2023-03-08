@@ -4,6 +4,9 @@
 
 .about.section {
 /* border: 1px solid rgb(53, 32, 134); */
+/* background-color:#01BAEF; */
+background-color: #C0DCEC;
+
  height: auto;
  padding: 0px 0px 120px 0px;
  display: flex;
