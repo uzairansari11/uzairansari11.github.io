@@ -23,7 +23,7 @@ function Navbar() {
     <div id="nav-menu" className="navbar">
       <div className="wrapper">
         <div className="wrapperLeft">
-          <Link to="home" smooth={true} offset={-100} duration={500}>
+          <Link to="home" smooth={true} offset={-50} duration={500}>
             <img
               src="./logo.png"
               alt="icon"
@@ -35,7 +35,7 @@ function Navbar() {
             <Link
               to="home"
               smooth={true}
-              offset={-100}
+              offset={-50}
               duration={500}
               className="nav-link home">
               Home
@@ -45,7 +45,7 @@ function Navbar() {
             <Link
               to="about"
               smooth={true}
-              offset={-79}
+              offset={-50}
               duration={500}
               className="nav-link about"
             >
@@ -56,7 +56,7 @@ function Navbar() {
             <Link
               to="skills"
               smooth={true}
-              offset={-79}
+              offset={-50}
               duration={500}
               className="nav-link skills"
             >
@@ -65,9 +65,20 @@ function Navbar() {
           </div>
           <div>
             <Link
+              to="github-main"
+              smooth={true}
+              offset={-50}
+              duration={500}
+              className="nav-link skills"
+            >
+            Github
+            </Link>
+          </div>
+          <div>
+            <Link
               to="projects"
               smooth={true}
-              offset={-79}
+              offset={-50}
               duration={500}
               className="nav-link projects"
             >
@@ -78,7 +89,7 @@ function Navbar() {
             <Link
               to="contact"
               smooth={true}
-              offset={-79}
+              offset={-50}
               duration={500}
               className="nav-link contact"
             >
@@ -120,7 +131,7 @@ function Navbar() {
                     <Link
                       to="home"
                       smooth={true}
-                      offset={-100}
+                      offset={-50}
                       duration={500}
                       onClick={onClose}
                     >
@@ -131,7 +142,7 @@ function Navbar() {
                     <Link
                       to="about"
                       smooth={true}
-                      offset={-79}
+                      offset={-50}
                       duration={500}
                       onClick={onClose}
                     >
@@ -142,7 +153,7 @@ function Navbar() {
                     <Link
                       to="skills"
                       smooth={true}
-                      offset={-79}
+                      offset={-50}
                       duration={500}
                       onClick={onClose}
                     >
@@ -153,7 +164,7 @@ function Navbar() {
                     <Link
                       to="projects"
                       smooth={true}
-                      offset={-79}
+                      offset={-50}
                       duration={500}
                       onClick={onClose}
                     >
@@ -164,7 +175,7 @@ function Navbar() {
                     <Link
                       to="contact"
                       smooth={true}
-                      offset={-79}
+                      offset={-50}
                       duration={500}
                       onClick={onClose}
                     >

@@ -1,5 +1,4 @@
 .skills-card {
-
  display: flex;
  flex-direction: column;
  justify-content: center;
@@ -7,7 +6,6 @@
  gap: 8px;
  width: 180px;
  padding: 10px;
- color:black;
  font-style: normal;
  font-size: 20px;
  font-weight: 600;
@@ -18,9 +16,10 @@
 }
 
 .skills-card:hover {
- background-color: #5a5a5a;
  border: 1px solid black;
- color:black;
+
+ background: repeating-linear-gradient(to top left, #65656c 0%, #9b9b9b 100%);
+
 }
 
 .skills-card > div {
