@@ -35,10 +35,10 @@ developer.
           </div>
         </div>
         <div className="aboutWrapperImg">
-          <img
+          {/* <img
             src="https://technext.github.io/satner/img/about-us.png"
             alt="About"
-          />
+          /> */}
         </div>
       </div>
     </div>

@@ -1,151 +1,134 @@
 .home-main {
-    /* border:1px solid red; */
-    /* background: repeating-linear-gradient(to top left,  #B58ECC
-    0%,    #5DE6DE 100%); */
-
-  background-color: #C0DCEC;
-
- padding: 120px 0px 100px 0px;
-/* height: 100vh; */
+  background-color: #e0eff8;
+  padding: 120px 0px 106px 0px;
 }
 
 .homeWrapper {
-    /* border:2px solid green; */
- width: 80%;
- margin: auto;
- display: flex;
- justify-content: space-between;
- align-items: center;
- margin-bottom: 10px
+  width: 80%;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .homeLeft {
-    /* border:2px solid yellow; */
- width: 80%;
- display: flex;
- flex-direction: column;
- gap: 20px;
-justify-content: space-between;
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
 }
 
 .homeLeft > div:nth-child(1) {
-    /* border:2px solid blue; */
- width: 100%;
- font-size: 70px;
- font-style: normal;
- font-weight: 1000;
- background: repeating-linear-gradient(to top left, #161617 0%, #9b9b9b 100%);
- -webkit-background-clip: text;
- -webkit-text-fill-color: transparent;
+  width: 100%;
+  font-size: 70px;
+  font-style: normal;
+  font-weight: 400;
+  
 }
 
-.homeLeft > div:nth-child(2) {
-    /* border:2px solid cyan; */
- font-size: 20px;
- font-style: normal;
- line-height: 25px;
- color: black;
- 
-}
+
 
 .homeLeft a {
- width: 24%;
+  width: 24%;
 }
 
 .home-resume {
-    /* border:2px solid purple; */
-    background: repeating-linear-gradient(to top left, #161617 0%, #9b9b9b 100%);
- display: flex;
- justify-content: space-between;
- align-items: center;
- text-align: center;
- color: white;
- padding: 7px 10px ;
- width: 80%;
- border-radius: 10px;
- font-size: 18px;
- font-style: normal;
- cursor: pointer;
+  background: repeating-linear-gradient(to top left, #161617 0%, #9b9b9b 100%);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  text-align: center;
+  color: white;
+  padding: 7px 10px;
+  width: 80%;
+  border-radius: 5px;
+  font-size: 18px;
+  font-style: normal;
+  cursor: pointer;
 }
 
 .home-resume:hover {
 
- background: linear-gradient(to right, #000000, #434343);
- -moz-transition: all 0.2s ease-in-out;
- -o-transition: all 0.2s ease-in-out;
- -webkit-transition: all 0.2s ease-in-out;
- transition: all 0.2s ease-in-out;
- color: white;
+    border-bottom: 1px solid red;
+  background: linear-gradient(to right, #000000, #434343);
+  -moz-transition: all 0.2s ease-in-out;
+  -o-transition: all 0.2s ease-in-out;
+  -webkit-transition: all 0.2s ease-in-out;
+  transition: all 0.2s ease-in-out;
+  color: white;
 }
 
 .homeright {
- width: 500px;
-
+  width: 500px;
 }
 
- .homeright>img{
-     border-radius: 50%;
-    border: 1px solid  #434343;
- }
 .home-img {
-   
- width: 60%;
- display: block;
- margin: auto;
+  width: 60%;
+  display: block;
+  margin: auto;
 }
 
 /* meidum screens */
 @media all and (min-width: 768px) and (max-width: 1024px) {
- .homeLeft > div:nth-child(1) {
-  font-size: 40px;
- }
+  
+  .homeLeft > div:nth-child(1) {
+    font-size: 40px;
+  }
+  .home-img {
+    width: 60%;
+    display: block;
+    margin: auto;
+  }
+  .homeright {
+    width: 300px;
+    /* height: 300px; */
+  }
 
- .homeright {
-  width: 300px;
-  /* height: 300px; */
- }
+  .home-resume {
+    width: 130px;
+  }
 
- .home-resume {
-  width: 130px;
- }
-
- .homeLeft a {
-  width: min-content;
- }
+  .homeLeft a {
+    width: min-content;
+  }
 }
 
 /* small screens */
 @media all and (min-width: 280px) and (max-width: 767px) {
- .home-main {
-  padding: 100px 0px 0px 0px;
- }
+  .home-main {
+    padding: 60px 0px 0px 0px;
+  }
 
- .homeWrapper {
-  display: flex;
-  flex-direction: column-reverse;
-  justify-content: center;
-  width: 100%;
- }
+  .homeWrapper {
+     
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    width: 100%;
+  }
 
- .homeLeft {
-  width: 100%;
-  padding: 0px;
- }
+  .homeLeft {
+    justify-content: center;
+    width: 100%;
+    align-items: center;
+    padding: 0px;
+    text-align: center;
+  }
 
- .homeright {
-  width: 300px;
-  /* height: 300px; */
- }
+  .homeright {
+    width: 300px;
+  }
 
- .homeLeft > div:nth-child(1) {
-  font-size: 40px;
- }
+  .homeLeft > div:nth-child(1) {
+    font-size: 40px;
+  }
 
- .home-resume {
-  width: 130px;
- }
+  .home-resume {
+    width: 130px;
+  }
 
- .homeLeft a {
-  width: min-content;
- }
+  .homeLeft a {
+    width: min-content;
+  }
 }

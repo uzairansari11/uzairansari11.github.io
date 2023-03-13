@@ -1,11 +1,7 @@
 
 body {
- /* border: 2px solid red; */
-
- /* background-color:red; */
-
   box-sizing: border-box;
-  font-family: "Archivo";
+  /* font-family: "Archivo"; */
 }
 * {
   scrollbar-width:thin;

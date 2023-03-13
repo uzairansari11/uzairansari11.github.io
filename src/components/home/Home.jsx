@@ -11,7 +11,7 @@ function Home () {
     <div className="home-main" id="home">
       <div className="homeWrapper">
         <div className="homeLeft">
-          <div id="user-detail-name">Hello, <br/> I am Uzair Ansari</div>
+          <div id="user-detail-name">Hello I Am  <br/><span style={{color:"red"}} >Uzair Ansari</span></div>
           <div>
           
           <img  id="user-detail-intro" src="https://readme-typing-svg.herokuapp.com?font=Archivo&weight=600&size=25&pause=1000&color=000000&background=39393900&width=435&lines=An+Aspiring+Full+Stack+Web+Developer;An+Enthusiast+%26+Life+Long+Learner" alt="Typing SVG" />

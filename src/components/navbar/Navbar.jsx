@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import "./navbar.css";
 import { Link } from "react-scroll";
 import { HiDownload } from "react-icons/hi";
@@ -16,7 +15,7 @@ function Navbar() {
   const openLink = (url) => {
     window.open(url);
   };
-  
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
@@ -24,20 +23,18 @@ function Navbar() {
       <div className="wrapper">
         <div className="wrapperLeft">
           <Link to="home" smooth={true} offset={-50} duration={500}>
-            <img
-              src="./logo.png"
-              alt="icon"
-            />
+            <img src="./logo.png" alt="icon" />
           </Link>
         </div>
         <div className="wrapperRight">
-          <div >
+          <div>
             <Link
               to="home"
               smooth={true}
               offset={-50}
               duration={500}
-              className="nav-link home">
+              className="nav-link home"
+            >
               Home
             </Link>
           </div>
@@ -71,7 +68,7 @@ function Navbar() {
               duration={500}
               className="nav-link skills"
             >
-            Github
+              Github
             </Link>
           </div>
           <div>
@@ -116,17 +113,19 @@ function Navbar() {
             </a>
           </div>
         </div>
-        <div className="responce"  >
+        <div className="responce">
           <RxHamburgerMenu onClick={onOpen} />
-          <Drawer isOpen={isOpen} placement="right" onClose={onClose}
-
-          backgroundColor='black'
+          <Drawer
+            isOpen={isOpen}
+            placement="right"
+            onClose={onClose}
+            backgroundColor="black"
           >
             <DrawerOverlay />
             <DrawerContent>
               <DrawerCloseButton />
               <DrawerBody marginTop={"30px"}>
-                <div className="drawerbody" >
+                <div className="drawerbody">
                   <div>
                     <Link
                       to="home"
@@ -158,6 +157,17 @@ function Navbar() {
                       onClick={onClose}
                     >
                       Skills
+                    </Link>
+                  </div>
+                  <div>
+                    <Link
+                      to="github-main"
+                      smooth={true}
+                      offset={-50}
+                      duration={500}
+                      onClick={onClose}
+                    >
+                      Github
                     </Link>
                   </div>
                   <div>
