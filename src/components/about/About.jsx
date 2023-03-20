@@ -34,11 +34,20 @@ developer.
             />
           </div>
         </div>
-        <div className="aboutWrapperImg">
+        <div className="aboutWrapperExp">
           {/* <img
             src="https://technext.github.io/satner/img/about-us.png"
             alt="About"
           /> */}
+
+<div>    <span style={{color :"#ff3a5e  " , fontSize:"40px"}} >  1200+ </span>          <br/> Hrs Coding</div>
+<div>
+<div> <span style={{color :"#ff3a5e  " , fontSize:"40px"}}  >  30+ </span>    <br/>  Mini Projects </div>
+<div> <span style={{color :"#ff3a5e  " , fontSize:"40px"}}  >  3+ </span>    <br/>  Major Projects </div>
+<div> <span style={{color :"#ff3a5e  " , fontSize:"40px"}}  >  300+ </span>   <br/>  DSA Problem </div>
+<div> <span style={{color :"#ff3a5e  " , fontSize:"40px"}}  >  200+ </span>    <br/>  Hrs Soft Skills </div>
+</div>
+
         </div>
       </div>
     </div>

@@ -1,5 +1,7 @@
 .github-main {
- padding: 10px 0px 0px 0px;
+  border: 1px solid red;
+  background-color: #e0eff8;
+ padding: 2px 0px 22px 0px;
  display: flex;
  flex-direction: column;
  justify-content: center;
@@ -13,7 +15,7 @@
 }
 
 .github-stats {
-
+  border: 1px solid red;
  display: flex;
  justify-content: space-between;
  align-items: center;

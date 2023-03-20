@@ -1,10 +1,11 @@
 .home-main {
   background-color: #e0eff8;
-  padding: 120px 0px 106px 0px;
+  padding: 140px 0px 106px 0px;
 }
 
 .homeWrapper {
-  width: 80%;
+  /* border: 1px solid red; */
+  width: 75%;
   margin: auto;
   display: flex;
   justify-content: space-between;
@@ -12,6 +13,7 @@
 }
 
 .homeLeft {
+    /* border: 1px solid red; */
   width: 80%;
   display: flex;
   flex-direction: column;
@@ -20,20 +22,27 @@
 }
 
 .homeLeft > div:nth-child(1) {
+    /* border: 1px solid red; */
   width: 100%;
   font-size: 70px;
   font-style: normal;
   font-weight: 400;
+
   
 }
+.homeLeft > div:nth-child(2) {
+    /* border: 1px solid rgb(11, 166, 171); */
+padding-left: 6px;
 
-
+  
+}
 
 .homeLeft a {
   width: 24%;
 }
 
 .home-resume {
+    /* border: 1px solid yellow; */
   background: repeating-linear-gradient(to top left, #161617 0%, #9b9b9b 100%);
   display: flex;
   justify-content: space-between;
@@ -46,6 +55,8 @@
   font-size: 18px;
   font-style: normal;
   cursor: pointer;
+  margin-left: 4px;
+
 }
 
 .home-resume:hover {
