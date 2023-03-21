@@ -32,7 +32,7 @@
 }
 
 .project-card-container {
-  /* border: 1px solid rgb(241, 78, 24); */
+  border: 1px solid rgb(241, 78, 24);
   gap: 30px;
   padding: 10px;
   display: flex;
