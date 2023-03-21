@@ -44,22 +44,21 @@ function Calender() {
       <div className="github-stats">
         <div>
           <img
-            src="https://github-readme-streak-stats.herokuapp.com?user=uzairansari11&ring=red&currStreakLabel=000000&fire=red"
+            src="https://github-readme-streak-stats.herokuapp.com?user=uzairansari11&ring=black&currStreakLabel=000000&fire=black"
             alt="Uzair Stats"
             id="github-streak-stats"
           />
         </div>
         <div>
           <img
-
-            src='https://github-readme-stats.vercel.app/api/top-langs/?username=uzairansari11&hide=shell,Nix&title_color=black&height=500px'
+            src="https://github-readme-stats.vercel.app/api/top-langs/?username=uzairansari11&layout=compact&langs_count=10"
             alt="Uzair Stats"
             id="github-top-langs"
           />
         </div>
         <div>
           <img
-            src="https://github-readme-stats.vercel.app/api?username=uzairansari11&theme=red&show_icons=true"
+            src="https://github-readme-stats.vercel.app/api?username=uzairansari11&theme=black&show_icons=true"
             alt="Uzair Stats"
             id="github-stats-card"
           />

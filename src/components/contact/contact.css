@@ -1,8 +1,8 @@
 .contact-main {
-  background-color: white;
+  background-color: #e0eff8;
   padding: 40px 0px 60px 0px;
 }
-
+/* heading wrapper css */
 .headingwrapper {
   width: 60%;
   margin: auto;
@@ -38,14 +38,16 @@
   display: flex;
   align-items: center;
   gap: 10px;
+
 }
 
 .contact-socialLink {
-  width: 50%;
+  width: 40%;
   height: 80px;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
+
 }
 
 .contact-socialLink img {

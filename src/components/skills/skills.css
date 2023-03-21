@@ -1,9 +1,13 @@
 .skills-main {
   background-color: #e0eff8;
+  /* border: 1px solid green; */
+  padding-bottom: 25px;
+
+
 }
 
 .skillsWrapper {
-  border: 1px solid rgb(235, 255, 16);
+  /* border: 1px solid rgb(0, 0, 0); */
   width: 75%;
   margin: auto;
   text-align: center;
@@ -24,7 +28,7 @@
 }
 
 .skillsToolsDiv {
-  border: 1px solid rgb(161, 21, 255);
+  /* border: 1px solid rgb(161, 21, 255); */
   margin: auto;
   display: grid;
   justify-content: space-between;
@@ -35,9 +39,10 @@
 
 @media all and (min-width: 280px) and (max-width: 767px) {
   .skillsWrapper {
-
+ width: 75%;
     display: grid;
-    grid-template-columns: repeat(1, auto);
+    justify-content: center;
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .skillsTechnologiesDiv {
@@ -55,17 +60,23 @@
 /* meidum screens */
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .skillsWrapper {
+    justify-content: center;
 
     display: grid;
-    grid-template-columns: repeat(1, auto);
+    
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .skillsTechnologiesDiv {
-    grid-template-columns: repeat(5, auto);
+    gap: 20px;
+
+    grid-template-columns: repeat(4, auto);
   }
 
   .skillsToolsDiv {
-    grid-template-columns: repeat(5, auto);
+    gap: 20px;
+
+    grid-template-columns: repeat(4, auto);
   }
 }
 
@@ -73,16 +84,21 @@
 
 @media all and (min-width: 1024px) and (max-width: 1470px) {
   .skillsWrapper {
+    justify-content: center;
        
     display: grid;
-    grid-template-columns: repeat(1, auto);
+    grid-template-columns: repeat(1, 1fr);
   }
 
   .skillsTechnologiesDiv {
-    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+
+    grid-template-columns: repeat(6, auto);
   }
 
   .skillsToolsDiv {
-    grid-template-columns: repeat(6, 1fr);
+    gap: 20px;
+
+    grid-template-columns: repeat(6, auto);
   }
 }

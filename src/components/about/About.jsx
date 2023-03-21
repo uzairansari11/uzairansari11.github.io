@@ -5,8 +5,7 @@ function About() {
   };
   return (
     <div className="about section" id="about">
-      {/* <div class="text-divider-about"></div> */}
-      {/* <img  src="https://readme-typing-svg.herokuapp.com?font=Archivo&weight=800&size=12&pause=10&color=000000&background=39393900&center=true&vCenter=true&repeat=false&width=435&height=34&lines=About+Me" alt="Typing SVG" /> */}
+    
       <h1 className="aboutH1">About me</h1>
 
       <div className="aboutWrapper">

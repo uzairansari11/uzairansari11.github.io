@@ -31,7 +31,7 @@ function Contact() {
             <div className="contact-socialLink">
               <img
                 onClick={() => openLink("https://github.com/uzairansari11")}
-                src={'https://cdn-icons-png.flaticon.com/512/733/733553.png'}
+                src={process.env.PUBLIC_URL + "./Images/github.png"}
                 alt="About"
                 id="contact-github"
               />
@@ -39,7 +39,7 @@ function Contact() {
                 onClick={() =>
                   openLink("https://www.linkedin.com/in/uzairansari11")
                 }
-                src={'https://cdn-icons-png.flaticon.com/512/145/145807.png'}
+                src={process.env.PUBLIC_URL + "./Images/linkedin1.png"}
                 alt="About"
                 id="contact-linkedin"
               />

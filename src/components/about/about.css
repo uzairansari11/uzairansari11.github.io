@@ -175,29 +175,3 @@
     width: 30%;
   }
 }
-
-.text-divider-about {
-  width: 80%;
-  display: flex;
-  text-align: center;
-  align-items: center;
-  color: black;
-}
-
-.text-divider-about span {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  white-space: nowrap;
-}
-
-.text-divider-about::before,
-.text-divider-about::after {
-  content: "";
-  display: inline-block;
-  height: 1px;
-  width: 20px;
-  flex-grow: 1;
-  background: black;
-  vertical-align: middle;
-}
