@@ -23,12 +23,10 @@
 
 .aboutWrapperDiv {
   /* border: 1px solid rgb(227, 118, 22); */
-
   width: 50%;
   display: flex;
   flex-direction: column;
   align-items: center;
-
   font-size: 20px;
   line-height: 40px;
   text-align: justify;
@@ -44,7 +42,6 @@
 
 .about-socialLink {
   /* border: 1px solid rgb(15, 9, 84); */
-
   width: 30%;
   height: 82px;
   display: flex;
@@ -55,7 +52,6 @@
 
 .about-socialLink img {
   /* border: 1px solid rgb(0, 1, 0); */
-
   width: 30%;
   cursor: pointer;
 }
@@ -75,7 +71,7 @@
   gap: 10px;
 }
 
-.aboutWrapperExp > :nth-child(1) {
+.aboutWrapperExp> :nth-child(1) {
   border-radius: 5px;
   justify-content: center;
   text-align: center;
@@ -84,27 +80,28 @@
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
-.aboutWrapperExp > :nth-child(1) :hover {
+.aboutWrapperExp> :nth-child(1) :hover {
   /* border-bottom:1px solid red; */
   cursor: pointer;
 }
 
-.aboutWrapperExp > :nth-child(2) {
+.aboutWrapperExp> :nth-child(2) {
   /* border: 1px solid rgb(15, 9, 84); */
-
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-content: space-between;
   text-align: center;
   gap: 15px;
 }
-.aboutWrapperExp > :nth-child(2) div {
+
+.aboutWrapperExp> :nth-child(2) div {
   border: 1px solid #e0eff8;
   border-radius: 5px;
   padding: 20px 0px;
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
-.aboutWrapperExp > :nth-child(2) div:hover {
+
+.aboutWrapperExp> :nth-child(2) div:hover {
   /* border-bottom:1px solid red; */
   cursor: pointer;
 }
@@ -120,6 +117,7 @@
     width: 30%;
   }
 }
+
 .aboutWrapperExp {
   /* border: 1px solid rgb(248, 60, 27); */
   font-size: 20px;
@@ -139,23 +137,24 @@
 
   .aboutWrapper {
     /* border: 1px solid red; */
+    width: 75%;
     display: flex;
     flex-direction: column-reverse;
     justify-content: center;
     margin: auto;
   }
+
   .aboutWrapperExp {
     /* border: 1px solid rgb(248, 60, 27); */
     font-size: 20px;
-    width: 90%;
+    width: 100%;
     gap: 10px;
     margin-bottom: 4%;
   }
 
   .aboutWrapperDiv {
-    border: 1px solid red;
-
-    width: 90%;
+    /* border: 1px solid red; */
+    width: 100%;
     margin: auto;
   }
 

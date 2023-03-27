@@ -61,6 +61,7 @@
 @media all and (min-width: 768px) and (max-width: 1023px) {
   .skillsWrapper {
     justify-content: center;
+    width: 75%;
 
     display: grid;
     
@@ -82,9 +83,10 @@
 
 /* small screens */
 
-@media all and (min-width: 1024px) and (max-width: 1470px) {
+@media all and (min-width: 1024px)  {
   .skillsWrapper {
     justify-content: center;
+ width: 75%;
        
     display: grid;
     grid-template-columns: repeat(1, 1fr);
