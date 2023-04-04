@@ -23,7 +23,7 @@ function Contact() {
               <SiGmail /> uzairans532@gmail.com
             </div>
             <div className="contact-number" id="contact-phone">
-              <IoMdCall /> +91-7271880500
+              <IoMdCall /> +91-7271880500np
             </div>
             <div className="contact-location">
               <MdLocationOn /> Mumbai, Maharastra
