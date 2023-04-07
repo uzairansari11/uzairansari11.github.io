@@ -193,13 +193,13 @@ function Navbar() {
                     </Link>
                   </div>
                   <div>
-                    <a href="https://drive.google.com/uc?id=173kc0AW6miCrWOsqeYN3ad348otgyA13&export=download">
+                    <a href="https://drive.google.com/uc?id=1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw&export=download">
                       <div
                         className="navbar-resume"
                         onClick={() => {
                           onClose();
                           openLink(
-                            "https://drive.google.com/file/d/173kc0AW6miCrWOsqeYN3ad348otgyA13/view?usp=share_link"
+                            "https://drive.google.com/file/d/1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw/view?usp=share_link"
                           );
                         }}
                       >
