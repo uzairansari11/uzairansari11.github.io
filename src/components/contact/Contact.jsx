@@ -14,9 +14,10 @@ function Contact() {
         <div className="headingwrapperDiv">
           <div className="headingwrapperDivLeft">
             <img
-              src="https://www.genscript.com/gsimages/support/image-contactus.png"
-              alt="contactme"
+              src="https://technext.github.io/satner/img/about-us.png"
+              alt="contact me"
             />
+
           </div>
           <div className="headingwrapperDivRight">
             <div className="contact-gmail" id="contact-email">

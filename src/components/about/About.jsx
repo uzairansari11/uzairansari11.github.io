@@ -5,19 +5,14 @@ function About() {
 	};
 	return (
 		<div className="about section" id="about">
-			<h1 className="aboutH1">About me</h1>
+			<h1 className="aboutH1">About Me</h1>
 
 			<div className="aboutWrapper">
 				<div className="aboutWrapperDiv">
 					<div className="aboutMe" id="user-detail-intro">
-						<div id="user-detail-name">
-							A Passionate aspiring Full Stack Web Developer skilled in MERN
-							Stack. Is proficient in developing websites using HTML, CSS,
-							JavaScript, React, Redux, and ChakraUI. Looking forward to working
-							in an organization that can challenge my abilities as a web
-							developer.
-						</div>
+						As a passionate and aspiring Full Stack Web Developer with expertise in the MERN Stack, I possess proficiency in crafting dynamic websites using HTML, CSS, JavaScript, React, Redux,Node js,Express Js, MongoDB and ChakraUI. I am eagerly seeking opportunities within an organization that can provide challenges to further enhance my abilities and skills as a web developer.
 					</div>
+
 					<div className="about-socialLink">
 						<img
 							onClick={() => openLink("https://github.com/uzairansari11")}
@@ -25,21 +20,17 @@ function About() {
 							alt="About"
 						/>
 						<img
-							onClick={() => openLink("www.linkedin.com/in/uzairansari11")}
+							onClick={() => openLink("https://www.linkedin.com/in/uzairansari11")}
 							src={process.env.PUBLIC_URL + "./Images/linkedin1.png"}
 							alt="About"
 						/>
 					</div>
 				</div>
-				<div className="aboutWrapperExp">
-					{/* <img
-            src="https://technext.github.io/satner/img/about-us.png"
-            alt="About"
-          /> */}
 
+				<div className="aboutWrapperExp">
 					<div>
 						{" "}
-						<span style={{ color: "#ff3a5e  ", fontSize: "40px" }}>
+						<span style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}>
 							{" "}
 							1200+{" "}
 						</span>{" "}
@@ -48,7 +39,7 @@ function About() {
 					<div>
 						<div>
 							{" "}
-							<span style={{ color: "#ff3a5e  ", fontSize: "40px" }}>
+							<span style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}>
 								{" "}
 								30+{" "}
 							</span>{" "}
@@ -56,7 +47,7 @@ function About() {
 						</div>
 						<div>
 							{" "}
-							<span style={{ color: "#ff3a5e  ", fontSize: "40px" }}>
+							<span style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}>
 								{" "}
 								3+{" "}
 							</span>{" "}
@@ -64,7 +55,7 @@ function About() {
 						</div>
 						<div>
 							{" "}
-							<span style={{ color: "#ff3a5e  ", fontSize: "40px" }}>
+							<span style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}>
 								{" "}
 								300+{" "}
 							</span>{" "}
@@ -72,7 +63,7 @@ function About() {
 						</div>
 						<div>
 							{" "}
-							<span style={{ color: "#ff3a5e  ", fontSize: "40px" }}>
+							<span style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}>
 								{" "}
 								200+{" "}
 							</span>{" "}

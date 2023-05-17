@@ -2,6 +2,7 @@
   background-color: #e0eff8;
   padding: 40px 0px 60px 0px;
 }
+
 /* heading wrapper css */
 .headingwrapper {
   width: 60%;
@@ -13,11 +14,17 @@
 }
 
 .contactheading {
-  color: #1a1a1a;
-  font-size: 40px;
+  text-align: center;
+  font-weight: 500;
+  font-size: xx-large;
+  text-decoration: underline;
+  text-decoration-color: green;
+  text-decoration-style: line;
+  text-underline-offset: 10px;
 }
 
 .headingwrapperDiv {
+
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -27,17 +34,17 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  gap: 10px;
+  gap: 20px;
   text-align: left;
   color: #1a1a1a;
   font-size: 20px;
   width: min-content;
 }
 
-.headingwrapperDivRight > div {
+.headingwrapperDivRight>div {
   display: flex;
   align-items: center;
-  gap: 10px;
+  gap: 30px;
 
 }
 
@@ -61,6 +68,7 @@
   -o-transition: all 0.2s ease-in;
   -webkit-transition: all 0.2s ease-in;
   transition: all 0.2s ease-in;
+
 }
 
 /* meidum screens */

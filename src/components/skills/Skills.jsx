@@ -2,12 +2,14 @@ import "./skills.css";
 import TechStack from "./TechStack";
 import data from "../../db.json";
 
-function Skills () {
+function Skills() {
   return (
     <div className="skills-main" id="skills">
+
+      
       <div className="skillsWrapper">
         <div>
-          <h1 className="skills-heading">Languages & Frameworks</h1>
+          <h1 className="skills-heading">Skills</h1>
           <div className="skillsTechnologiesDiv">
             {data.language_framework.map((elm) => (
               <TechStack key={elm.id} {...elm} />
@@ -23,6 +25,9 @@ function Skills () {
           </div>
         </div>
       </div>
+
+
+
     </div>
   );
 }

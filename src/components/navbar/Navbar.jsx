@@ -2,6 +2,7 @@ import "./navbar.css";
 import { Link } from "react-scroll";
 import { HiDownload } from "react-icons/hi";
 import { RxHamburgerMenu } from "react-icons/rx";
+import { CgMenuGridO } from "react-icons/cg";
 import {
   Drawer,
   DrawerBody,
@@ -9,7 +10,9 @@ import {
   DrawerContent,
   DrawerCloseButton,
   useDisclosure,
+  DrawerHeader,
 } from "@chakra-ui/react";
+import { color } from "framer-motion";
 
 function Navbar() {
   const openLink = (url) => {
@@ -102,7 +105,7 @@ function Navbar() {
               <div
                 onClick={() =>
                   openLink(
-                    "https://drive.google.com/file/d/1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw/view?usp=share_link"
+                    "https://drive.google.com/file/d/1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw/view?usp=share_link",
                   )
                 }
                 className="navbar-resume"
@@ -114,106 +117,73 @@ function Navbar() {
           </div>
         </div>
         <div className="responce">
-          <RxHamburgerMenu onClick={onOpen} />
-          <Drawer
-            isOpen={isOpen}
-            placement="right"
-            onClose={onClose}
-            backgroundColor="black"
-          >
+          <CgMenuGridO onClick={onOpen} />
+          <Drawer isOpen={isOpen} placement="left" onClose={onClose} >
             <DrawerOverlay />
-            <DrawerContent>
-              <DrawerCloseButton />
-              <DrawerBody marginTop={"30px"}>
-                <div className="drawerbody">
-                  <div>
-                    <Link
-                      to="home"
-                      smooth={true}
-                      offset={-50}
-                      duration={500}
-                      onClick={onClose}
-                    >
-                      Home
-                    </Link>
-                  </div>
-                  <div>
-                    <Link
-                      to="about"
-                      smooth={true}
-                      offset={-50}
-                      duration={500}
-                      onClick={onClose}
-                    >
-                      About
-                    </Link>
-                  </div>
-                  <div>
-                    <Link
-                      to="skills"
-                      smooth={true}
-                      offset={-50}
-                      duration={500}
-                      onClick={onClose}
-                    >
-                      Skills
-                    </Link>
-                  </div>
-                  <div>
-                    <Link
-                      to="github-main"
-                      smooth={true}
-                      offset={-50}
-                      duration={500}
-                      onClick={onClose}
-                    >
-                      Github
-                    </Link>
-                  </div>
-                  <div>
-                    <Link
-                      to="projects"
-                      smooth={true}
-                      offset={-50}
-                      duration={500}
-                      onClick={onClose}
-                    >
-                      Projects
-                    </Link>
-                  </div>
-                  <div>
-                    <Link
-                      to="contact"
-                      smooth={true}
-                      offset={-50}
-                      duration={500}
-                      onClick={onClose}
-                    >
-                      Contact
-                    </Link>
-                  </div>
-                  <div>
-                    <a href="https://drive.google.com/uc?id=1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw&export=download">
-                      <div
-                        className="navbar-resume"
-                        onClick={() => {
-                          onClose();
-                          openLink(
-                            "https://drive.google.com/file/d/1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw/view?usp=share_link"
-                          );
-                        }}
-                      >
-                        Resume <HiDownload />
-                      </div>
-                    </a>
-                  </div>
+            <DrawerContent  backgroundColor="rgb(169,204,227)">
+            <DrawerCloseButton />
+
+            <DrawerBody
+            >
+              <div className="drawerbody">
+                <div>
+                  <Link to="home" smooth={true} offset={-50} duration={500} onClick={onClose}>
+                    Home
+                  </Link>
                 </div>
-              </DrawerBody>
-            </DrawerContent>
-          </Drawer>
-        </div>
+                <div>
+                  <Link to="about" smooth={true} offset={-50} duration={500} onClick={onClose}>
+                    About
+                  </Link>
+                </div>
+                <div>
+                  <Link to="skills" smooth={true} offset={-50} duration={500} onClick={onClose}>
+                    Skills
+                  </Link>
+                </div>
+                <div>
+                  <Link
+                    to="github-main"
+                    smooth={true}
+                    offset={-50}
+                    duration={500}
+                    onClick={onClose}
+                  >
+                    Github
+                  </Link>
+                </div>
+                <div>
+                  <Link to="projects" smooth={true} offset={-50} duration={500} onClick={onClose}>
+                    Projects
+                  </Link>
+                </div>
+                <div>
+                  <Link to="contact" smooth={true} offset={-50} duration={500} onClick={onClose}>
+                    Contact
+                  </Link>
+                </div>
+                <div>
+                  <a href="https://drive.google.com/uc?id=1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw&export=download">
+                    <div
+                      className="navbar-resume"
+                      onClick={() => {
+                        onClose();
+                        openLink(
+                          "https://drive.google.com/file/d/1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw/view?usp=share_link",
+                        );
+                      }}
+                    >
+                      Resume <HiDownload />
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </DrawerBody>
+          </DrawerContent>
+        </Drawer>
       </div>
     </div>
+    </div >
   );
 }
 

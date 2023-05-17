@@ -26,7 +26,7 @@ function Calender() {
 
 	return (
 		<div className="github-main">
-			<h1 className="github-heading">GitHub</h1>
+			<h1 className="github-heading">Github</h1>
 			<div className="github-calender">
 				<GitHubCalendar
 					className="github-calendar-class"
