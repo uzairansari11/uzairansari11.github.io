@@ -35,20 +35,23 @@
 
 @media all and (min-width: 280px) and (max-width: 767px) {
 	.skillsWrapper {
-		width: 75%;
+		width: 90%;
 		display: grid;
-		justify-content: center;
+		justify-content: space-between;
 		grid-template-columns: repeat(1, 1fr);
+		/* border: 1px solid red; */
 	}
 
 	.skillsTechnologiesDiv {
 		gap: 20px;
 		grid-template-columns: repeat(2, auto);
+		justify-content: space-between;
 	}
 
 	.skillsToolsDiv {
 		gap: 20px;
 		grid-template-columns: repeat(2, auto);
+		justify-content: space-between;
 	}
 }
 
@@ -56,7 +59,7 @@
 @media all and (min-width: 768px) and (max-width: 1023px) {
 	.skillsWrapper {
 		justify-content: center;
-		width: 75%;
+		width: 80%;
 		display: grid;
 		grid-template-columns: repeat(1, 1fr);
 	}

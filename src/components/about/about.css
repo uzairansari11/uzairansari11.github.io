@@ -83,7 +83,7 @@
 	text-align: center;
 	padding: 10px 0px;
 	margin-bottom: 15px;
-	background-color: rgb(169, 204, 227);
+	background-color: rgb(166, 210, 240);
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
@@ -102,7 +102,7 @@
 .aboutWrapperExp> :nth-child(2) div {
 	border-radius: 5px;
 	padding: 20px 0px;
-	background-color: rgb(169, 204, 227);
+	background-color: rgb(166, 210, 240);
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 

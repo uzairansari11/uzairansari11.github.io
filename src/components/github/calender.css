@@ -1,12 +1,10 @@
 .github-main {
-	/* border: 1px solid red; */
 	background-color: #e0eff8;
 	padding: 2px 0px 30px 0px;
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
 	align-items: center;
-	/* gap: 10px; */
 }
 
 .github-heading {
@@ -17,28 +15,43 @@
 	text-decoration-color: green;
 	text-decoration-style: line;
 	text-underline-offset: 10px;
+	margin-bottom: 20px;
 }
 
 .github-calender {
-	/* border: 1px solid rgb(46, 255, 4); */
-	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+	/* box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px; */
 	padding: 2%;
-	width: 75%;
+	width: 80%;
+	margin: auto;
 	border-radius: 8px;
-
 	margin-bottom: 2%;
+	background-color: rgb(166, 210, 240);
+}
+
+.github-calendar-class {
+
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+}
+
+.github-calendar-class .calendar-graph {
+	width: 100%;
+	max-width: 800px;
+	margin: 0 auto;
+	overflow: hidden;
+	box-sizing: content-box;
 }
 
 .github-stats {
-	/* border: 1px solid rgb(46, 255, 4); */
+	background-color: rgb(166, 210, 240);
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
-	width: 75%;
-	height: 200px;
+	width: 80%;
+	height: 250px;
 	box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 	border-radius: 8px;
-
 }
 
 #github-streak {
@@ -56,20 +69,21 @@
 /* meidum screens */
 @media all and (min-width: 768px) and (max-width: 1024px) {
 	.github-calender {
-		width: 75%;
-
+		width: 90%;
+		margin-bottom: 6%;
 	}
 
 	.github-stats {
 		/* border: 1px solid rgb(255, 5, 5); */
+		background-color: rgb(224, 239, 248);
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
 		justify-content: space-between;
 		align-items: center;
-		width: 75%;
+		width: 90%;
 		height: auto;
-		box-shadow: none
+		box-shadow: none;
 	}
 
 	#github-streak {
@@ -80,7 +94,6 @@
 		margin: auto;
 		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 		border-radius: 8px;
-
 	}
 
 	#github-language {
@@ -91,7 +104,6 @@
 		margin: auto;
 		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 		border-radius: 8px;
-
 	}
 
 	#github-streak-status {
@@ -102,27 +114,26 @@
 		margin: auto;
 		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 		border-radius: 8px;
-
 	}
-
-
 }
 
 /* small screens */
 @media all and (min-width: 280px) and (max-width: 767px) {
 	.github-calender {
-		width: 75%;
+		width: 90%;
+		margin-bottom: 6%;
 	}
 
 	.github-stats {
+		background-color: rgb(224, 239, 248);
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
 		justify-content: space-between;
 		align-items: center;
-		width: 75%;
+		width: 90%;
 		height: auto;
-		box-shadow: none
+		box-shadow: none;
 	}
 
 	#github-streak {
@@ -133,7 +144,6 @@
 		margin: auto;
 		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 		border-radius: 8px;
-
 	}
 
 	#github-language {
@@ -154,6 +164,5 @@
 		margin: auto;
 		box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 		border-radius: 8px;
-
 	}
 }
