@@ -1,5 +1,5 @@
 {
-	"language_framework": [
+	"skills": [
 		{
 			"id": "1",
 			"title": "HTML",
@@ -87,6 +87,132 @@
 			"title": "Codepen",
 			"src": "https://www.svgrepo.com/show/313739/codepen.svg"
 		}
+	],
+	"projects": [
+		{
+			"id": "p1",
+			"image": "Images/homeelementry.png",
+			"title": "Home Elementry",
+			"description": "Home Elementry is an Indian online marketplace that sells variety of furniture and home décor at a affordable price with top notch quality.",
+			"techStacks": [
+				{
+					"id": "t1",
+					"title": "React",
+					"src": "https://lh6.googleusercontent.com/fXw1iHarB3XhTJGG3I4dty4bkmZeI0b_99ns5PvOwHYVhNJFh63biABfNIxB8D_0zpY=w2400"
+				},
+				{
+					"id": "t2",
+					"title": "Chakra UI",
+					"src": "https://lh3.googleusercontent.com/sorkqLEqIwFlWRlnTcZoEXqWls90FK-Sr2SqVqqk0nxaytIUTad0_99v0deP-EhaNEY=w2400"
+				},
+				{
+					"id": "t3",
+					"title": "Redux",
+					"src": "https://lh5.googleusercontent.com/fIY8_nCkUbVDqzQA_RNU_H7u6X3hKQB9hm89AoK_6R4s3nGcUqLiK5UEJaNBlOksqVI=w2400"
+				},
+				{
+					"id": "t4",
+					"src": "https://lh3.googleusercontent.com/1ZPUcY76TcoA-qYiCXERe4lTj6FoJgXDR_5_-aFYI78tXYGUp5hmLxJdlbgnbh_lpHg=w2400",
+					"title": "JavaScript"
+				},
+				{
+					"id": "t5",
+					"src": "https://lh5.googleusercontent.com/NNYMLTcl7nPRNkNErJz17gHsCD8KsXkHGmuXyxwdftUB9QURREAPClWjk7YCLKd_jKs=w2400",
+					"title": "HTML"
+				},
+				{
+					"id": "t6",
+					"src": "https://lh3.googleusercontent.com/04faxbvpOV639ZOhGpv3WQLESrzUUKGWAtSEarwiw8EGjW5E636zuPmpNHl-gJf9aH0=w2400",
+					"title": "CSS"
+				}
+			],
+			"github": "https://github.com/uzairansari11/spicy-nerve-9354.git",
+			"deploy": "https://spicy-nerve-9354.vercel.app/"
+		},
+		{
+			"id": "p2",
+			"image": "Images/crocsland.png",
+			"title": "CrocsLand",
+			"description": "CrocsLand is a E-commerce website that sells a wide range of footware products having unique and attrative design at very low prices.",
+			"techStacks": [
+				{
+					"id": "t1",
+					"src": "https://lh3.googleusercontent.com/1ZPUcY76TcoA-qYiCXERe4lTj6FoJgXDR_5_-aFYI78tXYGUp5hmLxJdlbgnbh_lpHg=w2400",
+					"title": "JavaScript"
+				},
+				{
+					"id": "t2",
+					"src": "https://lh5.googleusercontent.com/NNYMLTcl7nPRNkNErJz17gHsCD8KsXkHGmuXyxwdftUB9QURREAPClWjk7YCLKd_jKs=w2400",
+					"title": "HTML"
+				},
+				{
+					"id": "t3",
+					"src": "https://lh3.googleusercontent.com/04faxbvpOV639ZOhGpv3WQLESrzUUKGWAtSEarwiw8EGjW5E636zuPmpNHl-gJf9aH0=w2400",
+					"title": "CSS"
+				},
+				{
+					"id": "t4",
+					"src": "https://lh3.googleusercontent.com/hRjs11EL5wRR-PcNyPg0356k0v9iaot_BovbhUV3MVOiqdvUjfHiT1Tvg1Lpu-D9e4U=w2400",
+					"title": "JSON"
+				},
+				{
+					"id": "5",
+					"title": "Chakra UI",
+					"src": "https://img.icons8.com/fluency-systems-regular/512/chakra-ui.png"
+				}
+			],
+			"github": "https://github.com/uzairansari11/spicy-nerve-9354.git",
+			"deploy": "https://spicy-nerve-9354.vercel.app/"
+		},
+		{
+			"id": "p3",
+			"image": "Images/apnaEcart.png",
+			"title": "Apna-E-Cart",
+			"description": "Apna - E - Cart is an Indian consumer electronics retailer.It sells differnt kinds of electronic products and delivere the products within one day.",
+			"techStacks": [
+				{
+					"id": "t1",
+					"src": "https://lh3.googleusercontent.com/1ZPUcY76TcoA-qYiCXERe4lTj6FoJgXDR_5_-aFYI78tXYGUp5hmLxJdlbgnbh_lpHg=w2400",
+					"title": "JavaScript"
+				},
+				{
+					"id": "t2",
+					"src": "https://lh5.googleusercontent.com/NNYMLTcl7nPRNkNErJz17gHsCD8KsXkHGmuXyxwdftUB9QURREAPClWjk7YCLKd_jKs=w2400",
+					"title": "HTML"
+				},
+				{
+					"id": "t3",
+					"src": "https://lh3.googleusercontent.com/04faxbvpOV639ZOhGpv3WQLESrzUUKGWAtSEarwiw8EGjW5E636zuPmpNHl-gJf9aH0=w2400",
+					"title": "CSS"
+				}
+			],
+			"github": "https://github.com/uzairansari11/spicy-nerve-9354.git",
+			"deploy": "https://spicy-nerve-9354.vercel.app/"
+		},
+		{
+			"id": "p4",
+			"image": "Images/cultbody.png",
+			"title": "CultBody",
+			"description": "CultBody provides product related to your fintness and also provide diffrent kind of fitness trianing via online and offline as per customer requirement.",
+			"techStacks": [
+				{
+					"id": "t1",
+					"src": "https://lh3.googleusercontent.com/1ZPUcY76TcoA-qYiCXERe4lTj6FoJgXDR_5_-aFYI78tXYGUp5hmLxJdlbgnbh_lpHg=w2400",
+					"title": "JavaScript"
+				},
+				{
+					"id": "t2",
+					"src": "https://lh5.googleusercontent.com/NNYMLTcl7nPRNkNErJz17gHsCD8KsXkHGmuXyxwdftUB9QURREAPClWjk7YCLKd_jKs=w2400",
+					"title": "HTML"
+				},
+				{
+					"id": "t3",
+					"src": "https://lh3.googleusercontent.com/04faxbvpOV639ZOhGpv3WQLESrzUUKGWAtSEarwiw8EGjW5E636zuPmpNHl-gJf9aH0=w2400",
+					"title": "CSS"
+				}
+			],
+			"github": "https://github.com/uzairansari11/spicy-nerve-9354.git",
+			"deploy": "https://spicy-nerve-9354.vercel.app/"
+		}
 	]
-
 }

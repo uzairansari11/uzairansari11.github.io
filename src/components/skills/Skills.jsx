@@ -11,7 +11,7 @@ function Skills() {
         <div>
           <h1 className="skills-heading">Skills</h1>
           <div className="skillsTechnologiesDiv">
-            {data.language_framework.map((elm) => (
+            {data.skills.map((elm) => (
               <TechStack key={elm.id} {...elm} />
             ))}
           </div>
@@ -33,3 +33,5 @@ function Skills() {
 }
 
 export default Skills;
+
+
