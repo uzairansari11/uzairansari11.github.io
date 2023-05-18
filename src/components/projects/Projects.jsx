@@ -1,7 +1,4 @@
 import "./projects.css";
-import { FaGithub } from "react-icons/fa";
-import { HiExternalLink } from "react-icons/hi";
-import { MdLiveTv } from "react-icons/md";
 import Carousel from "./Carousel";
 import data from "../../db.json";
 
