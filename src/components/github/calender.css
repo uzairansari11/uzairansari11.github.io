@@ -10,9 +10,7 @@
 	text-align: center;
 	font-weight: 500;
 	font-size: xx-large;
-	text-decoration: underline;
-	text-decoration-color: teal;
-	text-decoration-style: line;
+	text-decoration: underline teal;
 	text-underline-offset: 10px;
 	margin-bottom: 20px;
 }
@@ -46,25 +44,23 @@
 	justify-content: space-between;
 	align-items: center;
 	width: 80%;
-	height: 250px;
+	min-height: 250px;
+	/* Updated: Changed height to min-height */
 	border-radius: 8px;
 }
 
-#github-streak {
-	width: 50%;
-}
-
-#github-language {
-	width: 40%;
-}
-
+#github-streak,
+#github-language,
 #github-streak-status {
-	width: 50%;
+	width: 100%;
+	height: 100%;
 }
 
-/* meidum screens */
+/* Medium screens */
 @media all and (min-width: 768px) and (max-width: 1024px) {
-	.github-calender {
+
+	.github-calender,
+	.github-stats {
 		width: 90%;
 		margin-bottom: 6%;
 	}
@@ -74,47 +70,27 @@
 		display: flex;
 		flex-direction: column;
 		gap: 20px;
-		justify-content: space-between;
-		align-items: center;
-		width: 90%;
 		height: auto;
-		box-shadow: none;
 	}
 
-	#github-streak {
-		display: flex;
-		justify-content: space-around;
-		width: 100%;
-		margin: auto;
-		border-radius: 8px;
-	}
-	#github-streak > img {
-		width: 100%;
-	}
-	#github-language {
-		display: flex;
-		justify-content: space-around;
-		width: 100%;
-		margin: auto;
-		border-radius: 8px;
-	}
-	#github-language > img {
-		width: 100%;
-	}
+	#github-streak,
+	#github-language,
 	#github-streak-status {
 		display: flex;
 		justify-content: space-around;
-		width: 100%;
 		margin: auto;
 		border-radius: 8px;
 	}
-	#github-streak-status > img {
+
+	#github-streak>img,
+	#github-language>img,
+	#github-streak-status>img {
 		width: 100%;
 	}
 }
 
-/* small screens */
-@media all and (min-width: 280px) and (max-width: 767px) {
+/* Small screens */
+@media all and (max-width: 767px) {
 	.github-calender {
 		width: 90%;
 		margin-bottom: 6%;
@@ -133,30 +109,8 @@
 		height: auto;
 	}
 
-	#github-streak {
-		display: flex;
-		justify-content: space-around;
-		width: 100%;
-		margin: auto;
-		border-radius: 8px;
-	}
-
-	#github-streak > img {
-		width: 100%;
-	}
-
-	#github-language {
-		display: flex;
-		justify-content: space-around;
-		width: 100%;
-		margin: auto;
-		border-radius: 8px;
-	}
-
-	#github-language > img {
-		width: 100%;
-	}
-
+	#github-streak,
+	#github-language,
 	#github-streak-status {
 		display: flex;
 		justify-content: space-around;
@@ -165,7 +119,9 @@
 		border-radius: 8px;
 	}
 
-	#github-streak-status > img {
+	#github-streak>img,
+	#github-language>img,
+	#github-streak-status>img {
 		width: 100%;
 	}
 }

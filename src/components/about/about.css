@@ -31,7 +31,6 @@
 
 .aboutMe {
 	width: 100%;
-	/* border: 1px solid red; */
 	text-align: justify;
 	text-align-last: left;
 	font-weight: 600;
@@ -40,7 +39,6 @@
 }
 
 .about-socialLink {
-	/* border: 1px solid red; */
 	margin-top: 10px;
 	width: 50%;
 	display: flex;
@@ -51,6 +49,7 @@
 .about-socialLink img {
 	width: 15%;
 	cursor: pointer;
+	border-radius: 50%;
 }
 
 .about-socialLink img:hover {
@@ -99,15 +98,9 @@
 	cursor: pointer;
 }
 
-/* meidum screens */
+/* Medium screens */
 @media all and (min-width: 768px) and (max-width: 1023px) {
-	.aboutMe {
-		padding: 0px;
-		border-radius: 5px;
-	}
-
 	.about-socialLink {
-		/* border: 1px solid red; */
 		margin-top: 10px;
 		width: 60%;
 		display: flex;
@@ -121,18 +114,16 @@
 }
 
 .aboutWrapperExp {
-	/* border: 1px solid rgb(248, 60, 27); */
 	font-size: 20px;
 	width: 40%;
 	gap: 10px;
 }
 
-/* small screens */
+/* Small screens */
 @media all and (min-width: 280px) and (max-width: 767px) {
 	.about.section {
-		/* border: 1px solid red; */
 		background-color: #e0eff8;
-		padding: 0px 0px 0px 0px;
+		padding: 0px;
 		display: flex;
 		flex-direction: column;
 	}
@@ -165,7 +156,6 @@
 
 	.aboutMe {
 		/* border: 1px solid red; */
-
 		width: 100%;
 		padding: 0px;
 		border-radius: 5px;
