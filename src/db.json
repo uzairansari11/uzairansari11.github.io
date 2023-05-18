@@ -3,12 +3,12 @@
 		{
 			"id": "1",
 			"title": "HTML",
-			"src": "https://www.svgrepo.com/show/473654/html5.svg"
+			"src": "https://www.svgrepo.com/show/325298/html5.svg"
 		},
 		{
 			"id": "2",
 			"title": "CSS",
-			"src": "https://www.svgrepo.com/show/473577/css3.svg"
+			"src": "https://www.svgrepo.com/show/325072/css3.svg"
 		},
 		{
 			"id": "3",
@@ -89,51 +89,75 @@
 		}
 	],
 	"projects": [
+		 
+		{
+			"id": "p5",
+			"image": "Images/gadgetgalaxy.png",
+			"title": "Gadget Galaxy",
+			"description": "GadgetGalaxy is a clone of an Indian online store that specializes in selling a wide range of designer mobile phone cases, laptop sleeves, and other tech accessories",
+			"techStacks": [
+				{
+					"id": "t1",
+					"src": "https://lh5.googleusercontent.com/NNYMLTcl7nPRNkNErJz17gHsCD8KsXkHGmuXyxwdftUB9QURREAPClWjk7YCLKd_jKs=w2400",
+					"title": "HTML"
+				},
+				{
+					"id": "t2",
+					"src": "https://lh3.googleusercontent.com/04faxbvpOV639ZOhGpv3WQLESrzUUKGWAtSEarwiw8EGjW5E636zuPmpNHl-gJf9aH0=w2400",
+					"title": "CSS"
+				},
+				{
+					"id": "t3",
+					"src": "https://lh3.googleusercontent.com/1ZPUcY76TcoA-qYiCXERe4lTj6FoJgXDR_5_-aFYI78tXYGUp5hmLxJdlbgnbh_lpHg=w2400",
+					"title": "JavaScript"
+				},
+				{
+					"id": "4",
+					"title": "React JS",
+					"src": "https://img.icons8.com/fluency-systems-regular/512/chakra-ui.png"
+				},
+				{
+					"id": "5",
+					"title": "Redux",
+					"src": "https://img.icons8.com/fluency-systems-regular/512/chakra-ui.png"
+				},
+				{
+					"id": "6",
+					"title": "Chakra UI",
+					"src": "https://img.icons8.com/fluency-systems-regular/512/chakra-ui.png"
+				},
+				{
+					"id": "7",
+					"title": "Node Js",
+					"src": "https://img.icons8.com/fluency-systems-regular/512/chakra-ui.png"
+				},
+
+				{
+					"id": "8",
+					"title": "Express Js",
+					"src": "https://img.icons8.com/fluency-systems-regular/512/chakra-ui.png"
+				},
+
+				{
+					"id": "9",
+					"title": "MongoDB",
+					"src": "https://img.icons8.com/fluency-systems-regular/512/chakra-ui.png"
+				},
+				{
+					"id": "10",
+					"title": "Mantine UI",
+					"src": "https://img.icons8.com/fluency-systems-regular/512/chakra-ui.png"
+				}
+			],
+			"github": "https://github.com/uzairansari11/native-order-609",
+			"deploy": "https://gadgetgalaxy.netlify.app/"
+		},
+
 		{
 			"id": "p1",
 			"image": "Images/homeelementry.png",
 			"title": "Home Elementry",
 			"description": "Home Elementry is an Indian online marketplace that sells variety of furniture and home décor at a affordable price with top notch quality.",
-			"techStacks": [
-				{
-					"id": "t1",
-					"title": "React",
-					"src": "https://lh6.googleusercontent.com/fXw1iHarB3XhTJGG3I4dty4bkmZeI0b_99ns5PvOwHYVhNJFh63biABfNIxB8D_0zpY=w2400"
-				},
-				{
-					"id": "t2",
-					"title": "Chakra UI",
-					"src": "https://lh3.googleusercontent.com/sorkqLEqIwFlWRlnTcZoEXqWls90FK-Sr2SqVqqk0nxaytIUTad0_99v0deP-EhaNEY=w2400"
-				},
-				{
-					"id": "t3",
-					"title": "Redux",
-					"src": "https://lh5.googleusercontent.com/fIY8_nCkUbVDqzQA_RNU_H7u6X3hKQB9hm89AoK_6R4s3nGcUqLiK5UEJaNBlOksqVI=w2400"
-				},
-				{
-					"id": "t4",
-					"src": "https://lh3.googleusercontent.com/1ZPUcY76TcoA-qYiCXERe4lTj6FoJgXDR_5_-aFYI78tXYGUp5hmLxJdlbgnbh_lpHg=w2400",
-					"title": "JavaScript"
-				},
-				{
-					"id": "t5",
-					"src": "https://lh5.googleusercontent.com/NNYMLTcl7nPRNkNErJz17gHsCD8KsXkHGmuXyxwdftUB9QURREAPClWjk7YCLKd_jKs=w2400",
-					"title": "HTML"
-				},
-				{
-					"id": "t6",
-					"src": "https://lh3.googleusercontent.com/04faxbvpOV639ZOhGpv3WQLESrzUUKGWAtSEarwiw8EGjW5E636zuPmpNHl-gJf9aH0=w2400",
-					"title": "CSS"
-				}
-			],
-			"github": "https://github.com/uzairansari11/spicy-nerve-9354.git",
-			"deploy": "https://spicy-nerve-9354.vercel.app/"
-		},
-		{
-			"id": "p2",
-			"image": "Images/crocsland.png",
-			"title": "CrocsLand",
-			"description": "CrocsLand is a E-commerce website that sells a wide range of footware products having unique and attrative design at very low prices.",
 			"techStacks": [
 				{
 					"id": "t1",
@@ -153,11 +177,68 @@
 				{
 					"id": "t4",
 					"src": "https://lh3.googleusercontent.com/hRjs11EL5wRR-PcNyPg0356k0v9iaot_BovbhUV3MVOiqdvUjfHiT1Tvg1Lpu-D9e4U=w2400",
-					"title": "JSON"
+					"title": "Json Server"
 				},
 				{
 					"id": "5",
 					"title": "Chakra UI",
+					"src": "https://img.icons8.com/fluency-systems-regular/512/chakra-ui.png"
+				},
+				{
+					"id": "6",
+					"title": "React JS",
+					"src": "https://img.icons8.com/fluency-systems-regular/512/chakra-ui.png"
+				},
+
+				{
+					"id": "6",
+					"title": "Redux",
+					"src": "https://img.icons8.com/fluency-systems-regular/512/chakra-ui.png"
+				}
+			],
+			"github": "https://github.com/uzairansari11/eminent-tin-5074.git",
+			"deploy": "https://eminent-tin-5074.vercel.app/"
+		},
+		{
+			"id": "p2",
+			"image": "Images/crocsland.png",
+			"title": "Crocs Land",
+			"description": "Crocs Land is a E-commerce website that sells a wide range of footware products having unique and attrative design at very low prices.",
+			"techStacks": [
+				{
+					"id": "t1",
+					"src": "https://lh3.googleusercontent.com/1ZPUcY76TcoA-qYiCXERe4lTj6FoJgXDR_5_-aFYI78tXYGUp5hmLxJdlbgnbh_lpHg=w2400",
+					"title": "JavaScript"
+				},
+				{
+					"id": "t2",
+					"src": "https://lh5.googleusercontent.com/NNYMLTcl7nPRNkNErJz17gHsCD8KsXkHGmuXyxwdftUB9QURREAPClWjk7YCLKd_jKs=w2400",
+					"title": "HTML"
+				},
+				{
+					"id": "t3",
+					"src": "https://lh3.googleusercontent.com/04faxbvpOV639ZOhGpv3WQLESrzUUKGWAtSEarwiw8EGjW5E636zuPmpNHl-gJf9aH0=w2400",
+					"title": "CSS"
+				},
+				{
+					"id": "t4",
+					"src": "https://lh3.googleusercontent.com/hRjs11EL5wRR-PcNyPg0356k0v9iaot_BovbhUV3MVOiqdvUjfHiT1Tvg1Lpu-D9e4U=w2400",
+					"title": "Json Server"
+				},
+				{
+					"id": "5",
+					"title": "Chakra UI",
+					"src": "https://img.icons8.com/fluency-systems-regular/512/chakra-ui.png"
+				},
+				{
+					"id": "6",
+					"title": "React JS",
+					"src": "https://img.icons8.com/fluency-systems-regular/512/chakra-ui.png"
+				},
+
+				{
+					"id": "6",
+					"title": "Redux",
 					"src": "https://img.icons8.com/fluency-systems-regular/512/chakra-ui.png"
 				}
 			],
@@ -184,16 +265,25 @@
 					"id": "t3",
 					"src": "https://lh3.googleusercontent.com/04faxbvpOV639ZOhGpv3WQLESrzUUKGWAtSEarwiw8EGjW5E636zuPmpNHl-gJf9aH0=w2400",
 					"title": "CSS"
+				},
+				{
+					"id": "t4",
+					"src": "https://lh3.googleusercontent.com/04faxbvpOV639ZOhGpv3WQLESrzUUKGWAtSEarwiw8EGjW5E636zuPmpNHl-gJf9aH0=w2400",
+					"title": "Mock Api"
+				},
+				{
+					"id": "t5",
+					"title": "Local Storage"
 				}
 			],
-			"github": "https://github.com/uzairansari11/spicy-nerve-9354.git",
-			"deploy": "https://spicy-nerve-9354.vercel.app/"
+			"github": "https://github.com/uzairansari11/-wanting-advertisement-5951.git",
+			"deploy": "https://apnaestore.netlify.app/"
 		},
 		{
 			"id": "p4",
 			"image": "Images/cultbody.png",
-			"title": "CultBody",
-			"description": "CultBody provides product related to your fintness and also provide diffrent kind of fitness trianing via online and offline as per customer requirement.",
+			"title": "Cult Body",
+			"description": "CultBody provides product related to your fintness and also provide diffrent kind of fitness trianing via online and offline.",
 			"techStacks": [
 				{
 					"id": "t1",
@@ -209,10 +299,19 @@
 					"id": "t3",
 					"src": "https://lh3.googleusercontent.com/04faxbvpOV639ZOhGpv3WQLESrzUUKGWAtSEarwiw8EGjW5E636zuPmpNHl-gJf9aH0=w2400",
 					"title": "CSS"
+				},
+				{
+					"id": "t4",
+					"src": "https://lh3.googleusercontent.com/04faxbvpOV639ZOhGpv3WQLESrzUUKGWAtSEarwiw8EGjW5E636zuPmpNHl-gJf9aH0=w2400",
+					"title": "Mock Api"
+				},
+				{
+					"id": "t5",
+					"title": "Local Storage"
 				}
 			],
-			"github": "https://github.com/uzairansari11/spicy-nerve-9354.git",
-			"deploy": "https://spicy-nerve-9354.vercel.app/"
+			"github": "https://github.com/uzairansari11/-verdant-recess-5792.git",
+			"deploy": "https://cultbody-uzairansari11.vercel.app/"
 		}
 	]
 }

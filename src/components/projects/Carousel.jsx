@@ -21,12 +21,17 @@ const Carousel = ({ projects }) => {
         if (autoPlayIntervalRef.current) {
             clearInterval(autoPlayIntervalRef.current);
         }
-        setCurrentProjectIndex(currentIndex);
+        const nextIndex = currentIndex < 0 ? projects.length - 1 : currentIndex % projects.length;
+        setCurrentProjectIndex(nextIndex);
     };
 
     const renderProjects = () => {
         return projects.map((project, index) => (
-            <div key={index} className="project-carousel-container">
+            <div
+                key={index}
+                className={`project-carousel-container ${index === currentProjectIndex ? "active" : ""
+                    }`}
+            >
                 <img src={project.image} alt={project.title} className="project-image" />
                 <h3 className="project-title">{project.title}</h3>
                 <p className="project-description">{project.description}</p>
@@ -71,7 +76,7 @@ const Carousel = ({ projects }) => {
                     1024: { items: 2 },
                 }}
                 autoPlay
-                autoPlayInterval={3000}
+                autoPlayInterval={2000}
                 infinite
                 disableDotsControls
                 disableButtonsControls
