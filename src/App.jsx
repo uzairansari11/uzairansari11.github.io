@@ -1,4 +1,4 @@
-import './App.css';
+import "./App.css";
 import About from "./components/about/About";
 import Home from "./components/home/Home";
 import Navbar from "./components/navbar/Navbar";
@@ -7,20 +7,22 @@ import Projects from "./components/projects/Projects";
 import Contact from "./components/contact/Contact";
 import Footer from "./components/footer/Footer";
 import Calender from "./components/github/Calender";
+import ScrollUp from "./components/ScrollUp/ScrollUp";
 
-function App () {
-  return (
-    <div className="App">
-      <Navbar />
-      <Home />
-      <About />
-      <Skills />
-      <Calender />
-      <Projects />
-      <Contact />
-      <Footer />
-    </div>
-  );
+function App() {
+	return (
+		<div className="App">
+			<Navbar />
+			<Home />
+			<About />
+			<Skills />
+			<Calender />
+			<Projects />
+			<Contact />
+			<Footer />
+			<ScrollUp />
+		</div>
+	);
 }
 
 export default App;
