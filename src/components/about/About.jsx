@@ -10,7 +10,12 @@ function About() {
 			<div className="aboutWrapper">
 				<div className="aboutWrapperDiv">
 					<div className="aboutMe" id="user-detail-intro">
-						As a passionate and aspiring Full Stack Web Developer with expertise in the MERN Stack, I possess proficiency in crafting dynamic websites using HTML, CSS, JavaScript, React, Redux,Node js,Express Js, MongoDB and ChakraUI. I am eagerly seeking opportunities within an organization that can provide challenges to further enhance my abilities and skills as a web developer.
+						As a passionate Full Stack Web Developer with expertise in the MERN
+						Stack. I possess proficiency in crafting dynamic websites using
+						React, Redux, Node.js, Express.js, MongoDB, HTML, CSS, JavaScript, and
+						ChakraUI. I am eagerly seeking opportunities within an organization
+						that can provide challenges to further enhance my abilities and
+						skills as a web developer.
 					</div>
 
 					<div className="about-socialLink">
@@ -20,7 +25,9 @@ function About() {
 							alt="About"
 						/>
 						<img
-							onClick={() => openLink("https://www.linkedin.com/in/uzairansari11")}
+							onClick={() =>
+								openLink("https://www.linkedin.com/in/uzairansari11")
+							}
 							src={process.env.PUBLIC_URL + "./Images/linkedin1.png"}
 							alt="About"
 						/>
@@ -30,7 +37,9 @@ function About() {
 				<div className="aboutWrapperExp">
 					<div>
 						{" "}
-						<span style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}>
+						<span
+							style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}
+						>
 							{" "}
 							1200+{" "}
 						</span>{" "}
@@ -39,7 +48,9 @@ function About() {
 					<div>
 						<div>
 							{" "}
-							<span style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}>
+							<span
+								style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}
+							>
 								{" "}
 								30+{" "}
 							</span>{" "}
@@ -47,15 +58,19 @@ function About() {
 						</div>
 						<div>
 							{" "}
-							<span style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}>
+							<span
+								style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}
+							>
 								{" "}
-								3+{" "}
+								5+{" "}
 							</span>{" "}
 							<br /> Major Projects{" "}
 						</div>
 						<div>
 							{" "}
-							<span style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}>
+							<span
+								style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}
+							>
 								{" "}
 								300+{" "}
 							</span>{" "}
@@ -63,7 +78,9 @@ function About() {
 						</div>
 						<div>
 							{" "}
-							<span style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}>
+							<span
+								style={{ color: "teal", fontSize: "40px", fontWeight: "500" }}
+							>
 								{" "}
 								200+{" "}
 							</span>{" "}
