@@ -10,12 +10,12 @@ const Carousel = ({ projects }) => {
 	useEffect(() => {
 		autoPlayIntervalRef.current = setInterval(() => {
 			setCurrentProjectIndex((prevIndex) => (prevIndex + 1) % projects.length);
-		}, 1000);
+		}, 3000);
 
 		return () => {
 			clearInterval(autoPlayIntervalRef.current);
 		};
-	}, [projects.length]);
+	}, [projects.length, currentProjectIndex]);
 
 	const handleSlideChange = (currentIndex) => {
 		if (autoPlayIntervalRef.current) {
@@ -96,7 +96,7 @@ const Carousel = ({ projects }) => {
 					1024: { items: 3 },
 				}}
 				autoPlay
-				autoPlayInterval={2000}
+				autoPlayInterval={5000}
 				infinite
 				disableDotsControls
 				disableButtonsControls
