@@ -19,7 +19,7 @@ function Home() {
 					<div>
 						<img
 							id="user-detail-intro"
-							src="https://readme-typing-svg.herokuapp.com?font=Archivo&weight=400&size=25&pause=1000&color=000000&background=39393900&width=435&lines=An+Aspiring+Full+Stack+Web+Developer;An+Enthusiast+%26+Life+Long+Learner"
+							src="https://readme-typing-svg.herokuapp.com?font=Archivo&weight=400&size=25&pause=1000&color=000000&background=39393900&width=435&lines=A+Full+Stack+Web+Developer;An+Enthusiast+%26+Life+Long+Learner"
 							alt="Typing SVG"
 						/>
 					</div>
