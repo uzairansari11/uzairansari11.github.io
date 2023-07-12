@@ -23,16 +23,17 @@ function Home() {
 						<span style={{ color: "teal" }}>A</span>nsari
 					</div>
 
-					<div id="user-detail-intro">
+					<div >
 						<img
+							id="user-detail-intro"
 							src={
 								screenSize.width <= 1024
-									? "https://readme-typing-svg.herokuapp.com?font=Archivo&weight=400&size=25&pause=1000&color=000000&background=39393900&center=true&vCenter=true&width=435&lines=A+Full+Stack+Web+Developer;An+Enthusiast+%26+Life+Long+Learner"
-									: "https://readme-typing-svg.herokuapp.com?font=Archivo&weight=400&size=25&pause=1000&color=000000&background=39393900&vCenter=true&width=435&lines=A+Full+Stack+Web+Developer;An+Enthusiast+%26+Life+Long+Learner"
+									? "https://readme-typing-svg.herokuapp.com?font=Archivo&weight=400&size=25&pause=1000&color=000000&background=39393900&center=true&vCenter=true&lines=A+Full+Stack+Web+Developer;An+Enthusiast+%26+Life+Long+Learner"
+									: "https://readme-typing-svg.herokuapp.com?font=Archivo&weight=400&size=25&pause=1000&color=000000&background=39393900&vCenter=true&&lines=A+Full+Stack+Web+Developer;An+Enthusiast+%26+Life+Long+Learner"
 							}
 
 							alt="Typing SVG"
-
+						
 						/>
 					</div>
 
