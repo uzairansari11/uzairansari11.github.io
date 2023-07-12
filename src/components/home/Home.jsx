@@ -1,8 +1,15 @@
+import { useEffect, useState } from "react";
 import "./home.css";
 
 import { HiDownload } from "react-icons/hi";
 
 function Home() {
+	const [screenSize, setScreenSize] = useState({
+		width: window.innerWidth
+	});
+	useEffect(() => {
+
+	}, [screenSize.width])
 	const openLink = (url) => {
 		window.open(url);
 	};
@@ -16,11 +23,16 @@ function Home() {
 						<span style={{ color: "teal" }}>A</span>nsari
 					</div>
 
-					<div>
+					<div id="user-detail-intro">
 						<img
-							id="user-detail-intro"
-							src="https://readme-typing-svg.herokuapp.com?font=Archivo&weight=400&size=25&pause=1000&color=000000&background=39393900&width=435&lines=A+Full+Stack+Web+Developer;An+Enthusiast+%26+Life+Long+Learner"
+							src={
+								screenSize.width <= 1024
+									? "https://readme-typing-svg.herokuapp.com?font=Archivo&weight=400&size=25&pause=1000&color=000000&background=39393900&center=true&vCenter=true&width=435&lines=A+Full+Stack+Web+Developer;An+Enthusiast+%26+Life+Long+Learner"
+									: "https://readme-typing-svg.herokuapp.com?font=Archivo&weight=400&size=25&pause=1000&color=000000&background=39393900&vCenter=true&width=435&lines=A+Full+Stack+Web+Developer;An+Enthusiast+%26+Life+Long+Learner"
+							}
+
 							alt="Typing SVG"
+
 						/>
 					</div>
 

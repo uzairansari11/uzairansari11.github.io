@@ -27,7 +27,7 @@
 	justify-content: space-between;
 }
 
-.homeLeft > div:nth-child(1) {
+.homeLeft>div:nth-child(1) {
 	width: 100%;
 	font-size: 70px;
 	font-style: normal;
@@ -35,7 +35,7 @@
 	margin: auto;
 }
 
-.homeLeft > div:nth-child(2) {
+.homeLeft>div:nth-child(2) {
 	display: flex;
 	padding-left: 6px;
 }
@@ -79,7 +79,7 @@
 
 /* meidum screens */
 @media all and (min-width: 768px) and (max-width: 1024px) {
-	.homeLeft > div:nth-child(1) {
+	.homeLeft>div:nth-child(1) {
 		font-size: 40px;
 		text-align: center;
 		margin: auto;
@@ -102,6 +102,8 @@
 	.homeLeft a {
 		width: min-content;
 	}
+
+
 }
 
 /* small screens */
@@ -128,7 +130,7 @@
 		text-align: center;
 	}
 
-	.homeLeft > div:nth-child(1) {
+	.homeLeft>div:nth-child(1) {
 		font-size: 40px;
 		text-align: center;
 	}
@@ -137,7 +139,7 @@
 		width: 300px;
 	}
 
-	.homeLeft > div:nth-child(1) {
+	.homeLeft>div:nth-child(1) {
 		font-size: 40px;
 	}
 
@@ -148,4 +150,5 @@
 	.homeLeft a {
 		width: min-content;
 	}
+
 }
