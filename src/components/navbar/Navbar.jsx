@@ -156,17 +156,7 @@ function Navbar() {
 											Skills
 										</Link>
 									</div>
-									<div>
-										<Link
-											to="github-main"
-											smooth={true}
-											offset={-50}
-											duration={500}
-											onClick={onClose}
-										>
-											Github
-										</Link>
-									</div>
+
 									<div>
 										<Link
 											to="projects"
@@ -176,6 +166,17 @@ function Navbar() {
 											onClick={onClose}
 										>
 											Projects
+										</Link>
+									</div>
+									<div>
+										<Link
+											to="github-main"
+											smooth={true}
+											offset={-50}
+											duration={500}
+											onClick={onClose}
+										>
+											Github
 										</Link>
 									</div>
 									<div>
