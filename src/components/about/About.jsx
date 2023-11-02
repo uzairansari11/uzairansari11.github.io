@@ -6,7 +6,6 @@ function About() {
 	return (
 		<div className="about section" id="about">
 			<h1 className="aboutH1">About Me</h1>
-
 			<div className="aboutWrapper">
 				<div className="aboutWrapperDiv">
 					<div className="aboutMe" id="user-detail-intro">

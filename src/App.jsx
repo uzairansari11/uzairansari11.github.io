@@ -1,13 +1,13 @@
 import "./App.css";
+import ScrollUp from "./components/ScrollUp/ScrollUp";
 import About from "./components/about/About";
-import Home from "./components/home/Home";
-import Navbar from "./components/navbar/Navbar";
-import Skills from "./components/skills/Skills";
-import Projects from "./components/projects/Projects";
 import Contact from "./components/contact/Contact";
 import Footer from "./components/footer/Footer";
 import Calender from "./components/github/Calender";
-import ScrollUp from "./components/ScrollUp/ScrollUp";
+import Home from "./components/home/Home";
+import Navbar from "./components/navbar/Navbar";
+import Projects from "./components/projects/Projects";
+import Skills from "./components/skills/Skills";
 
 function App() {
 	return (
@@ -16,8 +16,8 @@ function App() {
 			<Home />
 			<About />
 			<Skills />
-			<Calender />
 			<Projects />
+			<Calender />
 			<Contact />
 			<Footer />
 			<ScrollUp />

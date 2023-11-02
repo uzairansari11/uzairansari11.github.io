@@ -15,14 +15,15 @@
 	flex-direction: column;
 	justify-content: space-between;
 	width: 100%;
+	height: 100vh;
 }
 
 .projects-container {
-	padding: 20px 0px 0px 0px;
 	display: flex;
 	flex-direction: column;
 	width: 83%;
 	margin: auto;
+	margin-top: 20px;
 }
 
 .projects-heading {
@@ -34,5 +35,13 @@
 	text-decoration-style: line;
 	text-underline-offset: 10px;
 	padding: 14px;
+}
 
+
+/* Small screens */
+@media all and (min-width: 280px) and (max-width: 767px) {
+	.projects-projects {
+		max-height: 100vh;
+		height: 100vh;
+	}
 }

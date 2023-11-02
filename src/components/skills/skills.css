@@ -1,5 +1,6 @@
 .skills-main {
 	background-color: #e0eff8;
+	height: 120vh;
 }
 
 .skillsWrapper {
@@ -16,7 +17,6 @@
 	text-decoration-style: line;
 	text-underline-offset: 10px;
 	padding: 14px;
-
 }
 
 .skillsTechnologiesDiv {
@@ -36,6 +36,10 @@
 }
 
 @media all and (min-width: 280px) and (max-width: 767px) {
+	.skills-main {
+		height: auto;
+	}
+
 	.skillsWrapper {
 		width: 90%;
 		display: grid;
