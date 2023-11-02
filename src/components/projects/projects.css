@@ -16,6 +16,7 @@
 	justify-content: space-between;
 	width: 100%;
 	height: 100vh;
+	/* border: 1px solid red */
 }
 
 .projects-container {
@@ -41,7 +42,8 @@
 /* Small screens */
 @media all and (min-width: 280px) and (max-width: 767px) {
 	.projects-projects {
-		max-height: 100vh;
-		height: 100vh;
+		height: 90vh;
+		display: flex;
+		align-items: center;
 	}
 }
