@@ -72,7 +72,7 @@ function Navbar() {
 							Projects
 						</Link>
 					</div>
-					<div>
+					{/* <div>
 						<Link
 							to="github-main"
 							smooth={true}
@@ -82,7 +82,7 @@ function Navbar() {
 						>
 							Github
 						</Link>
-					</div>
+					</div> */}
 					<div>
 						<Link
 							to="contact"
@@ -168,7 +168,7 @@ function Navbar() {
 											Projects
 										</Link>
 									</div>
-									<div>
+									{/* <div>
 										<Link
 											to="github-main"
 											smooth={true}
@@ -178,7 +178,7 @@ function Navbar() {
 										>
 											Github
 										</Link>
-									</div>
+									</div> */}
 									<div>
 										<Link
 											to="contact"

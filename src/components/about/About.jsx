@@ -9,12 +9,11 @@ function About() {
 			<div className="aboutWrapper">
 				<div className="aboutWrapperDiv">
 					<div className="aboutMe" id="user-detail-intro">
-						As a passionate Full Stack Web Developer with expertise in the MERN
-						Stack. I possess proficiency in crafting dynamic websites using
-						React, Redux, Node.js, Express.js, MongoDB, HTML, CSS, JavaScript, and
-						ChakraUI. I am eagerly seeking opportunities within an organization
-						that can provide challenges to further enhance my abilities and
-						skills as a web developer.
+						A highly motivated Full Stack Web Developer experienced in the MERN
+						Stack, proficient in HTML, CSS, JavaScript, React, Redux, Node.js,
+						Express.js, and Chakra UI. Skilled in web and mobile development,
+						with React Native expertise. Seeking challenges and opportunities to
+						excel in a dynamic organization.
 					</div>
 
 					<div className="about-socialLink">
