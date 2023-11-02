@@ -6,8 +6,6 @@
   z-index: 100;
   font-size: 18px;
   height: 60px;
-
-  /* border: 1px solid red; */
 }
 
 .wrapper {
@@ -21,7 +19,7 @@
 .wrapperLeft img {
   border-radius: 8px;
   margin-left: 40px;
-  width: 70px;
+  width: 80px;
   cursor: pointer;
 }
 
@@ -38,6 +36,8 @@
   justify-content: space-around;
   align-items: center;
   width: 65%;
+  font-size: 20px;
+  font-weight: bold;
 
 }
 

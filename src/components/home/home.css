@@ -8,7 +8,6 @@
 
 .home-main {
 	background-color: #e0eff8;
-	padding: 140px 0px 106px 0px;
 	height: 100vh;
 	display: flex;
 	align-items: center;
@@ -52,7 +51,7 @@
 	justify-content: space-between;
 	align-items: center;
 	text-align: center;
-	padding: 5px 10px;
+	padding: 10px 16px;
 	width: 80%;
 	border-radius: 5px;
 	font-size: 18px;
@@ -60,6 +59,7 @@
 	cursor: pointer;
 	margin-left: 4px;
 	background-color: teal;
+	font-size: 26px;
 }
 
 .home-resume:hover {
@@ -75,7 +75,7 @@
 }
 
 .home-img {
-	width: 60%;
+	width: 80%;
 	display: block;
 	margin: auto;
 }
@@ -99,7 +99,7 @@
 	}
 
 	.home-resume {
-		width: 130px;
+		width: 160px;
 	}
 
 	.homeLeft a {
@@ -111,25 +111,21 @@
 /* small screens */
 @media all and (min-width: 280px) and (max-width: 767px) {
 	.home-main {
-		padding: 0px;
-		max-height: (100vh);
+		height: (100vh);
 		display: flex;
-		align-items: center;
 	}
 
 	.homeWrapper {
 		display: flex;
 		flex-direction: column-reverse;
-		justify-content: center;
+		justify-content: stretch;
 		width: 100%;
-
+		height: 95vh;
 	}
 
 	.homeLeft {
-		justify-content: center;
 		width: 100%;
 		align-items: center;
-		padding: 0px;
 	}
 
 	#user-detail-name {
@@ -151,7 +147,7 @@
 	}
 
 	.home-resume {
-		width: 130px;
+		width: 160px;
 	}
 
 	.homeLeft a {
