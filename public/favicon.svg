@@ -1,0 +1,34 @@
+<svg width="64" height="64" viewBox="0 0 64 64" 
+     xmlns="http://www.w3.org/2000/svg" 
+     role="img" aria-label="Animated Uzair favicon">
+
+  <defs>
+    <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
+      <feDropShadow dx="0" dy="0" stdDeviation="3" flood-color="white" flood-opacity="0.8"/>
+    </filter>
+  </defs>
+
+  <!-- Black Circle Background -->
+  <circle cx="32" cy="32" r="32" fill="#000000" />
+
+  <!-- Letter U with white fill and glow filter -->
+  <text x="32" y="44" text-anchor="middle" 
+        font-family="Poppins, Arial, sans-serif" 
+        font-size="36" fill="white" 
+        font-weight="900"
+        filter="url(#glow)">
+    <tspan>
+      U
+      <animate 
+        attributeName="fill-opacity" 
+        values="1;0.5;1" 
+        dur="2s" 
+        repeatCount="indefinite" />
+      <animate 
+        attributeName="filter" 
+        values="url(#glow);none;url(#glow)" 
+        dur="2s" 
+        repeatCount="indefinite" />
+    </tspan>
+  </text>
+</svg>
