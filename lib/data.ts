@@ -51,7 +51,7 @@ export const personalInfo = {
     "I'm a Full Stack Web Developer specializing in the MERN stack (MongoDB, Express.js, React, and Node.js). With experience across multiple companies, I've contributed to various projects ranging from e-commerce platforms to real-time communication applications. I'm passionate about creating seamless, user-centric web experiences and constantly learning new technologies to stay at the forefront of web development.",
   avatarUrl:
     "/profile-uzair.jpeg",
-  resumeUrl: "/resume.pdf",
+  resumeUrl: "https://drive.google.com/uc?export=download&id=1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw",
   socialLinks: {
     github: "https://github.com/uzairansari11",
     linkedin: "https://linkedin.com/in/uzairansari11",
