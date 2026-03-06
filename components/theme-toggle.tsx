@@ -1,89 +1,112 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { Moon, Sun } from "lucide-react"
+import { useEffect, useRef, useState } from "react"
+import { Moon, Sun, Settings2, Check } from "lucide-react"
 import { useTheme } from "next-themes"
-
-import { Button } from "@/components/ui/button"
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-  DropdownMenuSeparator,
-  DropdownMenuLabel,
-} from "@/components/ui/dropdown-menu"
+import { useAppSettings } from "@/components/theme-provider"
+import { accentColors } from "@/lib/colors"
+import { cn } from "@/lib/utils"
+import { AnimatePresence, motion } from "framer-motion"
 
 export function ThemeToggle() {
-  const { theme, setTheme } = useTheme()
+  const { resolvedTheme, setTheme } = useTheme()
+  const { accent, setAccent } = useAppSettings()
   const [mounted, setMounted] = useState(false)
+  const [open, setOpen] = useState(false)
+  const panelRef = useRef<HTMLDivElement>(null)
 
-  // Ensure component is mounted to avoid hydration mismatch
+  useEffect(() => { setMounted(true) }, [])
+
   useEffect(() => {
-    setMounted(true)
-  }, [])
+    if (!open) return
+    const handler = (e: MouseEvent) => {
+      if (panelRef.current && !panelRef.current.contains(e.target as Node)) setOpen(false)
+    }
+    const id = setTimeout(() => document.addEventListener("mousedown", handler), 0)
+    return () => { clearTimeout(id); document.removeEventListener("mousedown", handler) }
+  }, [open])
 
-  if (!mounted) {
-    return (
-      <Button variant="ghost" size="icon" disabled>
-        <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all" />
-        <span className="sr-only">Toggle theme</span>
-      </Button>
-    )
-  }
+  if (!mounted) return <div className="w-8 h-8" />
+
+  const isDark = resolvedTheme === "dark"
 
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon">
-          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-          <span className="sr-only">Toggle theme</span>
-        </Button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
-        <DropdownMenuLabel>Appearance</DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem onClick={() => setTheme("light")} className={theme === "light" ? "bg-accent" : ""}>
-          <Sun className="mr-2 h-4 w-4" />
-          Light
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("dark")} className={theme === "dark" ? "bg-accent" : ""}>
-          <Moon className="mr-2 h-4 w-4" />
-          Dark
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("system")} className={theme === "system" ? "bg-accent" : ""}>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            strokeWidth="2"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            className="mr-2 h-4 w-4"
+    <div ref={panelRef} className="relative">
+      <button
+        type="button"
+        aria-label="Settings"
+        onClick={() => setOpen(!open)}
+        className={cn(
+          "w-8 h-8 rounded-full flex items-center justify-center transition-colors",
+          open ? "bg-primary/10 text-primary" : "text-muted-foreground hover:text-foreground hover:bg-muted/80"
+        )}
+      >
+        <Settings2 className="h-4 w-4" />
+      </button>
+
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, y: 8, scale: 0.95 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            exit={{ opacity: 0, y: 8, scale: 0.95 }}
+            transition={{ duration: 0.15 }}
+            className="absolute right-0 top-full mt-2 w-64 rounded-xl bg-card border border-border/50 shadow-2xl z-[200] overflow-hidden"
           >
-            <rect x="2" y="3" width="20" height="14" rx="2" />
-            <line x1="8" x2="16" y1="21" y2="21" />
-            <line x1="12" x2="12" y1="17" y2="21" />
-          </svg>
-          System
-        </DropdownMenuItem>
-        <DropdownMenuSeparator />
-        <DropdownMenuLabel>Theme Colors</DropdownMenuLabel>
-        <DropdownMenuItem onClick={() => setTheme("purple")} className={theme === "purple" ? "bg-accent" : ""}>
-          <div className="mr-2 h-4 w-4 rounded-full bg-[hsl(262.1,83.3%,57.8%)]" />
-          Purple
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("green")} className={theme === "green" ? "bg-accent" : ""}>
-          <div className="mr-2 h-4 w-4 rounded-full bg-[hsl(142.1,76.2%,36.3%)]" />
-          Green
-        </DropdownMenuItem>
-        <DropdownMenuItem onClick={() => setTheme("blue")} className={theme === "blue" ? "bg-accent" : ""}>
-          <div className="mr-2 h-4 w-4 rounded-full bg-[hsl(221.2,83.2%,53.3%)]" />
-          Blue
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+            <div className="p-4 space-y-5">
+              {/* Theme Mode */}
+              <div>
+                <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2.5">Mode</p>
+                <div className="flex gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setTheme("light")}
+                    className={cn(
+                      "flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-medium transition-all border",
+                      !isDark ? "bg-primary text-primary-foreground border-primary" : "bg-muted/50 text-muted-foreground border-border/50 hover:border-border"
+                    )}
+                  >
+                    <Sun className="h-3.5 w-3.5" /> Light
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => setTheme("dark")}
+                    className={cn(
+                      "flex-1 flex items-center justify-center gap-2 py-2 rounded-lg text-xs font-medium transition-all border",
+                      isDark ? "bg-primary text-primary-foreground border-primary" : "bg-muted/50 text-muted-foreground border-border/50 hover:border-border"
+                    )}
+                  >
+                    <Moon className="h-3.5 w-3.5" /> Dark
+                  </button>
+                </div>
+              </div>
+
+              {/* Accent Color */}
+              <div>
+                <p className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wider mb-2.5">Accent Color</p>
+                <div className="flex items-center gap-2.5">
+                  {accentColors.map((color) => (
+                    <button
+                      key={color.value}
+                      type="button"
+                      onClick={() => setAccent(color.value)}
+                      className={cn(
+                        "w-7 h-7 rounded-full transition-all hover:scale-110 flex items-center justify-center",
+                        accent === color.value && "ring-2 ring-offset-2 ring-offset-card ring-foreground/30 scale-110"
+                      )}
+                      style={{ backgroundColor: color.swatch }}
+                      title={color.label}
+                    >
+                      {accent === color.value && <Check className="h-3.5 w-3.5 text-white" />}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   )
 }

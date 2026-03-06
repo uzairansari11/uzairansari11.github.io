@@ -2,258 +2,107 @@
 
 import { Button } from "@/components/ui/button"
 import { personalInfo } from "@/lib/data"
-import { gsap } from "gsap"
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react"
+import { ArrowDown, Download, Github, Linkedin, Mail, Send } from "lucide-react"
 import { useEffect, useRef } from "react"
+import { gsap } from "gsap"
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
-  const headingRef = useRef<HTMLHeadingElement>(null)
-  const subheadingRef = useRef<HTMLParagraphElement>(null)
-  const ctaRef = useRef<HTMLDivElement>(null)
   const scrollRef = useRef<HTMLDivElement>(null)
-  const imageRef = useRef<HTMLDivElement>(null)
-  const shapesRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    const section = sectionRef.current
-    const heading = headingRef.current
-    const subheading = subheadingRef.current
-    const cta = ctaRef.current
-    const scroll = scrollRef.current
-    const image = imageRef.current
-    const shapes = shapesRef.current
+    const ctx = gsap.context(() => {
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } })
 
-    if (!section || !heading || !subheading || !cta || !scroll || !image || !shapes) return
+      tl.fromTo("[data-hero-badge]", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 })
+        .fromTo("[data-hero-name]", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8 }, "-=0.3")
+        .fromTo("[data-hero-title]", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4")
+        .fromTo("[data-hero-desc]", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.3")
+        .fromTo("[data-hero-buttons] > *", { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.5 }, "-=0.3")
+        .fromTo("[data-hero-social] > *", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, stagger: 0.08, duration: 0.4 }, "-=0.2")
+        .fromTo("[data-hero-image]", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.5)" }, "-=0.6")
+        .fromTo("[data-hero-exp]", { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.5 }, "-=0.3")
 
-    // Create shapes
-    const shapeCount = 5
-    for (let i = 0; i < shapeCount; i++) {
-      const shape = document.createElement("div")
-      const size = Math.random() * 100 + 50
-      shape.className = "absolute rounded-full mix-blend-multiply filter blur-xl opacity-70"
-      shape.style.width = `${size}px`
-      shape.style.height = `${size}px`
-      shape.style.backgroundColor = `hsl(var(--primary) / 0.15)`
-      shape.style.left = `${Math.random() * 100}%`
-      shape.style.top = `${Math.random() * 100}%`
-      shapes.appendChild(shape)
-    }
+      // Scroll indicator bounce
+      gsap.to(scrollRef.current, { y: 8, duration: 1.2, repeat: -1, yoyo: true, ease: "sine.inOut" })
 
-    // Main timeline
-    const tl = gsap.timeline()
+      // Floating background blobs
+      gsap.to("[data-blob-1]", { y: -20, x: 10, duration: 4, repeat: -1, yoyo: true, ease: "sine.inOut" })
+      gsap.to("[data-blob-2]", { y: 15, x: -15, duration: 5, repeat: -1, yoyo: true, ease: "sine.inOut" })
+    }, sectionRef)
 
-    // Animate shapes
-    gsap.to(shapes.children, {
-      x: "random(-100, 100)",
-      y: "random(-100, 100)",
-      duration: "random(15, 30)",
-      repeat: -1,
-      yoyo: true,
-      ease: "sine.inOut",
-      stagger: 0.2,
-    })
-
-    // Animate content
-    tl.from(heading, {
-      y: 50,
-      opacity: 0,
-      duration: 1,
-      ease: "power3.out",
-    })
-      .from(
-        subheading,
-        {
-          y: 30,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-        },
-        "-=0.6",
-      )
-      .from(
-        cta,
-        {
-          y: 30,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-        },
-        "-=0.6",
-      )
-      .from(
-        image,
-        {
-          scale: 0.8,
-          opacity: 0,
-          duration: 1.2,
-          ease: "power3.out",
-          rotation: -5,
-        },
-        "-=0.8",
-      )
-      .from(
-        scroll,
-        {
-          y: -10,
-          opacity: 0,
-          duration: 1,
-          ease: "power3.out",
-          repeat: -1,
-          yoyo: true,
-        },
-        "-=0.2",
-      )
-
-    // Parallax effect
-    gsap.to(".hero-bg", {
-      y: 100,
-      scrollTrigger: {
-        trigger: section,
-        start: "top top",
-        end: "bottom top",
-        scrub: true,
-      },
-    })
-
-    // Text animation
-    const chars = heading.textContent?.split("") || []
-    heading.textContent = ""
-
-    chars.forEach((char) => {
-      const span = document.createElement("span")
-      span.textContent = char
-      span.style.display = "inline-block"
-      heading.appendChild(span)
-    })
-
-    gsap.from(heading.children, {
-      opacity: 0,
-      y: 20,
-      rotateX: -90,
-      stagger: 0.05,
-      duration: 0.8,
-      ease: "back.out",
-    })
-
-    // Mouse move effect
-    const handleMouseMove = (e: MouseEvent) => {
-      const { clientX, clientY } = e
-      const xPos = (clientX / window.innerWidth - 0.5) * 20
-      const yPos = (clientY / window.innerHeight - 0.5) * 20
-
-      gsap.to(image, {
-        x: xPos,
-        y: yPos,
-        rotation: xPos * 0.05,
-        duration: 1,
-        ease: "power2.out",
-      })
-
-      gsap.to(shapes.children, {
-        x: (i) => xPos * ((i % 3) + 1) * 0.5,
-        y: (i) => yPos * ((i % 2) + 1) * 0.5,
-        duration: 1,
-        ease: "power2.out",
-        stagger: 0.05,
-      })
-    }
-
-    section.addEventListener("mousemove", handleMouseMove)
-
-    return () => {
-      tl.kill()
-      section.removeEventListener("mousemove", handleMouseMove)
-    }
+    return () => ctx.revert()
   }, [])
 
   return (
-    <section
-      id="home"
-      ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden py-20"
-    >
-      <div ref={shapesRef} className="absolute inset-0 -z-10 overflow-hidden"></div>
-
-      <div className="hero-bg absolute inset-0 -z-10">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background to-background"></div>
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-80 h-80 bg-secondary/20 rounded-full blur-3xl"></div>
+    <section ref={sectionRef} id="home" className="relative min-h-screen flex items-center pt-16">
+      <div className="absolute inset-0 -z-10">
+        <div data-blob-1 className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
+        <div data-blob-2 className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/3 rounded-full blur-3xl" />
       </div>
 
-      <div className="container px-4 md:px-6">
-        <div className="grid gap-6 lg:grid-cols-[1fr_400px] lg:gap-12 xl:grid-cols-[1fr_600px]">
-          <div className="flex flex-col justify-center space-y-4">
-            <div className="space-y-2">
-              <h1 ref={headingRef} className="text-3xl font-bold tracking-tighter sm:text-5xl xl:text-6xl/none">
-                Hi, I&apos;m  {personalInfo.name}
-                <span className="text-primary">.</span>
-              </h1>
-              {/* <p ref={subheadingRef} className="max-w-[600px] text-muted-foreground md:text-xl">
-                {personalInfo.title}
-              </p> */}
-              <p className="max-w-[600px] text-muted-foreground md:text-xl">{personalInfo.bio}</p>
+      <div className="container px-4 md:px-6 py-20">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
+          <div className="space-y-6 text-center lg:text-left">
+            <div data-hero-badge className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary" style={{ opacity: 0 }}>
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              Available for opportunities
             </div>
-            <div ref={ctaRef} className="flex flex-col gap-2 min-[400px]:flex-row">
-              <Button asChild size="lg">
-                <a href="#contact">Get in Touch</a>
+
+            <div className="space-y-3">
+              <h1 data-hero-name className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl" style={{ opacity: 0 }}>
+                {personalInfo.name}
+              </h1>
+              <p data-hero-title className="text-xl sm:text-2xl text-primary font-medium" style={{ opacity: 0 }}>
+                {personalInfo.title}
+              </p>
+              <p data-hero-desc className="text-muted-foreground max-w-md mx-auto lg:mx-0 leading-relaxed" style={{ opacity: 0 }}>
+                I build high-performance web applications with modern technologies. Turning complex ideas into elegant, scalable solutions.
+              </p>
+            </div>
+
+            <div data-hero-buttons className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+              <Button size="lg" className="rounded-full px-8" asChild>
+                <a href="#contact"><Send className="mr-2 h-4 w-4" /> Let&apos;s Talk</a>
               </Button>
-              <Button variant="outline" size="lg" asChild>
+              <Button size="lg" variant="outline" className="rounded-full px-8" asChild>
                 <a href={personalInfo.resumeUrl} target="_blank" rel="noopener noreferrer">
-                  Download Resume
+                  <Download className="mr-2 h-4 w-4" /> Resume
                 </a>
               </Button>
             </div>
-            <div className="flex gap-4 mt-4">
-              <a
-                href={personalInfo.socialLinks.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Github className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
-              </a>
-              <a
-                href={personalInfo.socialLinks.linkedin}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Linkedin className="h-5 w-5" />
-                <span className="sr-only">LinkedIn</span>
-              </a>
-            
-              <a
-                href={`mailto:${personalInfo.email}`}
-                className="text-muted-foreground hover:text-primary transition-colors"
-              >
-                <Mail className="h-5 w-5" />
-                <span className="sr-only">Email</span>
-              </a>
+
+            <div data-hero-social className="flex items-center gap-3 justify-center lg:justify-start">
+              {[
+                { href: personalInfo.socialLinks.github, icon: Github, label: "GitHub" },
+                { href: personalInfo.socialLinks.linkedin, icon: Linkedin, label: "LinkedIn" },
+                { href: `mailto:${personalInfo.email}`, icon: Mail, label: "Email" },
+              ].map(({ href, icon: Icon, label }) => (
+                <a key={label} href={href} target={href.startsWith("mailto") ? undefined : "_blank"} rel="noopener noreferrer"
+                  className="w-10 h-10 rounded-full border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-colors">
+                  <Icon className="h-4 w-4" />
+                </a>
+              ))}
             </div>
           </div>
-          <div className="flex items-center justify-center">
-            <div
-              ref={imageRef}
-              className="relative aspect-square w-full max-w-[400px] overflow-hidden rounded-full border-4 border-primary/20"
-            >
-              <img
-                src={personalInfo.avatarUrl || "/placeholder.svg"}
-                alt={personalInfo.name}
-                width={400}
-                height={400}
-                className="object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent"></div>
+
+          <div className="flex justify-center lg:justify-end">
+            <div className="relative">
+              <div data-hero-image className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-card shadow-2xl shadow-primary/10" style={{ opacity: 0 }}>
+                <img src={personalInfo.avatarUrl || "/placeholder.svg"} alt={personalInfo.name} className="w-full h-full object-cover" />
+              </div>
+              <div data-hero-exp className="absolute -bottom-3 -right-3 rounded-2xl bg-card border shadow-lg px-4 py-3 text-center" style={{ opacity: 0 }}>
+                <span className="text-2xl font-bold text-primary">2+</span>
+                <span className="block text-xs text-muted-foreground">Years Exp.</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div ref={scrollRef} className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center">
-        <span className="text-sm text-muted-foreground mb-2">Scroll Down</span>
-        <ArrowDown className="h-4 w-4 animate-bounce text-primary" />
+      <div ref={scrollRef} className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2">
+        <span className="text-xs text-muted-foreground">Scroll</span>
+        <ArrowDown className="h-4 w-4 text-muted-foreground" />
       </div>
     </section>
   )

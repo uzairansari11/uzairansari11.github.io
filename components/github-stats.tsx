@@ -1,177 +1,65 @@
 "use client"
 
-import { useEffect, useRef } from "react"
-import { gsap } from "gsap"
-import { Card, CardContent, CardTitle } from "@/components/ui/card"
+import { useEffect, useState } from "react"
+import { GlassCard } from "@/components/ui/glass-card"
+import { AnimatedCounter } from "@/components/ui/animated-counter"
 import { Github, Star, GitFork, Code, Users } from "lucide-react"
+import { Button } from "@/components/ui/button"
 
-interface GitHubStats {
-  stars: number
-  followers: number
-  following: number
-  repos: number
-  contributions: number
-}
+const fallbackStats = [
+  { label: "Stars", value: 3, icon: Star },
+  { label: "Followers", value: 99, icon: Users },
+  { label: "Following", value: 77, icon: Users },
+  { label: "Repos", value: 107, icon: Code },
+  { label: "Contributions", value: 850, icon: GitFork },
+]
 
 export function GitHubStats() {
-  const containerRef = useRef<HTMLDivElement>(null)
-  const statsRef = useRef<HTMLDivElement>(null)
-
-  // These would typically come from an API call to GitHub
-  const stats: GitHubStats = {
-    stars: 3,
-    followers: 99,
-    following: 77,
-    repos: 107,
-    contributions: 850,
-  }
+  const [stats, setStats] = useState(fallbackStats)
 
   useEffect(() => {
-    if (!containerRef.current || !statsRef.current) return
-
-    gsap.from(containerRef.current, {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      scrollTrigger: {
-        trigger: containerRef.current,
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-    })
-
-    gsap.from(".stat-item", {
-      opacity: 0,
-      y: 20,
-      stagger: 0.2,
-      duration: 0.8,
-      delay: 0.3,
-      scrollTrigger: {
-        trigger: statsRef.current,
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-    })
-
-    // Animate numbers counting up
-    gsap.from(".stat-number", {
-      textContent: 0,
-      duration: 2,
-      ease: "power1.inOut",
-      snap: { textContent: 1 },
-      stagger: 0.2,
-      delay: 0.5,
-      scrollTrigger: {
-        trigger: statsRef.current,
-        start: "top 80%",
-        toggleActions: "play none none none",
-      },
-      onUpdate: function (this: any) {
-        const target = this.targets()[0]
-        const maxValue = Number.parseInt(target.getAttribute("data-value"), 10)
-        target.textContent = Math.ceil(this.targets()[0].textContent)
-      },
-    })
-
-    return () => {
-      gsap.killTweensOf(".stat-number")
-    }
+    fetch("https://api.github.com/users/uzairansari11")
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.public_repos) {
+          setStats([
+            { label: "Stars", value: 3, icon: Star },
+            { label: "Followers", value: data.followers || 99, icon: Users },
+            { label: "Following", value: data.following || 77, icon: Users },
+            { label: "Repos", value: data.public_repos || 107, icon: Code },
+            { label: "Contributions", value: 850, icon: GitFork },
+          ])
+        }
+      })
+      .catch(() => {})
   }, [])
 
   return (
-    <div ref={containerRef} className="py-10">
+    <div className="py-16">
       <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center mb-8">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl">GitHub Stats</h2>
-            <p className="text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-              My open source contributions and activity
-            </p>
-          </div>
+        <div className="text-center mb-10">
+          <h3 className="text-2xl font-bold mb-2">GitHub Activity</h3>
+          <p className="text-sm text-muted-foreground">Open source contributions and coding activity</p>
         </div>
 
-        <div ref={statsRef} className="grid gap-6 sm:grid-cols-2 lg:grid-cols-5">
-          <Card className="stat-item overflow-hidden">
-            <CardContent className="p-6 flex flex-col items-center justify-center h-full">
-              <div className="rounded-full bg-primary/10 p-3 mb-4">
-                <Star className="h-6 w-6 text-primary" />
+        <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
+          {stats.map((stat) => (
+            <GlassCard key={stat.label} className="p-4 flex flex-col items-center text-center">
+              <stat.icon className="h-5 w-5 text-primary mb-2" />
+              <div className="text-xl font-bold">
+                <AnimatedCounter value={stat.value} />
               </div>
-              <CardTitle className="text-2xl font-bold mb-1">
-                <span className="stat-number" data-value={stats.stars}>
-                  {stats.stars}
-                </span>
-              </CardTitle>
-              <p className="text-sm text-muted-foreground">Stars</p>
-            </CardContent>
-          </Card>
-
-          <Card className="stat-item overflow-hidden">
-            <CardContent className="p-6 flex flex-col items-center justify-center h-full">
-              <div className="rounded-full bg-primary/10 p-3 mb-4">
-                <Users className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle className="text-2xl font-bold mb-1">
-                <span className="stat-number" data-value={stats.followers}>
-                  {stats.followers}
-                </span>
-              </CardTitle>
-              <p className="text-sm text-muted-foreground">Followers</p>
-            </CardContent>
-          </Card>
-
-          <Card className="stat-item overflow-hidden">
-            <CardContent className="p-6 flex flex-col items-center justify-center h-full">
-              <div className="rounded-full bg-primary/10 p-3 mb-4">
-                <Users className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle className="text-2xl font-bold mb-1">
-                <span className="stat-number" data-value={stats.following}>
-                  {stats.following}
-                </span>
-              </CardTitle>
-              <p className="text-sm text-muted-foreground">Following</p>
-            </CardContent>
-          </Card>
-
-          <Card className="stat-item overflow-hidden">
-            <CardContent className="p-6 flex flex-col items-center justify-center h-full">
-              <div className="rounded-full bg-primary/10 p-3 mb-4">
-                <Code className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle className="text-2xl font-bold mb-1">
-                <span className="stat-number" data-value={stats.repos}>
-                  {stats.repos}
-                </span>
-              </CardTitle>
-              <p className="text-sm text-muted-foreground">Repositories</p>
-            </CardContent>
-          </Card>
-
-          <Card className="stat-item overflow-hidden">
-            <CardContent className="p-6 flex flex-col items-center justify-center h-full">
-              <div className="rounded-full bg-primary/10 p-3 mb-4">
-                <GitFork className="h-6 w-6 text-primary" />
-              </div>
-              <CardTitle className="text-2xl font-bold mb-1">
-                <span className="stat-number" data-value={stats.contributions}>
-                  {stats.contributions}
-                </span>
-              </CardTitle>
-              <p className="text-sm text-muted-foreground">Contributions</p>
-            </CardContent>
-          </Card>
+              <p className="text-xs text-muted-foreground">{stat.label}</p>
+            </GlassCard>
+          ))}
         </div>
 
-        <div className="mt-10 flex justify-center">
-          <a
-            href="https://github.com/uzairansari11"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center rounded-md bg-primary px-6 py-3 text-sm font-medium text-primary-foreground shadow transition-colors hover:bg-primary/90 focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring"
-          >
-            <Github className="mr-2 h-5 w-5" />
-            View GitHub Profile
-          </a>
+        <div className="mt-8 flex justify-center">
+          <Button variant="outline" className="rounded-full" asChild>
+            <a href="https://github.com/uzairansari11" target="_blank" rel="noopener noreferrer">
+              <Github className="mr-2 h-4 w-4" /> View GitHub Profile
+            </a>
+          </Button>
         </div>
       </div>
     </div>

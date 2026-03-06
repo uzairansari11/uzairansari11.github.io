@@ -1,95 +1,44 @@
 "use client"
 
-import { useEffect, useRef } from "react"
+import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null)
   const followerRef = useRef<HTMLDivElement>(null)
+  const [visible, setVisible] = useState(false)
 
   useEffect(() => {
+    // Don't show on touch devices
+    if (window.matchMedia("(pointer: coarse)").matches) return
+
     const cursor = cursorRef.current
     const follower = followerRef.current
-
     if (!cursor || !follower) return
 
     const onMouseMove = (e: MouseEvent) => {
-      gsap.to(cursor, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.1,
-        ease: "power1.out",
-      })
+      if (!visible) setVisible(true)
+      gsap.to(cursor, { x: e.clientX, y: e.clientY, duration: 0.1, ease: "power1.out" })
+      gsap.to(follower, { x: e.clientX, y: e.clientY, duration: 0.5, ease: "power3.out" })
 
-      gsap.to(follower, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.5,
-        ease: "power3.out",
-      })
-    }
-
-    const onMouseDown = () => {
-      gsap.to([cursor, follower], {
-        scale: 0.8,
-        duration: 0.2,
-      })
-    }
-
-    const onMouseUp = () => {
-      gsap.to([cursor, follower], {
-        scale: 1,
-        duration: 0.2,
-      })
-    }
-
-    const onMouseEnterLink = () => {
-      gsap.to([cursor, follower], {
-        scale: 1.5,
-        duration: 0.3,
-      })
-    }
-
-    const onMouseLeaveLink = () => {
-      gsap.to([cursor, follower], {
-        scale: 1,
-        duration: 0.3,
-      })
+      const target = e.target as HTMLElement
+      const isInteractive = target.closest("a, button, [role='button'], input, textarea, select")
+      gsap.to([cursor, follower], { scale: isInteractive ? 1.5 : 1, duration: 0.3 })
     }
 
     document.addEventListener("mousemove", onMouseMove)
-    document.addEventListener("mousedown", onMouseDown)
-    document.addEventListener("mouseup", onMouseUp)
-
-    const links = document.querySelectorAll("a, button")
-    links.forEach((link) => {
-      link.addEventListener("mouseenter", onMouseEnterLink)
-      link.addEventListener("mouseleave", onMouseLeaveLink)
-    })
-
-    return () => {
-      document.removeEventListener("mousemove", onMouseMove)
-      document.removeEventListener("mousedown", onMouseDown)
-      document.removeEventListener("mouseup", onMouseUp)
-
-      links.forEach((link) => {
-        link.removeEventListener("mouseenter", onMouseEnterLink)
-        link.removeEventListener("mouseleave", onMouseLeaveLink)
-      })
-    }
-  }, [])
+    return () => document.removeEventListener("mousemove", onMouseMove)
+  }, [visible])
 
   return (
     <>
       <div
         ref={cursorRef}
-        className="fixed top-0 left-0 w-4 h-4 bg-primary rounded-full pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2 mix-blend-difference hidden md:block"
-        style={{ opacity: 0.8 }}
+        className={`fixed top-0 left-0 w-3 h-3 bg-primary rounded-full pointer-events-none z-[9999] -translate-x-1/2 -translate-y-1/2 mix-blend-difference hidden md:block ${visible ? "opacity-70" : "opacity-0"}`}
       />
       <div
         ref={followerRef}
-        className="fixed top-0 left-0 w-8 h-8 border border-primary rounded-full pointer-events-none z-40 -translate-x-1/2 -translate-y-1/2 hidden md:block"
-        style={{ opacity: 0.4 }}
+        className={`fixed top-0 left-0 w-7 h-7 border border-primary rounded-full pointer-events-none z-[9998] -translate-x-1/2 -translate-y-1/2 hidden md:block ${visible ? "opacity-30" : "opacity-0"}`}
       />
     </>
   )

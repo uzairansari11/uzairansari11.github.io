@@ -16,7 +16,6 @@ export default function Home() {
       <Experience />
       <Skills />
       <GitHubStats />
-      {/* <GitHubCalendar /> */}
       <Contact />
     </AnimationProvider>
   )

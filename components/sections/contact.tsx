@@ -1,223 +1,215 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { Textarea } from "@/components/ui/textarea"
-import { useToast } from "@/hooks/use-toast"
+import { useRef, useState } from "react"
+import dynamic from "next/dynamic"
+import { SectionHeading } from "@/components/ui/section-heading"
 import { personalInfo } from "@/lib/data"
 import emailjs from "@emailjs/browser"
-import { gsap } from "gsap"
-import { ScrollTrigger } from "gsap/dist/ScrollTrigger"
-import { Mail, MapPin, Phone, Send } from "lucide-react"
-import { useEffect, useRef, useState } from "react"
+import { Mail, MapPin, Phone, Send, CheckCircle2, Loader2, AlertCircle } from "lucide-react"
+import { useToast } from "@/hooks/use-toast"
+
+const LocationMap = dynamic(() => import("@/components/ui/location-map").then(m => m.LocationMap), { ssr: false })
 
 export function Contact() {
-  const { toast } = useToast()
   const [isSubmitting, setIsSubmitting] = useState(false)
-  const sectionRef = useRef<HTMLElement>(null)
-  const headingRef = useRef<HTMLHeadingElement>(null)
+  const [sent, setSent] = useState(false)
+  const [errors, setErrors] = useState<Record<string, string>>({})
   const formRef = useRef<HTMLFormElement>(null)
-  const infoRef = useRef<HTMLDivElement>(null)
+  const { toast } = useToast()
+
+  const validate = () => {
+    const form = formRef.current
+    if (!form) return false
+    const data = new FormData(form)
+    const newErrors: Record<string, string> = {}
+
+    const name = (data.get("name") as string)?.trim()
+    const email = (data.get("email") as string)?.trim()
+    const subject = (data.get("subject") as string)?.trim()
+    const message = (data.get("message") as string)?.trim()
+
+    if (!name || name.length < 2) newErrors.name = "Name must be at least 2 characters"
+    if (!email) {
+      newErrors.email = "Email is required"
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = "Please enter a valid email address"
+    }
+    if (!subject || subject.length < 3) newErrors.subject = "Subject must be at least 3 characters"
+    if (!message || message.length < 10) newErrors.message = "Message must be at least 10 characters"
+
+    setErrors(newErrors)
+    return Object.keys(newErrors).length === 0
+  }
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    setIsSubmitting(true)
+    if (!validate()) {
+      toast({ title: "Validation Error", description: "Please fix the errors before submitting.", variant: "destructive" })
+      return
+    }
 
-    // Set current time in hidden input before sending
+    setIsSubmitting(true)
     if (formRef.current) {
       const timeInput = formRef.current.querySelector<HTMLInputElement>('input[name="time"]')
-      if (timeInput) {
-        timeInput.value = new Date().toLocaleString()
-      }
-
-      // Debug: Log all form data keys and values
-      const formData = new FormData(formRef.current)
-      for (const [key, value] of formData.entries()) {
-        console.log(key, value)
-      }
+      if (timeInput) timeInput.value = new Date().toLocaleString()
     }
-
     try {
       await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID!,
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID!,
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_placeholder",
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "template_placeholder",
         formRef.current!,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY!
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "public_placeholder"
       )
-
-      toast({
-        title: "Message sent!",
-        description: "Thank you for your message. I'll get back to you soon.",
-      })
-
+      setSent(true)
+      setErrors({})
       formRef.current?.reset()
-    } catch (error) {
-      console.error("EmailJS error:", error)
-      toast({
-        title: "Something went wrong!",
-        description: "Please try again later.",
-        variant: "destructive",
-      })
+      toast({ title: "Message Sent!", description: "I'll get back to you as soon as possible." })
+      setTimeout(() => setSent(false), 5000)
+    } catch {
+      toast({ title: "Failed to Send", description: "Please try again or email me directly.", variant: "destructive" })
     }
-
     setIsSubmitting(false)
   }
 
-  useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger)
-
-    if (!sectionRef.current || !headingRef.current || !formRef.current || !infoRef.current) return
-
-    gsap.from(headingRef.current, {
-      opacity: 0,
-      y: 50,
-      duration: 1,
-      scrollTrigger: {
-        trigger: headingRef.current,
-        start: "top 80%",
-      },
-    })
-
-    gsap.from(formRef.current, {
-      opacity: 0,
-      x: -50,
-      duration: 1,
-      scrollTrigger: {
-        trigger: formRef.current,
-        start: "top 80%",
-      },
-    })
-
-    gsap.from(infoRef.current, {
-      opacity: 0,
-      x: 50,
-      duration: 1,
-      scrollTrigger: {
-        trigger: infoRef.current,
-        start: "top 80%",
-      },
-    })
-
-    gsap.from(".contact-card", {
-      opacity: 0,
-      y: 30,
-      duration: 0.8,
-      stagger: 0.2,
-      scrollTrigger: {
-        trigger: infoRef.current,
-        start: "top 80%",
-      },
-    })
-
-    return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
-    }
-  }, [])
+  const inputClass = (field: string) =>
+    `w-full rounded-xl border bg-background px-4 py-3 text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all ${errors[field] ? "border-red-500 focus:ring-red-500/30 focus:border-red-500" : "border-border"}`
 
   return (
-    <section id="contact" ref={sectionRef} className="py-20 bg-muted/40">
+    <section id="contact" className="py-20 sm:py-24">
       <div className="container px-4 md:px-6">
-        <div className="text-center space-y-4 mb-10">
-          <h2 ref={headingRef} className="text-3xl font-bold tracking-tighter sm:text-5xl">
-            Get In Touch
-          </h2>
-          <p className="text-muted-foreground md:text-xl">Have a project in mind? Let's work together!</p>
-        </div>
+        <SectionHeading title="Let's Connect" subtitle="Got a project idea or want to collaborate? I'd love to hear from you" />
 
-        <div className="mx-auto grid max-w-6xl gap-6 py-12 lg:grid-cols-2">
-          <div>
-            <form ref={formRef} onSubmit={handleSubmit} className="grid gap-6">
-              <div className="grid gap-3">
-                <Label htmlFor="name">Name</Label>
-                <Input id="name" name="name" placeholder="Your name" required />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="email">Email</Label>
-                <Input id="email" name="email" type="email" placeholder="Your email" required />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="subject">Subject</Label>
-                <Input id="subject" name="subject" placeholder="Subject" required />
-              </div>
-              <div className="grid gap-3">
-                <Label htmlFor="message">Message</Label>
-                <Textarea id="message" name="message" placeholder="Your message" className="min-h-[150px]" required />
-              </div>
+        <div className="grid gap-8 lg:grid-cols-5">
+          {/* Form */}
+          <div className="lg:col-span-3">
+            <div className="rounded-2xl border border-border/50 bg-card p-6 sm:p-8">
+              <h3 className="font-bold text-lg mb-1">Send me a message</h3>
+              <p className="text-sm text-muted-foreground mb-6">Fill out the form and I'll get back to you as soon as possible.</p>
 
-              {/* Hidden input for current time, set dynamically before sending */}
-              <input type="hidden" name="time" />
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-5" noValidate>
+                <div className="grid gap-5 sm:grid-cols-2">
+                  <div>
+                    <label htmlFor="name" className="block text-sm font-medium mb-2">
+                      Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      placeholder="John Doe"
+                      required
+                      onChange={() => errors.name && setErrors(prev => { const { name: _, ...rest } = prev; return rest })}
+                      className={inputClass("name")}
+                    />
+                    {errors.name && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle className="h-3 w-3" />{errors.name}</p>}
+                  </div>
+                  <div>
+                    <label htmlFor="email" className="block text-sm font-medium mb-2">
+                      Email <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="john@example.com"
+                      required
+                      onChange={() => errors.email && setErrors(prev => { const { email: _, ...rest } = prev; return rest })}
+                      className={inputClass("email")}
+                    />
+                    {errors.email && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle className="h-3 w-3" />{errors.email}</p>}
+                  </div>
+                </div>
 
-              <Button type="submit" className="w-full" disabled={isSubmitting}>
-                {isSubmitting ? (
-                  "Sending..."
-                ) : (
-                  <>
-                    <Send className="mr-2 h-4 w-4" />
-                    Send Message
-                  </>
-                )}
-              </Button>
-            </form>
+                <div>
+                  <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                    Subject <span className="text-red-500">*</span>
+                  </label>
+                  <input
+                    id="subject"
+                    name="subject"
+                    placeholder="Project collaboration"
+                    required
+                    onChange={() => errors.subject && setErrors(prev => { const { subject: _, ...rest } = prev; return rest })}
+                    className={inputClass("subject")}
+                  />
+                  {errors.subject && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle className="h-3 w-3" />{errors.subject}</p>}
+                </div>
+
+                <div>
+                  <label htmlFor="message" className="block text-sm font-medium mb-2">
+                    Message <span className="text-red-500">*</span>
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    placeholder="Tell me about your project..."
+                    rows={5}
+                    required
+                    onChange={() => errors.message && setErrors(prev => { const { message: _, ...rest } = prev; return rest })}
+                    className={`${inputClass("message")} resize-none`}
+                  />
+                  {errors.message && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle className="h-3 w-3" />{errors.message}</p>}
+                </div>
+
+                <input type="hidden" name="time" />
+
+                <button
+                  type="submit"
+                  disabled={isSubmitting || sent}
+                  className="w-full rounded-xl bg-primary text-primary-foreground font-semibold py-3.5 text-sm flex items-center justify-center gap-2 hover:opacity-90 disabled:opacity-60 transition-all"
+                >
+                  {sent ? (
+                    <><CheckCircle2 className="h-4 w-4" /> Message Sent!</>
+                  ) : isSubmitting ? (
+                    <><Loader2 className="h-4 w-4 animate-spin" /> Sending...</>
+                  ) : (
+                    <><Send className="h-4 w-4" /> Send Message</>
+                  )}
+                </button>
+              </form>
+            </div>
           </div>
 
-          <div ref={infoRef} className="grid gap-6">
-            <Card className="contact-card overflow-hidden">
-              <CardContent className="p-6 flex items-start space-x-4">
-                <div className="rounded-full bg-primary/10 p-3">
-                  <Mail className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-bold">Email</h3>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    <a href={`mailto:${personalInfo.email}`} className="hover:text-primary transition-colors">
-                      {personalInfo.email}
-                    </a>
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+          {/* Contact info cards */}
+          <div className="lg:col-span-2 flex flex-col gap-4">
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="group rounded-2xl border border-border/50 bg-card p-5 flex items-center gap-4 hover:border-primary/30 transition-colors"
+            >
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
+                <Mail className="h-5 w-5 text-primary" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs text-muted-foreground mb-0.5">Email</p>
+                <p className="text-sm font-semibold truncate group-hover:text-primary transition-colors">{personalInfo.email}</p>
+              </div>
+            </a>
 
-            <Card className="contact-card overflow-hidden">
-              <CardContent className="p-6 flex items-start space-x-4">
-                <div className="rounded-full bg-primary/10 p-3">
-                  <MapPin className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-bold">Location</h3>
-                  <p className="text-sm text-muted-foreground mt-1">{personalInfo.location}</p>
-                </div>
-              </CardContent>
-            </Card>
+            <div className="rounded-2xl border border-border/50 bg-card p-5 flex items-center gap-4">
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                <MapPin className="h-5 w-5 text-primary" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs text-muted-foreground mb-0.5">Location</p>
+                <p className="text-sm font-semibold">{personalInfo.location}</p>
+              </div>
+            </div>
 
-            <Card className="contact-card overflow-hidden">
-              <CardContent className="p-6 flex items-start space-x-4">
-                <div className="rounded-full bg-primary/10 p-3">
-                  <Phone className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-bold">Phone</h3>
-                  <p className="text-sm text-muted-foreground mt-1">
-                    <a href="tel:+917271880500" className="hover:text-primary transition-colors">
-                      +91 (7271) 880-500
-                    </a>
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+            <a
+              href="tel:+917271880500"
+              className="group rounded-2xl border border-border/50 bg-card p-5 flex items-center gap-4 hover:border-primary/30 transition-colors"
+            >
+              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
+                <Phone className="h-5 w-5 text-primary" />
+              </div>
+              <div className="min-w-0">
+                <p className="text-xs text-muted-foreground mb-0.5">Phone</p>
+                <p className="text-sm font-semibold group-hover:text-primary transition-colors">+91 (7271) 880-500</p>
+              </div>
+            </a>
 
-            <div className="rounded-lg overflow-hidden h-[250px] contact-card">
-              <iframe
-                title="Map"
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3769.7363569788236!2d72.89634777517167!3d19.12021265003625!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c7bc2879e5a5%3A0xeda2c6f0d8a9fd58!2sPowai%2C%20Mumbai%2C%20Maharashtra%20400076!5e0!3m2!1sen!2sin!4v1717741830620!5m2!1sen!2sin"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                allowFullScreen
-                loading="lazy"
-                referrerPolicy="no-referrer-when-downgrade"
-              />
+            {/* Map */}
+            <div className="rounded-2xl border border-border/50 overflow-hidden flex-1 min-h-[200px]">
+              <LocationMap />
             </div>
           </div>
         </div>

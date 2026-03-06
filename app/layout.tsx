@@ -4,43 +4,48 @@ import { Inter } from "next/font/google"
 import { ThemeProvider } from "@/components/theme-provider"
 import { Navbar } from "@/components/navbar"
 import { Footer } from "@/components/footer"
-import { Analytics } from "@/components/analytics"
 import { Toaster } from "@/components/ui/toaster"
-import { Suspense } from "react"
-import { AnimatedBackground } from "@/components/animated-background"
-import { CustomCursor } from "@/components/custom-cursor"
 
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata = {
-  title: "Uzair Ansari",
-  description: "Uzair Ansari Portfolio",
+  title: "Uzair Ansari | Full Stack Developer",
+  description: "Full Stack Developer specializing in React, Next.js, Node.js and modern web technologies.",
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Add your favicon link here */}
         <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        {/* Prevent theme flash on reload */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              (function() {
+                try {
+                  var theme = localStorage.getItem('theme');
+                  var accent = localStorage.getItem('accent-color');
+                  if (theme === 'dark' || (!theme && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                    document.documentElement.classList.add('dark');
+                  }
+                  if (accent) {
+                    document.documentElement.setAttribute('data-accent', accent);
+                  }
+                } catch(e) {}
+              })();
+            `,
+          }}
+        />
       </head>
       <body className={inter.className}>
-        <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem disableTransitionOnChange>
-          <Suspense fallback={null}>
-            <AnimatedBackground>
-              <div className="relative flex min-h-screen flex-col top-0">
-                <Navbar />
-                <main className="flex-1">{children}</main>
-                <Footer />
-              </div>
-              <Toaster />
-              <Analytics />
-              <CustomCursor />
-            </AnimatedBackground>
-          </Suspense>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem>
+          <Navbar />
+          <main>{children}</main>
+          <Footer />
+          <Toaster />
         </ThemeProvider>
       </body>
     </html>
   )
 }
-
