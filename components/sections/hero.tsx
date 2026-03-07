@@ -8,7 +8,7 @@ import { gsap } from "gsap"
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
-  const scrollRef = useRef<HTMLDivElement>(null)
+  const scrollRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
