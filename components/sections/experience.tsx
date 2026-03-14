@@ -8,7 +8,7 @@ import { Briefcase, Calendar, X, ArrowRight, ExternalLink, BarChart3, Package, P
 const projectIcons: Record<string, typeof BarChart3> = {
   "Nourma": BarChart3,
   "Lineomatic": Package,
-  "PULS": PhoneCall,
+  "Pulse": PhoneCall,
 }
 import { AnimatePresence, motion } from "framer-motion"
 

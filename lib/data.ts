@@ -205,7 +205,7 @@ export const talkwiselyProjects: ProjectHighlight[] = [
     ],
   },
   {
-    name: "PULS",
+    name: "Pulse",
     tagline: "Unified Communication Platform — Voice, SMS, WhatsApp, Email & Meetings",
     techStack: ["Next.js", "SIP.js", "WebRTC", "Material UI", "SWR", "Redux"],
     description:
@@ -242,7 +242,7 @@ export const experiences: Experience[] = [
     position: "Software Engineer",
     duration: "May 2024 - Present",
     description: [
-      "Independently architected and shipped 3 production-grade frontend systems from scratch: PULS (VoIP), Nourma (Financial ERP), and Lineomatic (Enterprise CRM)",
+      "Independently architected and shipped 3 production-grade frontend systems from scratch: Pulse (VoIP), Nourma (Financial ERP), and Lineomatic (Enterprise CRM)",
       "Built a browser-based VoIP dialer with SIP.js & WebRTC — supporting multi-call sessions, transfers, and conference calling",
       "Developed a 90-day cashflow forecasting system with hierarchical expandable financial grids handling 1000+ data points",
       "Created an AI-powered chat interface with streaming responses for financial analytics",
@@ -274,18 +274,18 @@ export const experiences: Experience[] = [
     ],
     technologies: ["React", "Redux", "Material UI", "JavaScript"],
   },
-  {
-    id: "exp-4",
-    company: "Masai School",
-    position: "Full Stack Web Development",
-    duration: "Jul 2022 - Jul 2023",
-    description: [
-      "Completed 1500+ hours of intensive full-stack web development training",
-      "Built 6+ full-stack projects using the MERN stack with real-world constraints",
-      "Practiced DSA, system design fundamentals, and collaborative development workflows",
-    ],
-    technologies: ["HTML", "CSS", "JavaScript", "React", "Node.js", "MongoDB", "Express.js"],
-  },
+  // {
+  //   id: "exp-4",
+  //   company: "Masai School",
+  //   position: "Full Stack Web Development",
+  //   duration: "Jul 2022 - Jul 2023",
+  //   description: [
+  //     "Completed 1500+ hours of intensive full-stack web development training",
+  //     "Built 6+ full-stack projects using the MERN stack with real-world constraints",
+  //     "Practiced DSA, system design fundamentals, and collaborative development workflows",
+  //   ],
+  //   technologies: ["HTML", "CSS", "JavaScript", "React", "Node.js", "MongoDB", "Express.js"],
+  // },
 ]
 
 export const skills: Skill[] = [
