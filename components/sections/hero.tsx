@@ -39,7 +39,7 @@ export function Hero() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="home" className="relative min-h-[calc(100vh-4rem)] flex items-center pt-20 pb-12">
+    <section ref={sectionRef} id="home" className="relative min-h-[calc(100vh-4rem)] flex items-center pt-16 pb-8 sm:pt-20 sm:pb-12">
       <div className="absolute inset-0 -z-10">
         <div data-blob-1 className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
         <div data-blob-2 className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/3 rounded-full blur-3xl" />

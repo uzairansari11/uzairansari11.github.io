@@ -4,18 +4,18 @@ import { personalInfo } from "@/lib/data"
 import { Button } from "@/components/ui/button"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { GlassCard } from "@/components/ui/glass-card"
-import { Code2, Globe, Layers, MessageSquare } from "lucide-react"
+import { Code2, Globe, Layers, Radio } from "lucide-react"
 
 const services = [
   { icon: Globe, title: "Frontend Engineering", desc: "Pixel-perfect, responsive UIs with React, Next.js, and modern CSS." },
   { icon: Layers, title: "Backend Development", desc: "Scalable APIs with Node.js, Express, and MongoDB." },
   { icon: Code2, title: "Full Stack Solutions", desc: "End-to-end product development from DB to deployment." },
-  { icon: MessageSquare, title: "Technical Consulting", desc: "Architecture reviews, code audits, and tech strategy." },
+  { icon: Radio, title: "Real-Time Systems", desc: "VoIP, WebRTC, live transcription, and real-time communication platforms." },
 ]
 
 export function About() {
   return (
-    <section id="about" className="py-20 sm:py-24">
+    <section id="about" className="py-12 sm:py-20 lg:py-24">
       <div className="container px-4 md:px-6">
         <SectionHeading title="About Me" subtitle="Engineer who takes ownership — from architecture to deployment" />
 

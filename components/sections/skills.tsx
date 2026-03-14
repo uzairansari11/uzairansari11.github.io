@@ -31,7 +31,7 @@ export function Skills() {
   const allIcons = [...skillsWithIcons, ...tools]
 
   return (
-    <section id="skills" className="py-20 sm:py-24">
+    <section id="skills" className="py-12 sm:py-20 lg:py-24">
       <div className="container px-4 md:px-6">
         <SectionHeading title="Tech Stack" subtitle="The tools & technologies powering everything I build" />
 

@@ -83,7 +83,7 @@ export function Experience() {
   const [openExp, setOpenExp] = useState<string>("exp-1")
 
   return (
-    <section id="experience" className="py-20 sm:py-24">
+    <section id="experience" className="py-12 sm:py-20 lg:py-24">
       <div className="container px-4 md:px-6">
         <SectionHeading title="Experience" subtitle="2+ years shipping production systems — VoIP, ERP, CRM & more" />
 

@@ -75,7 +75,7 @@ export function Contact() {
     `w-full rounded-xl border bg-background px-4 py-3 text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all ${errors[field] ? "border-red-500 focus:ring-red-500/30 focus:border-red-500" : "border-border"}`
 
   return (
-    <section id="contact" className="py-20 sm:py-24">
+    <section id="contact" className="py-12 sm:py-20 lg:py-24">
       <div className="container px-4 md:px-6">
         <SectionHeading title="Let's Connect" subtitle="Got a project idea or want to collaborate? I'd love to hear from you" />
 
