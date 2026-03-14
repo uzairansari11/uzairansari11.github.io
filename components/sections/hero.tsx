@@ -125,7 +125,7 @@ export function Hero() {
                   <div>
                     <h3 className="font-semibold text-sm mb-1">Key Achievement</h3>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                      Developed production-ready applications serving 10,000+ active users with 99.9% uptime SLA
+                      Developed production-ready applications serving 1500 active users with 99.9% uptime SLA
                     </p>
                   </div>
                 </div>
