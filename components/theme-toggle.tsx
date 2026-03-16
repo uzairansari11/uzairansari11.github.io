@@ -121,7 +121,7 @@ export function ThemeToggle() {
                           style={{
                             backgroundColor: color.swatch,
                             boxShadow: isActive ? `0 4px 15px ${color.swatch}40` : undefined,
-                            ringColor: color.swatch,
+                            ["--tw-ring-color" as string]: color.swatch,
                           }}
                         >
                           <AnimatePresence>
