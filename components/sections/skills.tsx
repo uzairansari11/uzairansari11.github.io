@@ -18,7 +18,7 @@ const categories = [
   {
     title: "Tools & DevOps",
     icon: Wrench,
-    skills: ["Git", "GitHub", "VS Code", "Postman", "Vercel", "Netlify", "npm/pnpm"],
+    skills: ["Git", "GitHub", "VS Code", "Postman", "Vercel", "Netlify", "npm/pnpm", "Figma"],
   },
   {
     title: "Core Skills",
@@ -33,7 +33,7 @@ export function Skills() {
   return (
     <section id="skills" className="py-12 sm:py-20 lg:py-24">
       <div className="container px-4 md:px-6">
-        <SectionHeading title="Tech Stack" subtitle="The tools & technologies powering everything I build" />
+        <SectionHeading title="My Toolkit" subtitle="Technologies and tools I use to bring ideas to life" />
 
         {/* Scrolling icon marquee */}
         <div className="relative overflow-hidden mb-14">
@@ -53,13 +53,14 @@ export function Skills() {
 
         {/* Category grid */}
         <div className="grid gap-4 sm:grid-cols-2">
-          {categories.map(({ title, icon: Icon, skills }) => (
-            <div key={title} className="rounded-xl border border-border/50 bg-card p-5 hover:border-primary/30 transition-colors">
+          {categories.map(({ title, icon: Icon, skills }, idx) => (
+            <div key={title} className="group rounded-xl border border-border/50 bg-card p-5 gradient-border glow-card">
               <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center">
+                <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                   <Icon className="h-5 w-5 text-primary" />
                 </div>
                 <h3 className="font-bold text-sm">{title}</h3>
+                <span className="ml-auto text-[10px] font-bold text-primary/30 group-hover:text-primary/60 transition-colors">0{idx + 1}</span>
               </div>
               <div className="flex flex-wrap gap-2">
                 {skills.map((skill) => (

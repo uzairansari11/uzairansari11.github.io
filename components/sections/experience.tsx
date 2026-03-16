@@ -2,15 +2,15 @@
 
 import { useState } from "react"
 import { SectionHeading } from "@/components/ui/section-heading"
-import { experiences, talkwiselyProjects, type ProjectHighlight } from "@/lib/data"
+import { experiences, projectHighlights, type ProjectHighlight } from "@/lib/data"
 import { Briefcase, Calendar, X, ArrowRight, ExternalLink, BarChart3, Package, PhoneCall, ChevronDown } from "lucide-react"
+import { AnimatePresence, motion } from "framer-motion"
 
 const projectIcons: Record<string, typeof BarChart3> = {
   "Nourma": BarChart3,
   "Lineomatic": Package,
   "Pulse": PhoneCall,
 }
-import { AnimatePresence, motion } from "framer-motion"
 
 function ProjectModal({ project, onClose }: { project: ProjectHighlight; onClose: () => void }) {
   return (
@@ -18,7 +18,7 @@ function ProjectModal({ project, onClose }: { project: ProjectHighlight; onClose
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="fixed inset-0 z-[300] flex items-center justify-center p-4 bg-black/60 backdrop-blur-sm"
+      className="fixed inset-0 z-[300] flex items-center justify-center p-4 bg-black/60 backdrop-blur-md"
       onClick={onClose}
     >
       <motion.div
@@ -41,6 +41,17 @@ function ProjectModal({ project, onClose }: { project: ProjectHighlight; onClose
 
         <div className="px-6 py-5 space-y-5 overflow-y-auto">
           <p className="text-sm text-muted-foreground leading-relaxed">{project.description}</p>
+
+          {project.metrics && (
+            <div className="grid grid-cols-3 gap-3">
+              {project.metrics.map((m) => (
+                <div key={m.label} className="rounded-xl bg-primary/5 border border-primary/10 p-3 text-center glow-card">
+                  <span className="block text-lg font-bold text-primary">{m.value}</span>
+                  <span className="text-[11px] text-muted-foreground">{m.label}</span>
+                </div>
+              ))}
+            </div>
+          )}
 
           <div>
             <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Key Features</h4>
@@ -85,26 +96,27 @@ export function Experience() {
   return (
     <section id="experience" className="py-12 sm:py-20 lg:py-24">
       <div className="container px-4 md:px-6">
-        <SectionHeading title="Experience" subtitle="2+ years shipping production systems — VoIP, ERP, CRM & more" />
+        <SectionHeading title="Where I've Worked" subtitle="2+ years shipping production systems — VoIP, ERP, CRM & more" />
 
-        {/* TalkWisely Highlights */}
+        {/* Product Highlights */}
         <div className="mb-16">
           <div className="flex items-center gap-2 mb-6">
             <Briefcase className="h-4 w-4 text-primary" />
-            <h3 className="font-semibold">Products I Built @ TalkWisely</h3>
+            <h3 className="font-semibold">Products I Built</h3>
           </div>
 
-          <div className="grid gap-3 sm:grid-cols-3">
-            {talkwiselyProjects.map((project) => (
+          <div className="grid gap-4 sm:grid-cols-3">
+            {projectHighlights.map((project) => (
               <button
                 key={project.name}
                 type="button"
                 onClick={() => setSelectedProject(project)}
-                className="group text-left rounded-xl border border-border/50 bg-card p-4 sm:p-5 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-0.5"
+                className="group text-left border border-border/50 bg-card p-5 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-0.5"
+                style={{ borderRadius: "12px" }}
               >
                 <div className="flex items-center gap-2.5 mb-2">
                   {(() => { const Icon = projectIcons[project.name] || BarChart3; return (
-                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
+                    <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
                       <Icon className="h-4 w-4 text-primary" />
                     </div>
                   ) })()}
@@ -112,6 +124,18 @@ export function Experience() {
                 </div>
                 <p className="text-xs text-primary font-medium mb-2">{project.tagline}</p>
                 <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 mb-3">{project.description}</p>
+
+                {project.metrics && (
+                  <div className="grid grid-cols-3 gap-2 mb-3 pt-3 border-t border-border/30">
+                    {project.metrics.map((m) => (
+                      <div key={m.label} className="text-center">
+                        <span className="block text-sm font-bold text-primary">{m.value}</span>
+                        <span className="text-[10px] text-muted-foreground leading-tight">{m.label}</span>
+                      </div>
+                    ))}
+                  </div>
+                )}
+
                 <span className="inline-flex items-center gap-1 text-xs text-primary font-medium group-hover:gap-2 transition-all">
                   View details <ExternalLink className="h-3 w-3" />
                 </span>
@@ -127,7 +151,7 @@ export function Experience() {
         </div>
 
         <div className="relative">
-          <div className="absolute left-[15px] top-2 bottom-2 w-px bg-border hidden sm:block" />
+          <div className="absolute left-[15px] top-2 bottom-2 w-px bg-gradient-to-b from-primary/40 via-border to-border hidden sm:block" />
 
           <div className="space-y-4">
             {experiences.map((exp) => {
@@ -135,12 +159,12 @@ export function Experience() {
               return (
                 <div key={exp.id} className="relative flex gap-4 sm:gap-6">
                   <div className="hidden sm:flex flex-col items-center shrink-0">
-                    <div className={`w-[31px] h-[31px] rounded-full bg-card border-2 flex items-center justify-center z-10 transition-colors ${isOpen ? "border-primary" : "border-border"}`}>
+                    <div className={`w-[31px] h-[31px] rounded-full bg-card border-2 flex items-center justify-center z-10 transition-all duration-300 ${isOpen ? "border-primary shadow-md shadow-primary/20" : "border-border"}`}>
                       <Briefcase className={`h-3.5 w-3.5 transition-colors ${isOpen ? "text-primary" : "text-muted-foreground"}`} />
                     </div>
                   </div>
 
-                  <div className={`flex-1 rounded-xl border bg-card overflow-hidden transition-colors ${isOpen ? "border-primary/30" : "border-border/50 hover:border-border"}`}>
+                  <div className={`flex-1 rounded-xl border bg-card overflow-hidden transition-all duration-300 ${isOpen ? "border-primary/30 shadow-lg shadow-primary/5" : "border-border/50 hover:border-border"}`}>
                     <button
                       type="button"
                       onClick={() => setOpenExp(isOpen ? "" : exp.id)}

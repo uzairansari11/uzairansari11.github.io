@@ -77,7 +77,7 @@ export function Contact() {
   return (
     <section id="contact" className="py-12 sm:py-20 lg:py-24">
       <div className="container px-4 md:px-6">
-        <SectionHeading title="Let's Connect" subtitle="Got a project idea or want to collaborate? I'd love to hear from you" />
+        <SectionHeading title="Get In Touch" subtitle="Have a project in mind or want to collaborate? Let's make it happen" />
 
         <div className="grid gap-8 lg:grid-cols-5">
           {/* Form */}

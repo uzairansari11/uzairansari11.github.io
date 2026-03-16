@@ -46,9 +46,9 @@ export const personalInfo = {
   title: "Full Stack Developer",
   email: "uzairans532@gmail.com",
   location: "Mumbai, India",
-  bio: "Full Stack Developer specializing in React, Next.js, and Node.js. Currently expanding into Python & Django. I build production-grade web applications that solve real business problems.",
+  bio: "Software Engineer with 2+ years of experience developing scalable web applications using React, Next.js, Node.js, and Express.js. Experienced in building CRM systems, finance automation tools, and real-time communication platforms.",
   longBio:
-    "I'm a Full Stack Developer with 2+ years of professional experience building production-grade applications. At TalkWisely, I independently architected and shipped 3 major products — a real-time VoIP platform, a financial ERP system, and an enterprise workflow tool. I specialize in the React ecosystem and take ownership from architecture to deployment.",
+    "I'm a Full Stack Developer with 2+ years of professional experience building production-grade applications. I independently architected and shipped 3 major products — a real-time VoIP platform, a financial ERP system, and an enterprise CRM — serving 1,500+ active users. I specialize in the React ecosystem and take ownership from architecture to deployment.",
   avatarUrl: "/profile-uzair.jpeg",
   resumeUrl: "https://drive.google.com/uc?export=download&id=1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw",
   socialLinks: {
@@ -143,31 +143,43 @@ export const projects: Project[] = [
   },
 ]
 
+export interface ProjectMetric {
+  value: string
+  label: string
+}
+
 export interface ProjectHighlight {
   name: string
   tagline: string
   techStack: string[]
   description: string
+  metrics: ProjectMetric[]
   keyFeatures: string[]
   contributions: string[]
 }
 
-export const talkwiselyProjects: ProjectHighlight[] = [
+export const projectHighlights: ProjectHighlight[] = [
   {
     name: "Nourma",
     tagline: "Financial ERP & Cashflow Forecasting Platform",
     techStack: ["React", "Next.js", "HeroUI", "React Query", "React Hook Form", "Zod", "TanStack Table", "Tailwind CSS"],
     description:
-      "Independently built major frontend modules from scratch for a financial ERP platform used by businesses to manage transactions, forecast cashflow, handle vendor payments, and gain real-time financial insights. The system handles 1000+ data points with high-performance virtualized rendering.",
+      "Independently built major frontend modules from scratch for an AI-powered finance platform with OCR-driven document handling, 90-day cashflow forecasting, and automated vendor email draft generation — reducing up to 60% of manual intervention.",
+    metrics: [
+      { value: "60%", label: "Less Manual Work" },
+      { value: "1000+", label: "Data Points Handled" },
+      { value: "90-Day", label: "Cashflow Forecasting" },
+    ],
     keyFeatures: [
       "90-day cashflow forecasting with hierarchical grids",
-      "Expandable entity, vendor & category financial tables",
+      "OCR-driven document handling & automation",
       "AI-powered chat with real-time streaming responses",
+      "Automated vendor email draft generation",
       "High-performance virtualized tables (1000+ rows)",
       "Dynamic forms with Zod schema validation",
-      "Transaction management & vendor payment tracking",
     ],
     contributions: [
+      "Developed finance automation workflows for OCR-driven document handling, 90-day cashflow forecasting, and automated vendor email draft generation — reducing up to 60% of manual intervention",
       "Built the entire 90-day cashflow forecasting grid system from scratch — hierarchical expandable rows for entities, vendors, and categories with real-time financial data",
       "Designed and implemented high-performance virtualized tables using TanStack Table to handle 1000+ data points with smooth scrolling and no lag",
       "Developed a ChatGPT-like AI chat interface with streaming responses for financial analytics — users can query financial data conversationally",
@@ -175,7 +187,6 @@ export const talkwiselyProjects: ProjectHighlight[] = [
       "Built data visualization dashboards with real-time analytics, charts, and financial summaries for business decision-making",
       "Integrated React Query for server state management with automatic caching, background refetching, and optimistic updates across all financial modules",
       "Created a modular UI system using HeroUI + Tailwind CSS with consistent design patterns, responsive layouts, and reusable financial components",
-      "Handled complex data transformations — mapping raw API financial data into hierarchical tree structures for the forecasting grid display",
     ],
   },
   {
@@ -183,7 +194,12 @@ export const talkwiselyProjects: ProjectHighlight[] = [
     tagline: "Enterprise CRM & Supply Chain Management Platform",
     techStack: ["React", "Next.js", "React Hook Form", "SWR", "Material UI", "JavaScript"],
     description:
-      "Independently built the complete frontend from scratch for a high-level enterprise CRM that digitized the company's entire supply chain — from quotation generation and order management to multi-level work order assignment and revenue tracking. This system directly contributed to exceptional revenue growth by streamlining operations that were previously manual.",
+      "Independently built the complete frontend from scratch for a high-level enterprise CRM that digitized the company's entire supply chain. Engineered a quotation workflow that reduced quote creation time from 2 hours to 3 minutes, decreased manual effort by 80%, and supported a 30% increase in revenue.",
+    metrics: [
+      { value: "2hrs→3min", label: "Quote Creation Time" },
+      { value: "80%", label: "Less Manual Effort" },
+      { value: "30%", label: "Revenue Increase" },
+    ],
     keyFeatures: [
       "End-to-end supply chain workflow management",
       "Dynamic quotation system with multi-machine configuration & pricing",
@@ -193,41 +209,42 @@ export const talkwiselyProjects: ProjectHighlight[] = [
       "Role-based workflows with multi-level approvals",
     ],
     contributions: [
+      "Engineered a highly flexible quotation workflow that reduced quote creation time from 2 hours to 3 minutes, decreased manual effort by 80%, and supported a 30% increase in revenue",
       "Single-handedly architected and built the entire frontend for a company-wide CRM that digitized their complete supply chain operations",
       "Designed a dynamic quotation system supporting multiple machine models, configurable units, conditional pricing logic, optional add-ons, and real-time total calculations",
       "Built a multi-level work order system — order creation, assignment across levels, status tracking, escalation, and multi-level cancellation workflows",
       "Implemented complete order management lifecycle — from quotation approval to order placement, fulfillment tracking, and delivery confirmation",
       "Developed advanced form architecture with React Hook Form — dynamic field arrays, nested structures, conditional rendering, and real-time validation for complex business forms",
-      "Built revenue and analytics dashboards that gave management real-time visibility into business performance — directly contributing to exceptional revenue growth",
+      "Built revenue and analytics dashboards that gave management real-time visibility into business performance — directly contributing to 30% revenue growth",
       "Integrated SWR for efficient data fetching with automatic caching, revalidation, and optimistic UI updates across the entire platform",
       "Created a scalable modular component system — reusable form inputs, configuration panels, data tables, dialogs, and summary views used across all modules",
-      "Handled full API integration for all modules — quotations, orders, work assignments, analytics — with proper error handling, loading states, and data transformation",
     ],
   },
   {
     name: "Pulse",
-    tagline: "Unified Communication Platform — Voice, SMS, WhatsApp, Email & Meetings",
+    tagline: "Unified Communication Platform — Voice, SMS & WhatsApp",
     techStack: ["Next.js", "SIP.js", "WebRTC", "Material UI", "SWR", "Redux"],
     description:
-      "Built the complete frontend from scratch for a unified communication platform that consolidates VoIP calling, SMS, WhatsApp chat, email inbox (Gmail & Outlook integration), meetings, and live call transcription — all in one browser-based application. Independently designed and implemented the entire system end-to-end.",
+      "Built the complete frontend from scratch for a unified communication platform consolidating VoIP calling, SMS, and WhatsApp chat. Delivered low-latency VoIP workflows for 1,500+ active users with call handling, transfers, live transcription, and multi-channel messaging.",
+    metrics: [
+      { value: "1,500+", label: "Active Users" },
+      { value: "Real-Time", label: "Call Transcription" },
+      { value: "3-in-1", label: "Voice, SMS & WhatsApp" },
+    ],
     keyFeatures: [
       "Inbound & outbound VoIP calling with SIP.js & WebRTC",
       "Call barge, blind transfer & attended transfer",
       "Real-time call transcription during active calls",
       "SMS & WhatsApp chat with unified inbox",
-      "Email inbox integration — Gmail & Outlook",
-      "Video meetings — schedule & join from platform",
       "System notifications for incoming calls on inactive tabs",
       "Multi-session calling, conference & DTMF tones",
     ],
     contributions: [
-      "Built the complete unified communication frontend from scratch using Next.js — voice, SMS, WhatsApp, email, and meetings all in one platform",
+      "Built the complete unified communication frontend from scratch using Next.js — voice, SMS, and WhatsApp all in one platform",
       "Implemented full VoIP calling system with SIP.js & WebRTC — inbound calls, outbound calls, hold/unhold, mute, and multi-session management",
       "Built advanced call controls — call barge (listen/whisper/join), blind transfer, attended transfer, and conference calling with DTMF tone support",
       "Developed real-time call transcription UI that displays live transcripts during active calls",
       "Built SMS and WhatsApp chat interfaces with real-time messaging, conversation history, and unified inbox",
-      "Integrated email inbox module with Gmail and Outlook support — read, compose, reply, and manage emails directly within the platform without switching apps",
-      "Implemented meetings module for scheduling and joining video meetings directly from the platform",
       "Created system notification system — browser notifications for incoming calls even when the tab is inactive, ensuring no calls are missed",
       "Managed complex call state machine with Redux — handling simultaneous sessions, call transfers between agents, and real-time status updates",
       "Integrated SWR for efficient data fetching across all communication modules with caching and real-time sync",
@@ -240,13 +257,13 @@ export const experiences: Experience[] = [
     id: "exp-1",
     company: "TalkWisely Platforms",
     position: "Software Engineer",
-    duration: "May 2024 - Present",
+    duration: "Apr 2024 - Present",
     description: [
-      "Independently architected and shipped 3 production-grade frontend systems from scratch: Pulse (VoIP), Nourma (Financial ERP), and Lineomatic (Enterprise CRM)",
-      "Built a browser-based VoIP dialer with SIP.js & WebRTC — supporting multi-call sessions, transfers, and conference calling",
-      "Developed a 90-day cashflow forecasting system with hierarchical expandable financial grids handling 1000+ data points",
-      "Created an AI-powered chat interface with streaming responses for financial analytics",
-      "Implemented high-performance table rendering with virtualization for large enterprise datasets",
+      "Contributed to development across 3 high-impact products supporting finance, CRM, and real-time communication workflows",
+      "Engineered a quotation workflow that reduced quote creation time from 2 hours to 3 minutes, decreased manual effort by 80%, and supported a 30% increase in revenue",
+      "Developed finance automation workflows for OCR-driven document handling, 90-day cashflow forecasting, and automated vendor email draft generation — reducing up to 60% of manual intervention",
+      "Delivered low-latency VoIP workflows for 1,500+ active users, including call handling, transfers, transcripts, SMS, and WhatsApp messaging",
+      "Built complex, workflow-driven product experiences from scratch for an AI-powered finance platform, a custom CRM, and a SIP.js-based VoIP solution",
     ],
     technologies: ["React", "Next.js", "SIP.js", "WebRTC", "Redux", "React Query", "TanStack Table", "Material UI", "Tailwind CSS"],
   },
@@ -254,23 +271,21 @@ export const experiences: Experience[] = [
     id: "exp-2",
     company: "Fastor7 Technology",
     position: "Software Development Engineer",
-    duration: "Feb 2024 - May 2024",
+    duration: "Feb 2024 - Apr 2024",
     description: [
-      "Built and shipped frontend features for client-facing products under tight deadlines",
-      "Developed reusable React components that reduced development time across the team",
-      "Collaborated with backend engineers to integrate REST APIs and optimize data flow",
+      "Built admin dashboards and business-facing frontend modules for e-commerce operations using Next.js, supporting reporting, operational workflows, and day-to-day usability",
+      "Created reusable UI components and API-driven workflows that improved maintainability, frontend consistency, and faster delivery of new features",
     ],
-    technologies: ["React", "JavaScript", "REST APIs", "Git"],
+    technologies: ["React", "Next.js", "JavaScript", "REST APIs", "Git"],
   },
   {
     id: "exp-3",
-    company: "Clayfin",
+    company: "Clayfin Technologies",
     position: "Software Trainee",
     duration: "Aug 2023 - Oct 2023",
     description: [
-      "Built frontend modules for a people management application using React, Redux & Material UI",
-      "Implemented responsive layouts and intuitive UI patterns that improved user experience",
-      "Integrated frontend components with backend APIs ensuring seamless data flow",
+      "Built an office meeting management system for meeting room booking, helping streamline internal scheduling and reduce manual coordination",
+      "Developed leave management, multi-level approval, task assignment, and API-integrated workflow modules for an internal business application",
     ],
     technologies: ["React", "Redux", "Material UI", "JavaScript"],
   },

@@ -59,8 +59,7 @@ function AppSettingsProvider({ children }: { children: React.ReactNode }) {
 
   const updateFavicon = (color: AccentColor) => {
     const colorConfig = accentColors.find(c => c.value === color)
-    const hex = colorConfig?.swatch || "#3b82f6"
-    // Bold filled favicon — primary color background with white "UA" text
+    const hex = colorConfig?.swatch || "#06b6d4"
     const svg = `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"><rect width="32" height="32" rx="8" fill="${hex}"/><text font-family="system-ui,-apple-system,sans-serif" font-size="14" font-weight="900" fill="white" text-anchor="middle" x="16" y="22">UA</text></svg>`
     const blob = new Blob([svg], { type: "image/svg+xml" })
     const url = URL.createObjectURL(blob)
