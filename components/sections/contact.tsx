@@ -11,6 +11,9 @@ import { useToast } from "@/hooks/use-toast"
 const LocationMap = dynamic(() => import("@/components/ui/location-map").then(m => m.LocationMap), { ssr: false })
 
 export function Contact() {
+  const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
+  const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
+  const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [sent, setSent] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -53,12 +56,21 @@ export function Contact() {
       const timeInput = formRef.current.querySelector<HTMLInputElement>('input[name="time"]')
       if (timeInput) timeInput.value = new Date().toLocaleString()
     }
+  if (!serviceId || !templateId || !publicKey) {
+    toast({
+      title: 'Email setup missing',
+      description: 'EmailJS environment variables are not configured.',
+      variant: 'destructive',
+    })
+    setIsSubmitting(false)
+    return
+  }
     try {
       await emailjs.sendForm(
-        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID || "service_placeholder",
-        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID || "template_placeholder",
+        serviceId ,
+        templateId ,
         formRef.current!,
-        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY || "public_placeholder"
+        publicKey, 
       )
       setSent(true)
       setErrors({})
