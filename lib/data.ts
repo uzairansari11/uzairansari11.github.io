@@ -94,7 +94,7 @@ export const projects: Project[] = [
     image: "/clothify.png",
     tags: ["React", "Redux", "Chakra UI", "Node.js", "Express", "MongoDB"],
     demoUrl: "https://clothify-rho.vercel.app/",
-    githubUrl: "https://github.com/uzairansari11/Clothify.git",
+    githubUrl: "https://github.com/uzairansari11/Clothify",
   },
   {
     id: "p5",
@@ -112,7 +112,7 @@ export const projects: Project[] = [
     image: "/crocsland.png",
     tags: ["React", "Redux", "Chakra UI", "JavaScript", "JSON Server"],
     demoUrl: "https://crocsland-8rzn-git-main-uzairansari11.vercel.app/",
-    githubUrl: "https://github.com/uzairansari11/spicy-nerve-9354.git",
+    githubUrl: "https://github.com/uzairansari11/spicy-nerve-9354",
   },
   {
     id: "p1",
@@ -121,7 +121,7 @@ export const projects: Project[] = [
     image: "/homeelementry.png",
     tags: ["React", "Redux", "Chakra UI", "JavaScript", "JSON Server"],
     demoUrl: "https://eminent-tin-5074.vercel.app/",
-    githubUrl: "https://github.com/uzairansari11/eminent-tin-5074.git",
+    githubUrl: "https://github.com/uzairansari11/eminent-tin-5074",
   },
   {
     id: "p3",
@@ -130,7 +130,7 @@ export const projects: Project[] = [
     image: "/apnaEcart.png",
     tags: ["JavaScript", "HTML", "CSS", "Mock API", "Local Storage"],
     demoUrl: "https://apna-e-cart.vercel.app/",
-    githubUrl: "https://github.com/uzairansari11/-wanting-advertisement-5951.git",
+    githubUrl: "https://github.com/uzairansari11/-wanting-advertisement-5951",
   },
   {
     id: "p4",
@@ -139,7 +139,7 @@ export const projects: Project[] = [
     image: "/cultbody.png",
     tags: ["JavaScript", "HTML", "CSS", "Mock API", "Local Storage"],
     demoUrl: "https://cultbody-uzairansari11.vercel.app/",
-    githubUrl: "https://github.com/uzairansari11/-verdant-recess-5792.git",
+    githubUrl: "https://github.com/uzairansari11/-verdant-recess-5792",
   },
 ]
 
