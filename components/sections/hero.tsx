@@ -153,7 +153,7 @@ export function Hero() {
                 <img src={personalInfo.avatarUrl || "/placeholder.svg"} alt={personalInfo.name} className="w-full h-full object-cover" />
               </div>
               <div data-hero-exp className="absolute -bottom-3 -right-3 rounded-2xl bg-card border shadow-lg px-4 py-3 text-center glow-card" style={{ opacity: 0 }}>
-                <span className="text-2xl font-bold text-primary">2+</span>
+                <span className="text-2xl font-bold text-primary">2.5+</span>
                 <span className="block text-xs text-muted-foreground">Years Exp.</span>
               </div>
             </div>
