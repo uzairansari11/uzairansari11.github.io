@@ -61,7 +61,7 @@ export function Hero() {
                 {personalInfo.title}
               </p>
               <p data-hero-desc className="text-muted-foreground max-w-md mx-auto lg:mx-0 leading-relaxed pt-2" style={{ opacity: 0 }}>
-                Software Engineer with 2+ years of experience developing scalable web applications and product workflows. Specialized in building CRM systems, finance automation tools, and real-time communication platforms.
+                Software Engineer with 2.5+ years of experience developing scalable web applications and product workflows. Specialized in building CRM systems, finance automation tools, and real-time communication platforms.
               </p>
             </div>
 
