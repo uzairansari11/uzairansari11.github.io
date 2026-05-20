@@ -21,7 +21,7 @@ export function About() {
         <div className="grid gap-10 lg:grid-cols-2 lg:gap-16 items-start">
           <div className="rounded-xl border border-border/50 bg-card p-6 sm:p-8 space-y-5">
             <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
-              I&apos;m a <span className="text-foreground font-medium">Software Engineer</span> with 2+ years of experience building production-grade applications. I specialize in the React ecosystem with strong backend foundations in Node.js and Django.
+              I&apos;m a <span className="text-foreground font-medium">Software Engineer</span> with 2.5+ years of experience building production-grade applications. I specialize in the React ecosystem with strong backend foundations in Node.js and Django.
             </p>
             <p className="text-base sm:text-lg leading-relaxed text-muted-foreground">
               I independently architected and shipped <span className="text-foreground font-medium">3 major products</span> — from a real-time VoIP platform serving 1,500+ users to a financial ERP system that reduced manual effort by 60%. I take ownership end-to-end.

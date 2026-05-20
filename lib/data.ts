@@ -46,9 +46,9 @@ export const personalInfo = {
   title: "Full Stack Developer",
   email: "uzairans532@gmail.com",
   location: "Mumbai, India",
-  bio: "Software Engineer with 2+ years of experience developing scalable web applications using React, Next.js, Node.js, and Express.js. Experienced in building CRM systems, finance automation tools, and real-time communication platforms.",
+  bio: "Software Engineer with 2.5+ years of experience developing scalable web applications using React, Next.js, Node.js, and Express.js. Experienced in building CRM systems, finance automation tools, and real-time communication platforms.",
   longBio:
-    "I'm a Full Stack Developer with 2+ years of professional experience building production-grade applications. I independently architected and shipped 3 major products — a real-time VoIP platform, a financial ERP system, and an enterprise CRM — serving 1,500+ active users. I specialize in the React ecosystem and take ownership from architecture to deployment.",
+    "I'm a Full Stack Developer with 2.5+ years of professional experience building production-grade applications. I independently architected and shipped 3 major products — a real-time VoIP platform, a financial ERP system, and an enterprise CRM — serving 1,500+ active users. I specialize in the React ecosystem and take ownership from architecture to deployment.",
   avatarUrl: "/profile-uzair.jpeg",
   resumeUrl: "https://drive.google.com/uc?export=download&id=1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw",
   socialLinks: {
