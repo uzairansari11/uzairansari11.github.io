@@ -96,7 +96,7 @@ export function Experience() {
   return (
     <section id="experience" className="py-12 sm:py-20 lg:py-24">
       <div className="container px-4 md:px-6">
-        <SectionHeading title="Where I've Worked" subtitle="2+ years shipping production systems — VoIP, ERP, CRM & more" />
+        <SectionHeading title="Where I've Worked" subtitle="2.5+ years shipping production systems — VoIP, ERP, CRM & more" />
 
         {/* Product Highlights */}
         <div className="mb-16">
