@@ -3,24 +3,13 @@
 import { useRef, useState } from "react"
 import dynamic from "next/dynamic"
 import { SectionHeading } from "@/components/ui/section-heading"
-import { personalInfo } from "@/lib/data"
-import emailjs from "@emailjs/browser"
-import { Mail, MapPin, Phone, Send, CheckCircle2, Loader2, AlertCircle } from "lucide-react"
+import { PERSONAL_INFO, CONTACT_CONTENT } from "@/lib/constants"
+import { Mail, MapPin, Phone, Send, CheckCircle2, AlertCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 
 const LocationMap = dynamic(() => import("@/components/ui/location-map").then(m => m.LocationMap), { ssr: false })
 
 export function Contact() {
-  const serviceId = process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID
-  const templateId = process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID
-  const publicKey = process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY
-  console.log({
-    serviceId,
-    templateId,
-    publicKey
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [sent, setSent] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const formRef = useRef<HTMLFormElement>(null)
   const { toast } = useToast()
@@ -49,64 +38,62 @@ export function Contact() {
     return Object.keys(newErrors).length === 0
   }
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     if (!validate()) {
       toast({ title: "Validation Error", description: "Please fix the errors before submitting.", variant: "destructive" })
       return
     }
 
-    setIsSubmitting(true)
-    if (formRef.current) {
-      const timeInput = formRef.current.querySelector<HTMLInputElement>('input[name="time"]')
-      if (timeInput) timeInput.value = new Date().toLocaleString()
+    const form = formRef.current
+    if (form) {
+      const data = new FormData(form)
+      const name = data.get("name") as string
+      const email = data.get("email") as string
+      const subject = data.get("subject") as string
+      const message = data.get("message") as string
+
+      // Create mailto link
+      const mailtoLink = `mailto:${PERSONAL_INFO.email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(
+        `Name: ${name}\nEmail: ${email}\n\nMessage:\n${message}`
+      )}`
+
+      // Open email client
+      window.location.href = mailtoLink
+
+      toast({
+        title: "Opening Email Client",
+        description: "Your default email client will open with the message.",
+        duration: 3000,
+      })
+
+      // Reset form after a short delay
+      setTimeout(() => {
+        formRef.current?.reset()
+        setErrors({})
+      }, 500)
     }
-  if (!serviceId || !templateId || !publicKey) {
-    toast({
-      title: 'Email setup missing',
-      description: 'EmailJS environment variables are not configured.',
-      variant: 'destructive',
-    })
-    setIsSubmitting(false)
-    return
-  }
-    try {
-      await emailjs.sendForm(
-        serviceId ,
-        templateId ,
-        formRef.current!,
-        publicKey, 
-      )
-      setSent(true)
-      setErrors({})
-      formRef.current?.reset()
-      toast({ title: "Message Sent!", description: "I'll get back to you as soon as possible." })
-      setTimeout(() => setSent(false), 5000)
-    } catch {
-      toast({ title: "Failed to Send", description: "Please try again or email me directly.", variant: "destructive" })
-    }
-    setIsSubmitting(false)
   }
 
   const inputClass = (field: string) =>
-    `w-full rounded-xl border bg-background px-4 py-3 text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all ${errors[field] ? "border-red-500 focus:ring-red-500/30 focus:border-red-500" : "border-border"}`
+    `w-full rounded-lg border bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all ${errors[field] ? "border-red-500 focus:ring-red-500/30 focus:border-red-500" : "border-border"}`
 
   return (
-    <section id="contact" className="py-12 sm:py-20 lg:py-24">
-      <div className="container px-4 md:px-6">
-        <SectionHeading title="Get In Touch" subtitle="Have a project in mind or want to collaborate? Let's make it happen" />
+    <section id="contact" className="py-20 md:py-32">
+      <div className="container mx-auto px-6 lg:px-8 max-w-6xl">
+        <SectionHeading title={CONTACT_CONTENT.heading.title} subtitle={CONTACT_CONTENT.heading.subtitle} />
 
-        <div className="grid gap-8 lg:grid-cols-5">
+        <div className="grid gap-8 lg:grid-cols-3 mt-12">
           {/* Form */}
-          <div className="lg:col-span-3">
-            <div className="rounded-2xl border border-border/50 bg-card p-6 sm:p-8">
-              <h3 className="font-bold text-lg mb-1">Send me a message</h3>
-              <p className="text-sm text-muted-foreground mb-6">Fill out the form and I'll get back to you as soon as possible.</p>
+          <div className="lg:col-span-2">
+            <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-6">
+              <h3 className="font-semibold text-base mb-1">{CONTACT_CONTENT.form.title}</h3>
+              <p className="text-xs text-muted-foreground mb-5">{CONTACT_CONTENT.form.description}</p>
 
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-5" noValidate>
-                <div className="grid gap-5 sm:grid-cols-2">
+              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4" noValidate>
+                <div className="grid gap-4 sm:grid-cols-2">
                   <div>
-                    <label htmlFor="name" className="block text-sm font-medium mb-2">
+                    <label htmlFor="name" className="block text-xs font-medium mb-1.5">
                       Name <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -116,11 +103,12 @@ export function Contact() {
                       required
                       onChange={() => errors.name && setErrors(prev => { const { name: _, ...rest } = prev; return rest })}
                       className={inputClass("name")}
+                      suppressHydrationWarning
                     />
                     {errors.name && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle className="h-3 w-3" />{errors.name}</p>}
                   </div>
                   <div>
-                    <label htmlFor="email" className="block text-sm font-medium mb-2">
+                    <label htmlFor="email" className="block text-xs font-medium mb-1.5">
                       Email <span className="text-red-500">*</span>
                     </label>
                     <input
@@ -131,13 +119,14 @@ export function Contact() {
                       required
                       onChange={() => errors.email && setErrors(prev => { const { email: _, ...rest } = prev; return rest })}
                       className={inputClass("email")}
+                      suppressHydrationWarning
                     />
                     {errors.email && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle className="h-3 w-3" />{errors.email}</p>}
                   </div>
                 </div>
 
                 <div>
-                  <label htmlFor="subject" className="block text-sm font-medium mb-2">
+                  <label htmlFor="subject" className="block text-xs font-medium mb-1.5">
                     Subject <span className="text-red-500">*</span>
                   </label>
                   <input
@@ -147,22 +136,24 @@ export function Contact() {
                     required
                     onChange={() => errors.subject && setErrors(prev => { const { subject: _, ...rest } = prev; return rest })}
                     className={inputClass("subject")}
+                    suppressHydrationWarning
                   />
                   {errors.subject && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle className="h-3 w-3" />{errors.subject}</p>}
                 </div>
 
                 <div>
-                  <label htmlFor="message" className="block text-sm font-medium mb-2">
+                  <label htmlFor="message" className="block text-xs font-medium mb-1.5">
                     Message <span className="text-red-500">*</span>
                   </label>
                   <textarea
                     id="message"
                     name="message"
                     placeholder="Tell me about your project..."
-                    rows={5}
+                    rows={4}
                     required
                     onChange={() => errors.message && setErrors(prev => { const { message: _, ...rest } = prev; return rest })}
                     className={`${inputClass("message")} resize-none`}
+                    suppressHydrationWarning
                   />
                   {errors.message && <p className="text-red-500 text-xs mt-1 flex items-center gap-1"><AlertCircle className="h-3 w-3" />{errors.message}</p>}
                 </div>
@@ -171,61 +162,39 @@ export function Contact() {
 
                 <button
                   type="submit"
-                  disabled={isSubmitting || sent}
-                  className="w-full rounded-xl bg-primary text-primary-foreground font-semibold py-3.5 text-sm flex items-center justify-center gap-2 hover:opacity-90 disabled:opacity-60 transition-all"
+                  className="w-full rounded-xl bg-primary text-primary-foreground font-semibold py-3 text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all"
                 >
-                  {sent ? (
-                    <><CheckCircle2 className="h-4 w-4" /> Message Sent!</>
-                  ) : isSubmitting ? (
-                    <><Loader2 className="h-4 w-4 animate-spin" /> Sending...</>
-                  ) : (
-                    <><Send className="h-4 w-4" /> Send Message</>
-                  )}
+                  <Send className="h-4 w-4" /> Send Message
                 </button>
               </form>
             </div>
           </div>
 
-          {/* Contact info cards */}
-          <div className="lg:col-span-2 flex flex-col gap-4">
-            <a
-              href={`mailto:${personalInfo.email}`}
-              className="group rounded-2xl border border-border/50 bg-card p-5 flex items-center gap-4 hover:border-primary/30 transition-colors"
-            >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
-                <Mail className="h-5 w-5 text-primary" />
-              </div>
-              <div className="min-w-0">
-                <p className="text-xs text-muted-foreground mb-0.5">Email</p>
-                <p className="text-sm font-semibold truncate group-hover:text-primary transition-colors">{personalInfo.email}</p>
-              </div>
-            </a>
-
-            <div className="rounded-2xl border border-border/50 bg-card p-5 flex items-center gap-4">
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
-                <MapPin className="h-5 w-5 text-primary" />
-              </div>
-              <div className="min-w-0">
-                <p className="text-xs text-muted-foreground mb-0.5">Location</p>
-                <p className="text-sm font-semibold">{personalInfo.location}</p>
-              </div>
-            </div>
-
-            <a
-              href="tel:+917271880500"
-              className="group rounded-2xl border border-border/50 bg-card p-5 flex items-center gap-4 hover:border-primary/30 transition-colors"
-            >
-              <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/15 transition-colors">
-                <Phone className="h-5 w-5 text-primary" />
-              </div>
-              <div className="min-w-0">
-                <p className="text-xs text-muted-foreground mb-0.5">Phone</p>
-                <p className="text-sm font-semibold group-hover:text-primary transition-colors">+91 (7271) 880-500</p>
-              </div>
-            </a>
+          {/* Contact info sidebar */}
+          <div className="space-y-3">
+            {/* Contact cards stacked */}
+            {CONTACT_CONTENT.contactInfo.map((info) => {
+              const Icon = info.icon === "Mail" ? Mail : info.icon === "MapPin" ? MapPin : Phone
+              const Component = info.clickable ? "a" : "div"
+              return (
+                <Component
+                  key={info.label}
+                  {...(info.clickable ? { href: info.href } : {})}
+                  className={`rounded-xl border border-border/50 bg-card p-3.5 flex items-center gap-3 ${info.clickable ? "group hover:border-primary/30 transition-colors cursor-pointer" : ""}`}
+                >
+                  <div className={`w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 ${info.clickable ? "group-hover:bg-primary/15 transition-colors" : ""}`}>
+                    <Icon className="h-4 w-4 text-primary" />
+                  </div>
+                  <div className="min-w-0 flex-1">
+                    <p className="text-[10px] text-muted-foreground mb-0.5 uppercase tracking-wide font-medium">{info.label}</p>
+                    <p className={`text-xs font-semibold leading-tight ${info.clickable ? "group-hover:text-primary transition-colors" : ""}`}>{info.value}</p>
+                  </div>
+                </Component>
+              )
+            })}
 
             {/* Map */}
-            <div className="rounded-2xl border border-border/50 overflow-hidden flex-1 min-h-[200px]">
+            <div className="rounded-xl border border-border/50 overflow-hidden h-[220px]">
               <LocationMap />
             </div>
           </div>
