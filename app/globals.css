@@ -27,9 +27,23 @@
     --radius: 0.5rem;
   }
 
-  * { @apply border-border; }
-  html { @apply scroll-smooth overflow-x-hidden bg-background; }
-  body { @apply bg-background text-foreground antialiased overflow-x-hidden; }
+  * {
+    @apply border-border;
+  }
+
+  html {
+    @apply overflow-x-hidden bg-background;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased overflow-x-hidden;
+  }
+
+  /* GPU acceleration for smooth scrolling */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
 }
 
 /* CSS scroll animations */
@@ -45,14 +59,12 @@
   }
 }
 
-/* Gradient text utility */
+/* Gradient text utility - static for better performance */
 .text-gradient {
   background: linear-gradient(135deg, hsl(var(--foreground)) 0%, hsl(var(--primary)) 50%, hsl(var(--foreground)) 100%);
-  background-size: 200% 200%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  animation: gradientShift 4s ease-in-out infinite;
 }
 
 /* Gradient border card */
@@ -103,16 +115,6 @@
   animation: lineSlide 3s ease-in-out infinite;
 }
 
-@keyframes lineSlide {
-  0%, 100% { background-position: -200% 0; }
-  50% { background-position: 200% 0; }
-}
-
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
 @keyframes fadeInUp {
   to {
     opacity: 1;
@@ -125,16 +127,6 @@
   100% { transform: translateX(-50%); }
 }
 
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-20px); }
-}
-
-@keyframes pulse-glow {
-  0%, 100% { opacity: 0.4; transform: scale(1); }
-  50% { opacity: 0.8; transform: scale(1.05); }
-}
-
 @keyframes spin-slow {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
@@ -142,20 +134,14 @@
 
 .animate-marquee {
   animation: marquee 30s linear infinite;
+  will-change: transform;
 }
 
 .animate-marquee:hover {
   animation-play-state: paused;
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
-}
-
-.animate-pulse-glow {
-  animation: pulse-glow 3s ease-in-out infinite;
-}
-
 .animate-spin-slow {
   animation: spin-slow 20s linear infinite;
+  will-change: transform;
 }
