@@ -1,7 +1,6 @@
 "use client"
 
 import { useEffect, useRef } from "react"
-import { useTheme } from "next-themes"
 import "leaflet/dist/leaflet.css"
 
 const POWAI_COORDS: [number, number] = [19.1203, 72.8963]
@@ -9,8 +8,6 @@ const POWAI_COORDS: [number, number] = [19.1203, 72.8963]
 export function LocationMap() {
   const mapRef = useRef<HTMLDivElement>(null)
   const mapInstanceRef = useRef<any>(null)
-  const tileLayerRef = useRef<any>(null)
-  const { resolvedTheme } = useTheme()
 
   useEffect(() => {
     if (!mapRef.current || mapInstanceRef.current) return
@@ -31,13 +28,9 @@ export function LocationMap() {
 
       mapInstanceRef.current = map
 
-      const isDark = resolvedTheme === "dark"
-      const tileUrl = isDark
-        ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-        : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-
-      const tileLayer = L.tileLayer(tileUrl, { maxZoom: 19 }).addTo(map)
-      tileLayerRef.current = tileLayer
+      // Always use dark theme tiles since we have dark-only theme
+      const tileUrl = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+      L.tileLayer(tileUrl, { maxZoom: 19 }).addTo(map)
 
       // Custom marker icon
       const icon = L.divIcon({
@@ -62,20 +55,6 @@ export function LocationMap() {
       }
     }
   }, [])
-
-  // Update tile layer on theme change
-  useEffect(() => {
-    if (!mapInstanceRef.current || !tileLayerRef.current) return
-
-    const L = require("leaflet")
-    const isDark = resolvedTheme === "dark"
-    const tileUrl = isDark
-      ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-      : "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png"
-
-    tileLayerRef.current.remove()
-    tileLayerRef.current = L.tileLayer(tileUrl, { maxZoom: 19 }).addTo(mapInstanceRef.current)
-  }, [resolvedTheme])
 
   return (
     <div
