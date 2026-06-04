@@ -4,7 +4,7 @@
   "private": true,
   "homepage": "https://uzairansari11.github.io",
   "engines": {
-    "node": "20.x"
+    "node": ">=20.0.0"
   },
   "scripts": {
     "dev": "next dev",
@@ -12,19 +12,15 @@
     "deploy": "next build && gh-pages -d out"
   },
   "dependencies": {
-    "@emailjs/browser": "^3.11.0",
-    "@emotion/is-prop-valid": "latest",
     "@radix-ui/react-slot": "1.1.1",
     "@radix-ui/react-toast": "1.2.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "latest",
     "gsap": "latest",
-    "keen-slider": "^6.8.6",
     "leaflet": "^1.9.4",
     "lucide-react": "^0.454.0",
     "next": "^15.2.6",
-    "next-themes": "latest",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-leaflet": "^5.0.0",
