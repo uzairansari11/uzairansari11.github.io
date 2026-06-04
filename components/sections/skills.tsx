@@ -1,42 +1,19 @@
 "use client"
 
 import { SectionHeading } from "@/components/ui/section-heading"
-import { skillsWithIcons, tools } from "@/lib/data"
+import { SKILLS_WITH_ICONS, TOOLS, SKILL_CATEGORIES, SKILLS_CONTENT } from "@/lib/constants"
 import { Code2, Server, Wrench, Brain } from "lucide-react"
 
-const categories = [
-  {
-    title: "Frontend",
-    icon: Code2,
-    skills: ["React", "Next.js", "Redux", "TypeScript", "JavaScript", "Tailwind CSS", "Material UI", "Chakra UI", "GSAP"],
-  },
-  {
-    title: "Backend",
-    icon: Server,
-    skills: ["Node.js", "Express.js", "MongoDB", "REST APIs", "JWT Auth", "WebRTC", "SIP.js", "Python", "Django"],
-  },
-  {
-    title: "Tools & DevOps",
-    icon: Wrench,
-    skills: ["Git", "GitHub", "VS Code", "Postman", "Vercel", "Netlify", "npm/pnpm", "Figma"],
-  },
-  {
-    title: "Core Skills",
-    icon: Brain,
-    skills: ["System Design", "Problem Solving", "Agile Development", "Code Reviews", "Team Leadership"],
-  },
-]
-
 export function Skills() {
-  const allIcons = [...skillsWithIcons, ...tools]
+  const allIcons = [...SKILLS_WITH_ICONS, ...TOOLS]
 
   return (
-    <section id="skills" className="py-12 sm:py-20 lg:py-24">
-      <div className="container px-4 md:px-6">
-        <SectionHeading title="My Toolkit" subtitle="Technologies and tools I use to bring ideas to life" />
+    <section id="skills" className="py-20 md:py-32 bg-muted/20">
+      <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+        <SectionHeading title={SKILLS_CONTENT.heading.title} subtitle={SKILLS_CONTENT.heading.subtitle} />
 
         {/* Scrolling icon marquee */}
-        <div className="relative overflow-hidden mb-14">
+        <div className="relative overflow-hidden mb-16 mt-16">
           <div className="flex gap-10 animate-marquee">
             {[...allIcons, ...allIcons].map((item, i) => (
               <div key={`${item.id}-${i}`} className="flex flex-col items-center gap-2 shrink-0 group">
@@ -52,9 +29,11 @@ export function Skills() {
         </div>
 
         {/* Category grid */}
-        <div className="grid gap-4 sm:grid-cols-2">
-          {categories.map(({ title, icon: Icon, skills }, idx) => (
-            <div key={title} className="group rounded-xl border border-border/50 bg-card p-5 gradient-border glow-card">
+        <div className="grid gap-6 sm:grid-cols-2">
+          {SKILL_CATEGORIES.map(({ title, icon: iconName, skills }, idx) => {
+            const Icon = iconName === "Code2" ? Code2 : iconName === "Server" ? Server : iconName === "Wrench" ? Wrench : Brain
+            return (
+            <div key={title} className="group rounded-2xl border border-border/50 bg-card p-6 hover:border-primary/30 transition-all duration-300">
               <div className="flex items-center gap-2.5 mb-4">
                 <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
                   <Icon className="h-5 w-5 text-primary" />
@@ -70,7 +49,7 @@ export function Skills() {
                 ))}
               </div>
             </div>
-          ))}
+          )})}
         </div>
       </div>
     </section>

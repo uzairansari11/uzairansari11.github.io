@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { SectionHeading } from "@/components/ui/section-heading"
-import { experiences, projectHighlights, type ProjectHighlight } from "@/lib/data"
+import { EXPERIENCES, PROJECT_HIGHLIGHTS, EXPERIENCE_CONTENT, type ProjectHighlight } from "@/lib/constants"
 import { Briefcase, Calendar, X, ArrowRight, ExternalLink, BarChart3, Package, PhoneCall, ChevronDown } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 
@@ -94,25 +94,24 @@ export function Experience() {
   const [openExp, setOpenExp] = useState<string>("exp-1")
 
   return (
-    <section id="experience" className="py-12 sm:py-20 lg:py-24">
-      <div className="container px-4 md:px-6">
-        <SectionHeading title="Where I've Worked" subtitle="2.5+ years shipping production systems — VoIP, ERP, CRM & more" />
+    <section id="experience" className="py-20 md:py-32">
+      <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+        <SectionHeading title={EXPERIENCE_CONTENT.heading.title} subtitle={EXPERIENCE_CONTENT.heading.subtitle} />
 
         {/* Product Highlights */}
-        <div className="mb-16">
+        <div className="mb-20 mt-16">
           <div className="flex items-center gap-2 mb-6">
             <Briefcase className="h-4 w-4 text-primary" />
-            <h3 className="font-semibold">Products I Built</h3>
+            <h3 className="font-semibold">{EXPERIENCE_CONTENT.sections.products}</h3>
           </div>
 
-          <div className="grid gap-4 sm:grid-cols-3">
-            {projectHighlights.map((project) => (
+          <div className="grid gap-6 sm:grid-cols-3">
+            {PROJECT_HIGHLIGHTS.map((project) => (
               <button
                 key={project.name}
                 type="button"
                 onClick={() => setSelectedProject(project)}
-                className="group text-left border border-border/50 bg-card p-5 transition-all duration-300 hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-0.5"
-                style={{ borderRadius: "12px" }}
+                className="group text-left border border-border/50 bg-card rounded-2xl p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
               >
                 <div className="flex items-center gap-2.5 mb-2">
                   {(() => { const Icon = projectIcons[project.name] || BarChart3; return (
@@ -147,14 +146,14 @@ export function Experience() {
         {/* Work history — accordion */}
         <div className="flex items-center gap-2 mb-6">
           <Briefcase className="h-4 w-4 text-primary" />
-          <h3 className="font-semibold">Work History</h3>
+          <h3 className="font-semibold">{EXPERIENCE_CONTENT.sections.workHistory}</h3>
         </div>
 
         <div className="relative">
           <div className="absolute left-[15px] top-2 bottom-2 w-px bg-gradient-to-b from-primary/40 via-border to-border hidden sm:block" />
 
           <div className="space-y-4">
-            {experiences.map((exp) => {
+            {EXPERIENCES.map((exp) => {
               const isOpen = openExp === exp.id
               return (
                 <div key={exp.id} className="relative flex gap-4 sm:gap-6">

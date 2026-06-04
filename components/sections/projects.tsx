@@ -3,7 +3,7 @@
 import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { SectionHeading } from "@/components/ui/section-heading"
-import { projects, type Project } from "@/lib/data"
+import { PROJECTS, PROJECTS_CONTENT, type Project } from "@/lib/constants"
 import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
 
 function GitHubIcon({ className }: { className?: string }) {
@@ -16,7 +16,7 @@ function GitHubIcon({ className }: { className?: string }) {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="bg-card rounded-xl border border-border/50 overflow-hidden flex flex-col h-full min-h-[380px] gradient-border glow-card">
+    <div className="bg-card rounded-2xl border border-border/50 overflow-hidden flex flex-col h-full min-h-[400px] hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5">
       <div className="h-40 sm:h-44 shrink-0 overflow-hidden bg-muted relative">
         <img
           src={project.image || "/placeholder.svg"}
@@ -61,19 +61,19 @@ function ProjectCard({ project }: { project: Project }) {
 
 export function Projects() {
   const [current, setCurrent] = useState(0)
-  const total = projects.length
+  const total = PROJECTS.length
 
   const prev = () => setCurrent((c) => (c - 1 + total) % total)
   const next = () => setCurrent((c) => (c + 1) % total)
 
   return (
-    <section id="projects" className="py-12 sm:py-20 lg:py-24">
-      <div className="container px-4 md:px-6">
-        <SectionHeading title="What I've Built" subtitle="Side projects and apps crafted from the ground up" />
+    <section id="projects" className="py-20 md:py-32 bg-muted/20">
+      <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+        <SectionHeading title={PROJECTS_CONTENT.heading.title} subtitle={PROJECTS_CONTENT.heading.subtitle} />
 
         {/* Desktop: static 3-column grid */}
-        <div className="hidden lg:grid lg:grid-cols-3 gap-5">
-          {projects.map((project) => (
+        <div className="hidden lg:grid lg:grid-cols-3 gap-6 mt-16">
+          {PROJECTS.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
@@ -85,7 +85,7 @@ export function Projects() {
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${current * 100}%)` }}
             >
-              {projects.map((project) => (
+              {PROJECTS.map((project) => (
                 <div key={project.id} className="w-full shrink-0 pr-0">
                   <ProjectCard project={project} />
                 </div>
@@ -103,7 +103,7 @@ export function Projects() {
             </button>
 
             <div className="flex items-center gap-1.5">
-              {projects.map((_, idx) => (
+              {PROJECTS.map((_, idx) => (
                 <button
                   type="button"
                   key={idx}
