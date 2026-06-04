@@ -1,8 +1,8 @@
 "use client"
 
-import { ThemeToggle } from "@/components/theme-toggle"
 import { cn } from "@/lib/utils"
 import { useActiveSection } from "@/hooks/use-active-section"
+import { NAV_ITEMS } from "@/lib/constants"
 import { gsap } from "gsap"
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin"
 import { Menu, X } from "lucide-react"
@@ -10,15 +10,6 @@ import { useEffect, useState } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 
 gsap.registerPlugin(ScrollToPlugin)
-
-const navItems = [
-  { name: "Home", href: "#home" },
-  { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
-  { name: "Experience", href: "#experience" },
-  { name: "Skills", href: "#skills" },
-  { name: "Contact", href: "#contact" },
-]
 
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
@@ -43,7 +34,7 @@ export function Navbar() {
         scrolled ? "bg-background/80 backdrop-blur-2xl border-b border-border/40" : "bg-transparent"
       )}
     >
-      <div className="container flex h-16 items-center justify-between px-4 md:px-6">
+      <div className="container mx-auto max-w-7xl flex h-16 items-center justify-between px-6 lg:px-8">
         {/* Logo */}
         <a href="#home" onClick={(e) => { e.preventDefault(); scrollTo("#home") }} className="flex items-center group">
           <span className="text-xl font-black tracking-tight">
@@ -60,7 +51,7 @@ export function Navbar() {
 
         {/* Desktop Nav — centered pill */}
         <nav className="hidden md:flex items-center gap-0.5 bg-muted/60 rounded-full px-1 py-0.5 border border-border/30">
-          {navItems.map((item) => (
+          {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
               href={item.href}
@@ -84,14 +75,8 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* Right side — theme controls */}
-        <div className="hidden md:block">
-          <ThemeToggle />
-        </div>
-
         {/* Mobile */}
         <div className="flex md:hidden items-center gap-1">
-          <ThemeToggle />
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -110,8 +95,8 @@ export function Navbar() {
             exit={{ opacity: 0, height: 0 }}
             className="md:hidden overflow-hidden bg-background/95 backdrop-blur-2xl border-b"
           >
-            <nav className="container flex flex-col py-3 px-4 gap-0.5">
-              {navItems.map((item) => (
+            <nav className="container mx-auto max-w-7xl flex flex-col py-3 px-6 gap-0.5">
+              {NAV_ITEMS.map((item) => (
                 <a
                   key={item.href}
                   href={item.href}

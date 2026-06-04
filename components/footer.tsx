@@ -1,6 +1,6 @@
 "use client"
 
-import { personalInfo } from "@/lib/data"
+import { PERSONAL_INFO, FOOTER_CONTENT } from "@/lib/constants"
 import { Github, Linkedin, Mail, ArrowUp } from "lucide-react"
 import { gsap } from "gsap"
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin"
@@ -13,8 +13,8 @@ export function Footer() {
   }
 
   return (
-    <footer className="border-t border-border/50">
-      <div className="container px-4 md:px-6 py-8">
+    <footer className="border-t border-border/50 mt-20">
+      <div className="container mx-auto max-w-7xl px-6 lg:px-8 py-12">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           {/* Left — branding */}
           <div className="flex items-center gap-3">
@@ -34,7 +34,7 @@ export function Footer() {
           {/* Center — social icons with primary color */}
           <div className="flex items-center gap-2">
             <a
-              href={personalInfo.socialLinks.github}
+              href={PERSONAL_INFO.socialLinks.github}
               target="_blank"
               rel="noreferrer"
               className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-all"
@@ -42,7 +42,7 @@ export function Footer() {
               <Github className="h-4 w-4" />
             </a>
             <a
-              href={personalInfo.socialLinks.linkedin}
+              href={PERSONAL_INFO.socialLinks.linkedin}
               target="_blank"
               rel="noreferrer"
               className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-all"
@@ -50,7 +50,7 @@ export function Footer() {
               <Linkedin className="h-4 w-4" />
             </a>
             <a
-              href={`mailto:${personalInfo.email}`}
+              href={`mailto:${PERSONAL_INFO.email}`}
               className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-all"
             >
               <Mail className="h-4 w-4" />
