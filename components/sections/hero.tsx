@@ -1,8 +1,8 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { personalInfo } from "@/lib/data"
-import { ArrowDown, Code2, Download, Github, Linkedin, Mail, Rocket, Send, Users } from "lucide-react"
+import { PERSONAL_INFO, HERO_CONTENT } from "@/lib/constants"
+import { ArrowDown, Code2, Download, Github, Linkedin, Mail, Rocket, Send, Users, Sparkles, Phone, Clock } from "lucide-react"
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
 
@@ -23,9 +23,9 @@ export function Hero() {
         .fromTo("[data-hero-stats] > *", { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.5 }, "-=0.2")
         .fromTo("[data-hero-tech] > *", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, stagger: 0.05, duration: 0.4 }, "-=0.3")
         .fromTo("[data-hero-achievement]", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.3")
-        .fromTo("[data-hero-status]", { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.4 }, "-=0.2")
-        .fromTo("[data-hero-image]", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.8, ease: "back.out(1.5)" }, "-=1.0")
-        .fromTo("[data-hero-exp]", { opacity: 0, x: 20 }, { opacity: 1, x: 0, duration: 0.5 }, "-=0.3")
+        .fromTo("[data-hero-image]", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, "-=0.8")
+        .fromTo("[data-hero-exp]", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.5)" }, "-=0.3")
+        .fromTo("[data-hero-projects]", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.4")
 
       // Scroll indicator bounce
       gsap.to(scrollRef.current, { y: 8, duration: 1.2, repeat: -1, yoyo: true, ease: "sine.inOut" })
@@ -39,140 +39,160 @@ export function Hero() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="home" className="relative min-h-[calc(100vh-4rem)] flex items-center pt-16 pb-8 sm:pt-20 sm:pb-12">
-      <div className="absolute inset-0 -z-10">
-        <div data-blob-1 className="absolute top-1/4 left-1/4 w-72 h-72 bg-primary/5 rounded-full blur-3xl" />
-        <div data-blob-2 className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-primary/3 rounded-full blur-3xl" />
+    <section ref={sectionRef} id="home" className="relative min-h-screen flex items-center pt-24 pb-16">
+      {/* Background Effects */}
+      <div className="absolute inset-0 -z-10 overflow-hidden">
+        <div data-blob-1 className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/8 rounded-full blur-3xl" />
+        <div data-blob-2 className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
       </div>
 
-      <div className="container px-4 md:px-6">
-        <div className="grid items-center gap-8 lg:grid-cols-2 lg:gap-12">
-          <div className="space-y-5 text-center lg:text-left">
+      <div className="container mx-auto px-6 lg:px-8 max-w-7xl w-full">
+        <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+          <div className="space-y-6 text-center lg:text-left">
             <div data-hero-badge className="inline-flex items-center gap-2 rounded-full bg-primary/10 px-4 py-1.5 text-sm font-medium text-primary border border-primary/20" style={{ opacity: 0 }}>
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              Available for opportunities
+              {HERO_CONTENT.badge.status}
             </div>
 
-            <div className="space-y-2">
-              <h1 data-hero-name className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl text-gradient" style={{ opacity: 0 }}>
-                {personalInfo.name}
+            <div className="space-y-3">
+              <h1 data-hero-name className="text-4xl font-bold tracking-tight sm:text-5xl lg:text-6xl text-gradient leading-tight" style={{ opacity: 0 }}>
+                {PERSONAL_INFO.name}
               </h1>
-              <p data-hero-title className="text-xl sm:text-2xl text-primary font-medium" style={{ opacity: 0 }}>
-                {personalInfo.title}
+              <p data-hero-title className="text-xl sm:text-2xl text-primary font-semibold" style={{ opacity: 0 }}>
+                {PERSONAL_INFO.title}
               </p>
-              <p data-hero-desc className="text-muted-foreground max-w-md mx-auto lg:mx-0 leading-relaxed pt-2" style={{ opacity: 0 }}>
-                Software Engineer with 2.5+ years of experience developing scalable web applications and product workflows. Specialized in building CRM systems, finance automation tools, and real-time communication platforms.
+              <p data-hero-desc className="text-muted-foreground max-w-lg mx-auto lg:mx-0 leading-relaxed text-base pt-1" style={{ opacity: 0 }}>
+                {HERO_CONTENT.description}
               </p>
             </div>
 
-            <div data-hero-buttons className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start">
+            <div data-hero-buttons className="flex flex-col sm:flex-row gap-3 justify-center lg:justify-start pt-2">
               <Button size="lg" className="rounded-full px-8 glow-card" asChild>
-                <a href="#contact"><Send className="mr-2 h-4 w-4" /> Get In Touch</a>
+                <a href={HERO_CONTENT.cta.primary.href}><Send className="mr-2 h-4 w-4" /> {HERO_CONTENT.cta.primary.text}</a>
               </Button>
               <Button size="lg" variant="outline" className="rounded-full px-8" asChild>
-                <a href={personalInfo.resumeUrl} target="_blank" rel="noopener noreferrer">
-                  <Download className="mr-2 h-4 w-4" /> View Resume
+                <a href={HERO_CONTENT.cta.secondary.href} target="_blank" rel="noopener noreferrer">
+                  <Download className="mr-2 h-4 w-4" /> {HERO_CONTENT.cta.secondary.text}
                 </a>
               </Button>
             </div>
 
             <div data-hero-social className="flex items-center gap-3 justify-center lg:justify-start">
-              {[
-                { href: personalInfo.socialLinks.github, icon: Github, label: "GitHub" },
-                { href: personalInfo.socialLinks.linkedin, icon: Linkedin, label: "LinkedIn" },
-                { href: `mailto:${personalInfo.email}`, icon: Mail, label: "Email" },
-              ].map(({ href, icon: Icon, label }) => (
-                <a key={label} href={href} target={href.startsWith("mailto") ? undefined : "_blank"} rel="noopener noreferrer"
-                  className="w-10 h-10 rounded-full border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-300">
-                  <Icon className="h-4 w-4" />
-                </a>
-              ))}
+              {HERO_CONTENT.socialLinks.map((link) => {
+                const href = link.platform === "GitHub" ? PERSONAL_INFO.socialLinks.github :
+                             link.platform === "LinkedIn" ? PERSONAL_INFO.socialLinks.linkedin :
+                             `mailto:${PERSONAL_INFO.email}`
+                const Icon = link.icon === "Github" ? Github : link.icon === "Linkedin" ? Linkedin : Mail
+                return (
+                  <a key={link.platform} href={href} target={href.startsWith("mailto") ? undefined : "_blank"} rel="noopener noreferrer"
+                    className="w-10 h-10 rounded-full border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-300">
+                    <Icon className="h-4 w-4" />
+                  </a>
+                )
+              })}
             </div>
 
-            <div data-hero-stats className="grid grid-cols-3 gap-4 pt-2">
-              {[
-                { icon: Rocket, value: "3+", label: "Products Shipped" },
-                { icon: Code2, value: "20+", label: "Technologies" },
-                { icon: Users, value: "1,500+", label: "Active Users" },
-              ].map(({ icon: Icon, value, label }) => (
-                <div key={label} className="text-center lg:text-left" style={{ opacity: 0 }}>
-                  <div className="flex items-center justify-center lg:justify-start gap-2 mb-1">
-                    <Icon className="h-4 w-4 text-primary" />
-                    <span className="text-2xl font-bold text-foreground">{value}</span>
+            <div data-hero-stats className="grid grid-cols-3 gap-6">
+              {HERO_CONTENT.stats.map(({ icon: iconName, value, label }) => {
+                const Icon = iconName === "Rocket" ? Rocket : iconName === "Code2" ? Code2 : Users
+                return (
+                  <div key={label} className="text-center lg:text-left" style={{ opacity: 0 }}>
+                    <div className="flex items-center justify-center lg:justify-start gap-2 mb-1">
+                      <Icon className="h-4 w-4 text-primary" />
+                      <span className="text-2xl font-bold text-foreground">{value}</span>
+                    </div>
+                    <p className="text-xs text-muted-foreground">{label}</p>
                   </div>
-                  <p className="text-xs text-muted-foreground">{label}</p>
-                </div>
-              ))}
+                )
+              })}
             </div>
 
-            <div className="pt-2">
-              <p className="text-sm text-muted-foreground mb-3 text-center lg:text-left">Core Technologies:</p>
+            <div>
+              <p className="text-xs text-muted-foreground mb-2 text-center lg:text-left">{HERO_CONTENT.coreTechLabel}</p>
               <div data-hero-tech className="flex flex-wrap gap-2 justify-center lg:justify-start">
-                {["React.js", "Next.js", "TypeScript", "Node.js", "TailwindCSS", "MongoDB"].map((tech) => (
-                  <span key={tech} className="px-3 py-1.5 text-xs font-medium rounded-lg bg-card border text-foreground hover:border-primary/40 hover:bg-primary/5 transition-all duration-300" style={{ opacity: 0 }}>
+                {HERO_CONTENT.coreTechnologies.map((tech) => (
+                  <span key={tech} className="px-3 py-1 text-xs font-medium rounded-lg bg-card border text-foreground hover:border-primary/40 hover:bg-primary/5 transition-all duration-300" style={{ opacity: 0 }}>
                     {tech}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="pt-4 space-y-3">
-              <div data-hero-achievement className="rounded-xl bg-card border p-4 hover:border-primary/30 glow-card transition-all duration-300" style={{ opacity: 0 }}>
+            <div>
+              <div data-hero-achievement className="rounded-xl bg-card border p-4 hover:border-primary/30 transition-all duration-300" style={{ opacity: 0 }}>
                 <div className="flex items-start gap-3">
-                  <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Rocket className="h-5 w-5 text-primary" />
+                  <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <Rocket className="h-4 w-4 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-sm mb-1">Key Achievement</h3>
+                    <h3 className="font-semibold text-sm mb-1">{HERO_CONTENT.achievement.title}</h3>
                     <p className="text-xs text-muted-foreground leading-relaxed">
-                      Shipped 3 production products serving 1,500+ active users — reduced manual effort by 80% and boosted revenue by 30%
+                      {HERO_CONTENT.achievement.description}
                     </p>
                   </div>
-                </div>
-              </div>
-
-              <div data-hero-status className="flex flex-wrap items-center gap-3 text-xs text-muted-foreground" style={{ opacity: 0 }}>
-                <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-500" />
-                  <span>Open to Opportunities</span>
-                </div>
-                <div className="h-3 w-px bg-border" />
-                <div className="flex items-center gap-2">
-                  <span>Remote & Onsite Available</span>
                 </div>
               </div>
             </div>
           </div>
 
-          <div className="flex justify-center lg:justify-end">
+          <div className="flex flex-col items-center lg:items-end gap-6">
+            {/* Main avatar with clean design */}
             <div className="relative">
-              {/* Spinning ring behind avatar */}
-              <div className="absolute inset-0 -m-4 rounded-full border-2 border-dashed border-primary/20 animate-spin-slow" />
+              {/* Decorative ring */}
+              <div className="absolute -inset-2 rounded-full border border-primary/20 border-dashed animate-spin-slow" style={{ animationDuration: '20s' }}></div>
 
-              <div data-hero-image className="w-64 h-64 sm:w-72 sm:h-72 lg:w-80 lg:h-80 rounded-full overflow-hidden border-4 border-card shadow-2xl shadow-primary/10" style={{ opacity: 0 }}>
-                <img src={personalInfo.avatarUrl || "/placeholder.svg"} alt={personalInfo.name} className="w-full h-full object-cover" />
+              <div data-hero-image className="relative w-64 h-64 sm:w-72 sm:h-72 lg:w-[22rem] lg:h-[22rem] rounded-full overflow-hidden border-[3px] border-primary/30 shadow-2xl shadow-primary/20" style={{ opacity: 0 }}>
+                <img src={PERSONAL_INFO.avatarUrl || "/placeholder.svg"} alt={PERSONAL_INFO.name} className="w-full h-full object-cover" />
+
+                {/* Years experience overlay at bottom */}
+                <div data-hero-exp className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/90 via-black/50 to-transparent backdrop-blur-sm py-3 px-3" style={{ opacity: 0 }}>
+                  <div className="text-center">
+                    <div className="flex items-baseline justify-center gap-1">
+                      <span className="text-2xl font-bold text-primary leading-none">{PERSONAL_INFO.yearsOfExperience}</span>
+                      <span className="text-xs font-semibold text-white/90">{HERO_CONTENT.experienceLabel.years}</span>
+                    </div>
+                    <p className="text-[9px] text-white/70 uppercase tracking-wider mt-0.5 leading-none">{HERO_CONTENT.experienceLabel.experience}</p>
+                  </div>
+                </div>
               </div>
-              <div data-hero-exp className="absolute -bottom-3 -right-3 rounded-2xl bg-card border shadow-lg px-4 py-3 text-center glow-card" style={{ opacity: 0 }}>
-                <span className="text-2xl font-bold text-primary">2.5+</span>
-                <span className="block text-xs text-muted-foreground">Years Exp.</span>
+            </div>
+
+            {/* Live Projects Grid */}
+            <div data-hero-projects className="w-full max-w-md" style={{ opacity: 0 }}>
+              <div className="rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 p-5 shadow-lg">
+                <div className="flex items-center justify-between mb-5">
+                  <h3 className="text-sm font-semibold text-foreground">{HERO_CONTENT.liveProjectsSection.title}</h3>
+                  <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/10">
+                    <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse" />
+                    <span className="text-xs font-medium text-green-500">{HERO_CONTENT.liveProjectsSection.status}</span>
+                  </div>
+                </div>
+                <div className="grid grid-cols-2 gap-2.5">
+                  {HERO_CONTENT.liveProjects.map((project) => {
+                    const IconComponent =
+                      project.icon === "Sparkles" ? Sparkles :
+                      project.icon === "Phone" ? Phone :
+                      project.icon === "Users" ? Users : Clock
+                    return (
+                      <div key={project.name} className="group rounded-xl bg-background/50 hover:bg-primary/5 border border-border/40 hover:border-primary/40 p-3.5 transition-all duration-300">
+                        <div className="flex items-center gap-2.5">
+                          <div className="w-9 h-9 rounded-lg bg-primary/10 group-hover:bg-primary/15 flex items-center justify-center flex-shrink-0 transition-all">
+                            <IconComponent className="h-4 w-4 text-primary" />
+                          </div>
+                          <div className="min-w-0 flex-1">
+                            <p className="text-xs font-semibold text-foreground leading-snug">{project.name}</p>
+                          </div>
+                        </div>
+                      </div>
+                    )
+                  })}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
-
-      <button
-        onClick={() => {
-          const aboutSection = document.getElementById('about');
-          aboutSection?.scrollIntoView({ behavior: 'smooth' });
-        }}
-        ref={scrollRef}
-        className="absolute bottom-4 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 cursor-pointer hover:text-primary transition-colors"
-        aria-label="Scroll to next section"
-      >
-        <span className="text-xs text-muted-foreground">Scroll</span>
-        <ArrowDown className="h-4 w-4 text-muted-foreground" />
-      </button>
     </section>
   )
 }
