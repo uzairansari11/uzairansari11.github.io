@@ -8,31 +8,24 @@ import { gsap } from "gsap"
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null)
-  const scrollRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const ctx = gsap.context(() => {
       const tl = gsap.timeline({ defaults: { ease: "power4.out" } })
 
-      tl.fromTo("[data-hero-badge]", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 })
-        .fromTo("[data-hero-name]", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.8 }, "-=0.3")
-        .fromTo("[data-hero-title]", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.4")
-        .fromTo("[data-hero-desc]", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.3")
-        .fromTo("[data-hero-buttons] > *", { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.5 }, "-=0.3")
-        .fromTo("[data-hero-social] > *", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, stagger: 0.08, duration: 0.4 }, "-=0.2")
-        .fromTo("[data-hero-stats] > *", { opacity: 0, y: 20 }, { opacity: 1, y: 0, stagger: 0.1, duration: 0.5 }, "-=0.2")
-        .fromTo("[data-hero-tech] > *", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, stagger: 0.05, duration: 0.4 }, "-=0.3")
-        .fromTo("[data-hero-achievement]", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.3")
-        .fromTo("[data-hero-image]", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.8, ease: "power3.out" }, "-=0.8")
-        .fromTo("[data-hero-exp]", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, duration: 0.5, ease: "back.out(1.5)" }, "-=0.3")
-        .fromTo("[data-hero-projects]", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.7, ease: "power3.out" }, "-=0.4")
-
-      // Scroll indicator bounce
-      gsap.to(scrollRef.current, { y: 8, duration: 1.2, repeat: -1, yoyo: true, ease: "sine.inOut" })
-
-      // Floating background blobs
-      gsap.to("[data-blob-1]", { y: -20, x: 10, duration: 4, repeat: -1, yoyo: true, ease: "sine.inOut" })
-      gsap.to("[data-blob-2]", { y: 15, x: -15, duration: 5, repeat: -1, yoyo: true, ease: "sine.inOut" })
+      // Simplified entrance animation - only plays once
+      tl.fromTo("[data-hero-badge]", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 })
+        .fromTo("[data-hero-name]", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.6 }, "-=0.3")
+        .fromTo("[data-hero-title]", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.3")
+        .fromTo("[data-hero-desc]", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.2")
+        .fromTo("[data-hero-buttons] > *", { opacity: 0, y: 15 }, { opacity: 1, y: 0, stagger: 0.08, duration: 0.4 }, "-=0.2")
+        .fromTo("[data-hero-social] > *", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, stagger: 0.06, duration: 0.3 }, "-=0.15")
+        .fromTo("[data-hero-stats] > *", { opacity: 0, y: 15 }, { opacity: 1, y: 0, stagger: 0.08, duration: 0.4 }, "-=0.15")
+        .fromTo("[data-hero-tech] > *", { opacity: 0, scale: 0.8 }, { opacity: 1, scale: 1, stagger: 0.04, duration: 0.3 }, "-=0.2")
+        .fromTo("[data-hero-achievement]", { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.4 }, "-=0.2")
+        .fromTo("[data-hero-image]", { opacity: 0, scale: 0.95 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power3.out" }, "-=0.6")
+        .fromTo("[data-hero-exp]", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.4 }, "-=0.2")
+        .fromTo("[data-hero-projects]", { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.5 }, "-=0.3")
     }, sectionRef)
 
     return () => ctx.revert()
@@ -40,10 +33,10 @@ export function Hero() {
 
   return (
     <section ref={sectionRef} id="home" className="relative min-h-screen flex items-center pt-24 pb-16">
-      {/* Background Effects */}
+      {/* Background Effects - Static for better performance */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
-        <div data-blob-1 className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/8 rounded-full blur-3xl" />
-        <div data-blob-2 className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/8 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-3xl" />
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
       </div>
 
