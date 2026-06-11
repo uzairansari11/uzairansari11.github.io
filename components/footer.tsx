@@ -1,7 +1,7 @@
 "use client"
 
 import { PERSONAL_INFO } from "@/lib/constants"
-import { Github, Linkedin, Mail, ArrowUp } from "lucide-react"
+import { Github, Linkedin, Mail } from "lucide-react"
 import { gsap } from "gsap"
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin"
 
@@ -73,19 +73,10 @@ export function Footer() {
             ))}
           </div>
 
-          {/* Copyright & Back to Top */}
-          <div className="flex items-center gap-4">
-            <p className="text-xs text-muted-foreground">
-              &copy; {new Date().getFullYear()} {PERSONAL_INFO.name}
-            </p>
-            <button
-              onClick={scrollToTop}
-              aria-label="Back to top"
-              className="w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-all"
-            >
-              <ArrowUp className="h-4 w-4" />
-            </button>
-          </div>
+          {/* Copyright */}
+          <p className="text-xs text-muted-foreground">
+            &copy; {new Date().getFullYear()} {PERSONAL_INFO.name}
+          </p>
         </div>
       </div>
     </footer>

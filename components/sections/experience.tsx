@@ -1,10 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useCallback, useEffect } from "react"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { EXPERIENCES, PROJECT_HIGHLIGHTS, EXPERIENCE_CONTENT, type ProjectHighlight } from "@/lib/constants"
 import { Briefcase, Calendar, X, ArrowRight, ExternalLink, BarChart3, Package, PhoneCall, ChevronDown, Clock } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
+import useEmblaCarousel from "embla-carousel-react"
 
 const PROJECT_ICONS = {
   Nourma: BarChart3,
@@ -227,15 +228,63 @@ function ExperienceAccordion({ experience, isOpen, onToggle }: {
 export function Experience() {
   const [selectedProject, setSelectedProject] = useState<ProjectHighlight | null>(null)
   const [openExp, setOpenExp] = useState<string>("exp-1")
-  const [currentSlide, setCurrentSlide] = useState(0)
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
 
-  const nextSlide = () => {
-    setCurrentSlide((prev) => (prev + 1) % PROJECT_HIGHLIGHTS.length)
-  }
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: false,
+    align: 'start',
+    slidesToScroll: 1,
+    containScroll: 'trimSnaps',
+    dragFree: false,
+  })
 
-  const prevSlide = () => {
-    setCurrentSlide((prev) => (prev - 1 + PROJECT_HIGHLIGHTS.length) % PROJECT_HIGHLIGHTS.length)
-  }
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev()
+  }, [emblaApi])
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext()
+  }, [emblaApi])
+
+  const scrollTo = useCallback(
+    (index: number) => {
+      if (emblaApi) emblaApi.scrollTo(index)
+    },
+    [emblaApi]
+  )
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [emblaApi])
+
+  const onInit = useCallback(() => {
+    if (!emblaApi) return
+    setScrollSnaps(emblaApi.scrollSnapList())
+  }, [emblaApi])
+
+  useEffect(() => {
+    if (!emblaApi) return
+    onInit()
+    onSelect()
+    emblaApi.on('select', onSelect)
+    emblaApi.on('reInit', onInit)
+  }, [emblaApi, onInit, onSelect])
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        scrollPrev()
+      } else if (e.key === 'ArrowRight') {
+        scrollNext()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [scrollPrev, scrollNext])
 
   return (
     <section id="experience" className="section-spacing">
@@ -243,7 +292,7 @@ export function Experience() {
         <SectionHeading title={EXPERIENCE_CONTENT.heading.title} subtitle={EXPERIENCE_CONTENT.heading.subtitle} />
 
         {/* Product Highlights */}
-        <div className="content-spacing mb-20">
+        <div className="content-spacing mb-16">
           <div className="flex items-center justify-between mb-6">
             <div className="flex items-center gap-2">
               <Briefcase className="h-4 w-4 text-primary" />
@@ -254,16 +303,16 @@ export function Experience() {
             <div className="flex items-center gap-2">
               <button
                 type="button"
-                onClick={prevSlide}
-                className="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+                onClick={scrollPrev}
+                className="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Previous project"
               >
                 <ArrowRight className="h-4 w-4 rotate-180" />
               </button>
               <button
                 type="button"
-                onClick={nextSlide}
-                className="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+                onClick={scrollNext}
+                className="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Next project"
               >
                 <ArrowRight className="h-4 w-4" />
@@ -271,17 +320,15 @@ export function Experience() {
             </div>
           </div>
 
-          {/* Carousel Container */}
-          <div className="relative overflow-hidden">
-            <div
-              className="flex transition-transform duration-500 ease-out gap-6"
-              style={{ transform: `translateX(-${currentSlide * (100 / PROJECT_HIGHLIGHTS.length)}%)` }}
-            >
-              {PROJECT_HIGHLIGHTS.map((project) => (
-                <div
-                  key={project.name}
-                  className="min-w-[calc(100%-1.5rem)] sm:min-w-[calc(50%-1.5rem)] lg:min-w-[calc(25%-1.125rem)] flex-shrink-0"
-                >
+          {/* Embla Carousel */}
+          <div className="py-4 -my-4">
+            <div className="overflow-hidden -mx-3" ref={emblaRef}>
+              <div className="flex py-2">
+                {PROJECT_HIGHLIGHTS.map((project) => (
+                  <div
+                    key={project.name}
+                    className="flex-none w-full sm:w-1/2 lg:w-1/3 min-w-0 px-3"
+                  >
                   <ProjectCard
                     project={project}
                     onClick={() => setSelectedProject(project)}
@@ -290,23 +337,26 @@ export function Experience() {
               ))}
             </div>
           </div>
+        </div>
 
           {/* Carousel Dots */}
-          <div className="flex items-center justify-center gap-2 mt-6">
-            {PROJECT_HIGHLIGHTS.map((_, idx) => (
-              <button
-                key={idx}
-                type="button"
-                onClick={() => setCurrentSlide(idx)}
-                className={`rounded-full transition-all ${
-                  currentSlide === idx
-                    ? "w-6 h-2 bg-primary shadow-md shadow-primary/30"
-                    : "w-2 h-2 bg-border hover:bg-muted-foreground"
-                }`}
-                aria-label={`Go to project ${idx + 1}`}
-              />
-            ))}
-          </div>
+          {scrollSnaps.length > 1 && (
+            <div className="flex items-center justify-center gap-2 mt-8">
+              {scrollSnaps.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => scrollTo(idx)}
+                  className={`rounded-full transition-all ${
+                    selectedIndex === idx
+                      ? "w-6 h-2 bg-primary shadow-md shadow-primary/30"
+                      : "w-2 h-2 bg-border hover:bg-muted-foreground"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Work History */}

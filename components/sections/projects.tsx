@@ -1,10 +1,11 @@
 "use client"
 
-import { useState } from "react"
+import { useState, useCallback, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { PROJECTS, PROJECTS_CONTENT, type Project } from "@/lib/constants"
-import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
+import { ArrowLeft, ArrowRight, ExternalLink, Briefcase } from "lucide-react"
+import useEmblaCarousel from "embla-carousel-react"
 
 function GitHubIcon({ className }: { className?: string }) {
   return (
@@ -59,91 +60,133 @@ function ProjectCard({ project }: { project: Project }) {
   )
 }
 
-function CarouselControls({ current, total, onPrev, onNext, onDotClick }: {
-  current: number
-  total: number
-  onPrev: () => void
-  onNext: () => void
-  onDotClick: (index: number) => void
-}) {
-  return (
-    <div className="flex items-center justify-center gap-4 mt-8">
-      <button
-        type="button"
-        onClick={onPrev}
-        className="w-10 h-10 rounded-full glass flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/20 transition-all"
-      >
-        <ArrowLeft className="h-4 w-4" />
-      </button>
-
-      <div className="flex items-center gap-1.5">
-        {Array.from({ length: total }).map((_, idx) => (
-          <button
-            type="button"
-            key={idx}
-            onClick={() => onDotClick(idx)}
-            className={`rounded-full transition-all ${
-              current === idx
-                ? "w-6 h-2 bg-primary shadow-md shadow-primary/30"
-                : "w-2 h-2 bg-border hover:bg-muted-foreground"
-            }`}
-          />
-        ))}
-      </div>
-
-      <button
-        type="button"
-        onClick={onNext}
-        className="w-10 h-10 rounded-full glass flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/20 transition-all"
-      >
-        <ArrowRight className="h-4 w-4" />
-      </button>
-    </div>
-  )
-}
-
 export function Projects() {
-  const [current, setCurrent] = useState(0)
-  const total = PROJECTS.length
+  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
 
-  const prev = () => setCurrent((c) => (c - 1 + total) % total)
-  const next = () => setCurrent((c) => (c + 1) % total)
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: false,
+    align: 'start',
+    slidesToScroll: 1,
+    containScroll: 'trimSnaps',
+    dragFree: false,
+  })
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev()
+  }, [emblaApi])
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext()
+  }, [emblaApi])
+
+  const scrollTo = useCallback(
+    (index: number) => {
+      if (emblaApi) emblaApi.scrollTo(index)
+    },
+    [emblaApi]
+  )
+
+  const onSelect = useCallback(() => {
+    if (!emblaApi) return
+    setSelectedIndex(emblaApi.selectedScrollSnap())
+  }, [emblaApi])
+
+  const onInit = useCallback(() => {
+    if (!emblaApi) return
+    setScrollSnaps(emblaApi.scrollSnapList())
+  }, [emblaApi])
+
+  useEffect(() => {
+    if (!emblaApi) return
+    onInit()
+    onSelect()
+    emblaApi.on('select', onSelect)
+    emblaApi.on('reInit', onInit)
+  }, [emblaApi, onInit, onSelect])
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'ArrowLeft') {
+        scrollPrev()
+      } else if (e.key === 'ArrowRight') {
+        scrollNext()
+      }
+    }
+
+    window.addEventListener('keydown', handleKeyDown)
+    return () => window.removeEventListener('keydown', handleKeyDown)
+  }, [scrollPrev, scrollNext])
 
   return (
     <section id="projects" className="section-spacing bg-muted/20">
       <div className="section-container">
         <SectionHeading title={PROJECTS_CONTENT.heading.title} subtitle={PROJECTS_CONTENT.heading.subtitle} />
 
-        {/* Desktop Grid */}
-        <div className="hidden lg:grid lg:grid-cols-3 gap-6 content-spacing p-2 -m-2">
-          {PROJECTS.map((project) => (
-            <ProjectCard key={project.id} project={project} />
-          ))}
+        <div className="content-spacing">
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-2">
+              <Briefcase className="h-4 w-4 text-primary" />
+              <h3 className="font-semibold">Projects | Built</h3>
+            </div>
+
+            {/* Carousel Navigation */}
+            <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={scrollPrev}
+              className="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+              aria-label="Previous project"
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </button>
+            <button
+              type="button"
+              onClick={scrollNext}
+              className="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+              aria-label="Next project"
+            >
+              <ArrowRight className="h-4 w-4" />
+            </button>
+          </div>
         </div>
 
-        {/* Mobile Carousel */}
-        <div className="lg:hidden content-spacing">
-          <div className="overflow-hidden rounded-xl">
-            <div
-              className="flex transition-transform duration-500 ease-in-out"
-              style={{ transform: `translateX(-${current * 100}%)` }}
-            >
-              {PROJECTS.map((project) => (
-                <div key={project.id} className="w-full shrink-0 px-1">
+          {/* Embla Carousel - All Screens */}
+          <div className="py-4 -my-4">
+            <div className="overflow-hidden -mx-3" ref={emblaRef}>
+              <div className="flex py-2">
+                {PROJECTS.map((project) => (
+                  <div
+                    key={project.id}
+                    className="flex-none w-full sm:w-1/2 lg:w-1/3 min-w-0 px-3"
+                  >
                   <ProjectCard project={project} />
                 </div>
               ))}
             </div>
           </div>
-
-          <CarouselControls
-            current={current}
-            total={total}
-            onPrev={prev}
-            onNext={next}
-            onDotClick={setCurrent}
-          />
         </div>
+
+        {/* Carousel Dots */}
+        {scrollSnaps.length > 1 && (
+          <div className="flex items-center justify-center gap-2 mt-8">
+              {scrollSnaps.map((_, idx) => (
+                <button
+                  key={idx}
+                  type="button"
+                  onClick={() => scrollTo(idx)}
+                  className={`rounded-full transition-all ${
+                    selectedIndex === idx
+                      ? "w-6 h-2 bg-primary shadow-md shadow-primary/30"
+                      : "w-2 h-2 bg-border hover:bg-muted-foreground"
+                  }`}
+                  aria-label={`Go to slide ${idx + 1}`}
+                />
+              ))}
+          </div>
+        )}
+      </div>
       </div>
     </section>
   )

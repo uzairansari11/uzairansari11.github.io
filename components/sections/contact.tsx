@@ -6,6 +6,7 @@ import { SectionHeading } from "@/components/ui/section-heading"
 import { PERSONAL_INFO, CONTACT_CONTENT } from "@/lib/constants"
 import { Mail, MapPin, Phone, Send, AlertCircle } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
+import { CopyButton } from "@/components/ui/copy-button"
 
 const LocationMap = dynamic(() => import("@/components/ui/location-map").then(m => m.LocationMap), { ssr: false })
 
@@ -28,6 +29,7 @@ type ContactInfo = {
 function ContactInfoCard({ info }: { info: ContactInfo }) {
   const Icon = ICON_MAP[info.icon as keyof typeof ICON_MAP]
   const Component = info.clickable ? "a" : "div"
+  const isEmail = info.icon === "Mail"
 
   return (
     <Component
@@ -43,11 +45,14 @@ function ContactInfoCard({ info }: { info: ContactInfo }) {
       </div>
       <div className="min-w-0 flex-1">
         <p className="text-[10px] text-muted-foreground mb-0.5 uppercase tracking-wide font-medium">{info.label}</p>
-        <p className={`text-xs font-semibold leading-tight ${
-          info.clickable ? "group-hover:text-primary transition-colors" : ""
-        }`}>
-          {info.value}
-        </p>
+        <div className="flex items-center justify-between gap-2">
+          <p className={`text-xs font-semibold leading-tight ${
+            info.clickable ? "group-hover:text-primary transition-colors" : ""
+          }`}>
+            {info.value}
+          </p>
+          {isEmail && <CopyButton text={info.value} className="text-muted-foreground hover:text-primary" />}
+        </div>
       </div>
     </Component>
   )

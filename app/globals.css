@@ -52,10 +52,18 @@
 
   html {
     @apply overflow-x-hidden bg-background;
+    scroll-behavior: smooth;
   }
 
   body {
     @apply bg-background text-foreground antialiased overflow-x-hidden;
+  }
+
+  /* Smooth scroll for internal links */
+  @media (prefers-reduced-motion: no-preference) {
+    html {
+      scroll-behavior: smooth;
+    }
   }
 
   /* GPU acceleration for smooth scrolling */
@@ -129,16 +137,18 @@
   backdrop-filter: blur(16px) saturate(180%);
   -webkit-backdrop-filter: blur(16px) saturate(180%);
   border: 1px solid rgba(255, 255, 255, 0.03);
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
 }
 
 .glass-card:hover {
-  background: rgba(255, 255, 255, 0.04);
-  border-color: rgba(255, 255, 255, 0.06);
-  transform: translateY(-4px) scale(1.02);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.08);
+  transform: translateY(-6px) scale(1.01);
   box-shadow:
-    0 20px 60px 0 rgba(0, 0, 0, 0.5),
-    inset 0 1px 0 0 rgba(255, 255, 255, 0.04);
+    0 25px 70px 0 rgba(0, 0, 0, 0.6),
+    inset 0 1px 0 0 rgba(255, 255, 255, 0.06),
+    0 0 40px 0 rgba(255, 255, 255, 0.02);
 }
 
 /* Gradient text utility - static for better performance */

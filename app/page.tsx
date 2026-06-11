@@ -8,6 +8,7 @@ import { Experience } from "@/components/sections/experience"
 import { Hero } from "@/components/sections/hero"
 import { Projects } from "@/components/sections/projects"
 import { Skills } from "@/components/sections/skills"
+import { BackToTop } from "@/components/ui/back-to-top"
 
 // Lazy load non-critical components for better initial load performance
 const GitHubStats = dynamic(() => import("@/components/github-stats").then(m => ({ default: m.GitHubStats })), {
@@ -25,6 +26,7 @@ export default function Home() {
       <Skills />
       <GitHubStats />
       <Contact />
+      <BackToTop />
     </AnimationProvider>
   )
 }
