@@ -178,11 +178,11 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="py-20 md:py-32">
-      <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+    <section id="contact" className="section-spacing">
+      <div className="section-container">
         <SectionHeading title={CONTACT_CONTENT.heading.title} subtitle={CONTACT_CONTENT.heading.subtitle} />
 
-        <div className="grid gap-8 lg:grid-cols-3 mt-12">
+        <div className="grid gap-8 lg:grid-cols-3 content-spacing">
           {/* Contact Form */}
           <div className="lg:col-span-2">
             <div className="rounded-2xl glass-card p-5 sm:p-6">

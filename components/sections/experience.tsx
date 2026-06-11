@@ -217,12 +217,12 @@ export function Experience() {
   const [openExp, setOpenExp] = useState<string>("exp-1")
 
   return (
-    <section id="experience" className="py-20 md:py-32">
-      <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+    <section id="experience" className="section-spacing">
+      <div className="section-container">
         <SectionHeading title={EXPERIENCE_CONTENT.heading.title} subtitle={EXPERIENCE_CONTENT.heading.subtitle} />
 
         {/* Product Highlights */}
-        <div className="mb-20 mt-16">
+        <div className="content-spacing mb-20">
           <div className="flex items-center gap-2 mb-6">
             <Briefcase className="h-4 w-4 text-primary" />
             <h3 className="font-semibold">{EXPERIENCE_CONTENT.sections.products}</h3>

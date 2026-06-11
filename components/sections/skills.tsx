@@ -65,23 +65,23 @@ export function Skills() {
   const allIcons = [...SKILLS_WITH_ICONS, ...TOOLS]
 
   return (
-    <section id="skills" className="py-20 md:py-32">
-      <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+    <section id="skills" className="section-spacing">
+      <div className="section-container">
         <SectionHeading title={SKILLS_CONTENT.heading.title} subtitle={SKILLS_CONTENT.heading.subtitle} />
 
         {/* Scrolling Icon Marquee */}
-        <div className="relative overflow-hidden mb-16 mt-16">
+        <div className="relative overflow-hidden mb-12 content-spacing">
           <div className="flex gap-10 animate-marquee">
             {[...allIcons, ...allIcons].map((item, i) => (
               <SkillIcon key={`${item.id}-${i}`} skill={item} />
             ))}
           </div>
-          <div className="absolute inset-y-0 left-0 w-20 bg-gradient-to-r from-background to-transparent pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-20 bg-gradient-to-l from-background to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent pointer-events-none" />
         </div>
 
         {/* Category Grid */}
-        <div className="grid gap-6 sm:grid-cols-2 p-2 -m-2">
+        <div className="grid gap-5 sm:grid-cols-2 p-2 -m-2">
           {SKILL_CATEGORIES.map((category, idx) => (
             <SkillCategory key={category.title} category={category} index={idx} />
           ))}

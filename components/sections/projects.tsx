@@ -16,8 +16,8 @@ function GitHubIcon({ className }: { className?: string }) {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full min-h-[400px]">
-      <div className="h-40 sm:h-44 shrink-0 overflow-hidden bg-muted relative">
+    <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full min-h-[420px]">
+      <div className="h-44 sm:h-48 shrink-0 overflow-hidden bg-muted relative">
         <img
           src={project.image || "/placeholder.svg"}
           alt={project.title}
@@ -25,32 +25,32 @@ function ProjectCard({ project }: { project: Project }) {
         />
         <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-0 hover:opacity-100 transition-opacity" />
       </div>
-      <div className="p-4 flex flex-col flex-1">
-        <h3 className="font-semibold mb-1 text-sm sm:text-base">{project.title}</h3>
-        <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed line-clamp-2 mb-3 flex-1">
+      <div className="p-5 sm:p-6 flex flex-col flex-1 space-y-3">
+        <h3 className="font-semibold text-base sm:text-lg">{project.title}</h3>
+        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 flex-1">
           {project.description}
         </p>
-        <div className="flex flex-wrap gap-1 mb-3">
+        <div className="flex flex-wrap gap-2">
           {project.tags.slice(0, 4).map((tag) => (
-            <span key={tag} className="text-[10px] bg-primary/10 text-primary rounded-full px-2 py-0.5 font-medium">
+            <span key={tag} className="text-xs bg-primary/10 text-primary rounded-full px-2.5 py-1 font-medium">
               {tag}
             </span>
           ))}
           {project.tags.length > 4 && (
-            <span className="text-[10px] bg-secondary text-secondary-foreground rounded-full px-2 py-0.5">
+            <span className="text-xs bg-secondary text-secondary-foreground rounded-full px-2.5 py-1">
               +{project.tags.length - 4}
             </span>
           )}
         </div>
-        <div className="flex gap-2 mt-auto">
-          <Button size="sm" className="rounded-full flex-1 h-8 text-xs" asChild>
+        <div className="flex gap-3 mt-auto pt-2">
+          <Button size="sm" className="rounded-full flex-1 h-9 text-sm" asChild>
             <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="mr-1 h-3 w-3" /> Demo
+              <ExternalLink className="mr-1.5 h-3.5 w-3.5" /> Demo
             </a>
           </Button>
-          <Button size="sm" variant="outline" className="rounded-full flex-1 h-8 text-xs" asChild>
+          <Button size="sm" variant="outline" className="rounded-full flex-1 h-9 text-sm" asChild>
             <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-              <GitHubIcon className="mr-1 h-3 w-3" /> Code
+              <GitHubIcon className="mr-1.5 h-3.5 w-3.5" /> Code
             </a>
           </Button>
         </div>
@@ -110,26 +110,26 @@ export function Projects() {
   const next = () => setCurrent((c) => (c + 1) % total)
 
   return (
-    <section id="projects" className="py-20 md:py-32 bg-muted/20">
-      <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
+    <section id="projects" className="section-spacing bg-muted/20">
+      <div className="section-container">
         <SectionHeading title={PROJECTS_CONTENT.heading.title} subtitle={PROJECTS_CONTENT.heading.subtitle} />
 
         {/* Desktop Grid */}
-        <div className="hidden lg:grid lg:grid-cols-3 gap-6 mt-16 p-2 -m-2">
+        <div className="hidden lg:grid lg:grid-cols-3 gap-6 content-spacing p-2 -m-2">
           {PROJECTS.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
 
         {/* Mobile Carousel */}
-        <div className="lg:hidden">
+        <div className="lg:hidden content-spacing">
           <div className="overflow-hidden rounded-xl">
             <div
               className="flex transition-transform duration-500 ease-in-out"
               style={{ transform: `translateX(-${current * 100}%)` }}
             >
               {PROJECTS.map((project) => (
-                <div key={project.id} className="w-full shrink-0">
+                <div key={project.id} className="w-full shrink-0 px-1">
                   <ProjectCard project={project} />
                 </div>
               ))}

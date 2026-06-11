@@ -43,7 +43,7 @@ export function Hero() {
   }, [])
 
   return (
-    <section ref={sectionRef} id="home" className="relative min-h-screen flex items-center pt-24 pb-16">
+    <section ref={sectionRef} id="home" className="relative min-h-screen flex items-center pt-24 pb-16 lg:pb-20">
       {/* Background Effects */}
       <div className="absolute inset-0 -z-10 overflow-hidden">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/8 rounded-full blur-3xl" />
@@ -51,7 +51,7 @@ export function Hero() {
         <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff08_1px,transparent_1px),linear-gradient(to_bottom,#ffffff08_1px,transparent_1px)] bg-[size:64px_64px]" />
       </div>
 
-      <div className="container mx-auto px-6 lg:px-8 max-w-7xl w-full">
+      <div className="section-container w-full">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
           {/* Left Column */}
           <div className="space-y-6 text-center lg:text-left">

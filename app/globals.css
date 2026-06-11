@@ -34,6 +34,16 @@
     --radius: 0.5rem;
     --glass-bg: 0 0% 5%;
     --glass-border: 0 0% 20%;
+
+    /* Consistent spacing system */
+    --section-spacing: 6rem;
+    --section-spacing-mobile: 4rem;
+    --content-spacing: 4rem;
+    --content-spacing-mobile: 2.5rem;
+    --card-padding: 2rem;
+    --card-padding-mobile: 1.5rem;
+    --element-gap: 1.5rem;
+    --element-gap-mobile: 1rem;
   }
 }
   * {
@@ -64,6 +74,32 @@
   }
   .in-view {
     animation-play-state: running;
+  }
+
+  /* Consistent spacing utilities */
+  .section-spacing {
+    @apply py-16 md:py-24;
+  }
+
+  .content-spacing {
+    @apply mt-12 md:mt-16;
+  }
+
+  .card-padding {
+    @apply p-6 md:p-8;
+  }
+
+  .element-gap {
+    @apply gap-4 md:gap-6;
+  }
+
+  .text-spacing {
+    @apply space-y-4 md:space-y-6;
+  }
+
+  /* Container with consistent padding */
+  .section-container {
+    @apply container mx-auto px-6 lg:px-8 max-w-7xl;
   }
 }
 
