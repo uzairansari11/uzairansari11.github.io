@@ -1,10 +1,10 @@
 "use client"
 
-import { useEffect, useState } from "react"
-import { GlassCard } from "@/components/ui/glass-card"
 import { AnimatedCounter } from "@/components/ui/animated-counter"
-import { Github, Star, GitFork, Code, Users } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { GlassCard } from "@/components/ui/glass-card"
+import { Code, GitFork, Github, Star, Users } from "lucide-react"
+import { useEffect, useState } from "react"
 
 const fallbackStats = [
   { label: "Stars", value: 3, icon: Star },
@@ -36,7 +36,7 @@ export function GitHubStats() {
 
   return (
     <div className="py-12 sm:py-16">
-      <div className="container px-4 md:px-6">
+      <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
         <div className="text-center mb-10">
           <h3 className="text-2xl font-bold mb-2">GitHub Activity</h3>
           <p className="text-sm text-muted-foreground">Open source contributions and coding activity</p>

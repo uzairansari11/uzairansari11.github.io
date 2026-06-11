@@ -6,11 +6,11 @@ import { EXPERIENCES, PROJECT_HIGHLIGHTS, EXPERIENCE_CONTENT, type ProjectHighli
 import { Briefcase, Calendar, X, ArrowRight, ExternalLink, BarChart3, Package, PhoneCall, ChevronDown } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 
-const projectIcons: Record<string, typeof BarChart3> = {
-  "Nourma": BarChart3,
-  "Lineomatic": Package,
-  "Pulse": PhoneCall,
-}
+const PROJECT_ICONS = {
+  Nourma: BarChart3,
+  Lineomatic: Package,
+  Pulse: PhoneCall,
+} as const
 
 function ProjectModal({ project, onClose }: { project: ProjectHighlight; onClose: () => void }) {
   return (
@@ -29,16 +29,22 @@ function ProjectModal({ project, onClose }: { project: ProjectHighlight; onClose
         className="bg-card border rounded-2xl shadow-2xl w-full max-w-2xl max-h-[85vh] flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
+        {/* Modal Header */}
         <div className="bg-card border-b px-6 py-4 flex items-start justify-between rounded-t-2xl shrink-0">
           <div>
             <h3 className="text-lg font-bold">{project.name}</h3>
             <p className="text-sm text-primary font-medium">{project.tagline}</p>
           </div>
-          <button type="button" onClick={onClose} className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors shrink-0">
+          <button
+            type="button"
+            onClick={onClose}
+            className="w-8 h-8 rounded-full flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors shrink-0"
+          >
             <X className="h-4 w-4" />
           </button>
         </div>
 
+        {/* Modal Content */}
         <div className="px-6 py-5 space-y-5 overflow-y-auto">
           <p className="text-sm text-muted-foreground leading-relaxed">{project.description}</p>
 
@@ -58,7 +64,8 @@ function ProjectModal({ project, onClose }: { project: ProjectHighlight; onClose
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
               {project.keyFeatures.map((f, i) => (
                 <div key={i} className="flex items-start gap-2 text-sm">
-                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />{f}
+                  <span className="w-1.5 h-1.5 rounded-full bg-primary mt-1.5 shrink-0" />
+                  {f}
                 </div>
               ))}
             </div>
@@ -69,7 +76,8 @@ function ProjectModal({ project, onClose }: { project: ProjectHighlight; onClose
             <ul className="space-y-2.5">
               {project.contributions.map((c, i) => (
                 <li key={i} className="text-sm flex gap-2 leading-relaxed">
-                  <ArrowRight className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />{c}
+                  <ArrowRight className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
+                  {c}
                 </li>
               ))}
             </ul>
@@ -79,13 +87,128 @@ function ProjectModal({ project, onClose }: { project: ProjectHighlight; onClose
             <h4 className="text-xs font-semibold uppercase tracking-wider text-muted-foreground mb-3">Tech Stack</h4>
             <div className="flex flex-wrap gap-1.5">
               {project.techStack.map((tech) => (
-                <span key={tech} className="text-xs bg-primary/10 text-primary rounded-full px-2.5 py-1 font-medium">{tech}</span>
+                <span key={tech} className="text-xs bg-primary/10 text-primary rounded-full px-2.5 py-1 font-medium">
+                  {tech}
+                </span>
               ))}
             </div>
           </div>
         </div>
       </motion.div>
     </motion.div>
+  )
+}
+
+function ProjectCard({ project, onClick }: { project: ProjectHighlight; onClick: () => void }) {
+  const Icon = PROJECT_ICONS[project.name as keyof typeof PROJECT_ICONS] || BarChart3
+
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      className="group text-left border border-border/50 bg-card rounded-2xl p-6 transition-all hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+    >
+      <div className="flex items-center gap-2.5 mb-2">
+        <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
+          <Icon className="h-4 w-4 text-primary" />
+        </div>
+        <span className="font-bold text-sm">{project.name}</span>
+      </div>
+      <p className="text-xs text-primary font-medium mb-2">{project.tagline}</p>
+      <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 mb-3">{project.description}</p>
+
+      {project.metrics && (
+        <div className="grid grid-cols-3 gap-2 mb-3 pt-3 border-t border-border/30">
+          {project.metrics.map((m) => (
+            <div key={m.label} className="text-center">
+              <span className="block text-sm font-bold text-primary">{m.value}</span>
+              <span className="text-[10px] text-muted-foreground leading-tight">{m.label}</span>
+            </div>
+          ))}
+        </div>
+      )}
+
+      <span className="inline-flex items-center gap-1 text-xs text-primary font-medium group-hover:gap-2 transition-all">
+        View details <ExternalLink className="h-3 w-3" />
+      </span>
+    </button>
+  )
+}
+
+function ExperienceAccordion({ experience, isOpen, onToggle }: {
+  experience: typeof EXPERIENCES[0]
+  isOpen: boolean
+  onToggle: () => void
+}) {
+  return (
+    <div className="relative flex gap-4 sm:gap-6">
+      {/* Timeline Icon */}
+      <div className="hidden sm:flex flex-col items-center shrink-0">
+        <div className={`w-[31px] h-[31px] rounded-full bg-card border-2 flex items-center justify-center z-10 transition-all ${
+          isOpen ? "border-primary shadow-md shadow-primary/20" : "border-border"
+        }`}>
+          <Briefcase className={`h-3.5 w-3.5 transition-colors ${isOpen ? "text-primary" : "text-muted-foreground"}`} />
+        </div>
+      </div>
+
+      {/* Accordion Card */}
+      <div className={`flex-1 rounded-xl border bg-card overflow-hidden transition-all ${
+        isOpen ? "border-primary/30 shadow-lg shadow-primary/5" : "border-border/50 hover:border-border"
+      }`}>
+        <button
+          type="button"
+          onClick={onToggle}
+          className="w-full text-left p-5 sm:p-6 flex items-start sm:items-center justify-between gap-3"
+        >
+          <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 flex-1 min-w-0">
+            <div className="min-w-0">
+              <h3 className="font-bold text-base">{experience.position}</h3>
+              <p className="text-primary text-sm font-semibold">{experience.company}</p>
+            </div>
+            <span className="inline-flex items-center gap-1.5 text-xs bg-primary/10 text-primary rounded-full px-3 py-1.5 shrink-0 w-fit font-medium">
+              <Calendar className="h-3 w-3" /> {experience.duration}
+            </span>
+          </div>
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.2 }}
+            className="shrink-0 mt-1"
+          >
+            <ChevronDown className="h-5 w-5 text-muted-foreground" />
+          </motion.div>
+        </button>
+
+        <AnimatePresence initial={false}>
+          {isOpen && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              transition={{ duration: 0.3, ease: "easeInOut" }}
+            >
+              <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-0">
+                <div className="h-px bg-border/50 mb-5" />
+                <ul className="space-y-2.5 mb-5">
+                  {experience.description.map((item, j) => (
+                    <li key={j} className="text-sm text-muted-foreground flex gap-2.5 leading-relaxed">
+                      <ArrowRight className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+                <div className="flex flex-wrap gap-1.5">
+                  {experience.technologies.map((tech) => (
+                    <span key={tech} className="text-[11px] bg-primary/10 text-primary rounded-full px-2.5 py-1 font-medium">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </div>
   )
 }
 
@@ -105,45 +228,18 @@ export function Experience() {
             <h3 className="font-semibold">{EXPERIENCE_CONTENT.sections.products}</h3>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {PROJECT_HIGHLIGHTS.map((project) => (
-              <button
+              <ProjectCard
                 key={project.name}
-                type="button"
+                project={project}
                 onClick={() => setSelectedProject(project)}
-                className="group text-left border border-border/50 bg-card rounded-2xl p-6 transition-all duration-300 hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
-              >
-                <div className="flex items-center gap-2.5 mb-2">
-                  {(() => { const Icon = projectIcons[project.name] || BarChart3; return (
-                    <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-                      <Icon className="h-4 w-4 text-primary" />
-                    </div>
-                  ) })()}
-                  <span className="font-bold text-sm">{project.name}</span>
-                </div>
-                <p className="text-xs text-primary font-medium mb-2">{project.tagline}</p>
-                <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 mb-3">{project.description}</p>
-
-                {project.metrics && (
-                  <div className="grid grid-cols-3 gap-2 mb-3 pt-3 border-t border-border/30">
-                    {project.metrics.map((m) => (
-                      <div key={m.label} className="text-center">
-                        <span className="block text-sm font-bold text-primary">{m.value}</span>
-                        <span className="text-[10px] text-muted-foreground leading-tight">{m.label}</span>
-                      </div>
-                    ))}
-                  </div>
-                )}
-
-                <span className="inline-flex items-center gap-1 text-xs text-primary font-medium group-hover:gap-2 transition-all">
-                  View details <ExternalLink className="h-3 w-3" />
-                </span>
-              </button>
+              />
             ))}
           </div>
         </div>
 
-        {/* Work history — accordion */}
+        {/* Work History */}
         <div className="flex items-center gap-2 mb-6">
           <Briefcase className="h-4 w-4 text-primary" />
           <h3 className="font-semibold">{EXPERIENCE_CONTENT.sections.workHistory}</h3>
@@ -153,72 +249,14 @@ export function Experience() {
           <div className="absolute left-[15px] top-2 bottom-2 w-px bg-gradient-to-b from-primary/40 via-border to-border hidden sm:block" />
 
           <div className="space-y-4">
-            {EXPERIENCES.map((exp) => {
-              const isOpen = openExp === exp.id
-              return (
-                <div key={exp.id} className="relative flex gap-4 sm:gap-6">
-                  <div className="hidden sm:flex flex-col items-center shrink-0">
-                    <div className={`w-[31px] h-[31px] rounded-full bg-card border-2 flex items-center justify-center z-10 transition-all duration-300 ${isOpen ? "border-primary shadow-md shadow-primary/20" : "border-border"}`}>
-                      <Briefcase className={`h-3.5 w-3.5 transition-colors ${isOpen ? "text-primary" : "text-muted-foreground"}`} />
-                    </div>
-                  </div>
-
-                  <div className={`flex-1 rounded-xl border bg-card overflow-hidden transition-all duration-300 ${isOpen ? "border-primary/30 shadow-lg shadow-primary/5" : "border-border/50 hover:border-border"}`}>
-                    <button
-                      type="button"
-                      onClick={() => setOpenExp(isOpen ? "" : exp.id)}
-                      className="w-full text-left p-5 sm:p-6 flex items-start sm:items-center justify-between gap-3"
-                    >
-                      <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 flex-1 min-w-0">
-                        <div className="min-w-0">
-                          <h3 className="font-bold text-base">{exp.position}</h3>
-                          <p className="text-primary text-sm font-semibold">{exp.company}</p>
-                        </div>
-                        <span className="inline-flex items-center gap-1.5 text-xs bg-primary/10 text-primary rounded-full px-3 py-1.5 shrink-0 w-fit font-medium">
-                          <Calendar className="h-3 w-3" /> {exp.duration}
-                        </span>
-                      </div>
-                      <motion.div
-                        animate={{ rotate: isOpen ? 180 : 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="shrink-0 mt-1"
-                      >
-                        <ChevronDown className="h-5 w-5 text-muted-foreground" />
-                      </motion.div>
-                    </button>
-
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.3, ease: "easeInOut" }}
-                          className="overflow-hidden"
-                        >
-                          <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-0">
-                            <div className="h-px bg-border/50 mb-5" />
-                            <ul className="space-y-2.5 mb-5">
-                              {exp.description.map((item, j) => (
-                                <li key={j} className="text-sm text-muted-foreground flex gap-2.5 leading-relaxed">
-                                  <ArrowRight className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
-                                  {item}
-                                </li>
-                              ))}
-                            </ul>
-                            <div className="flex flex-wrap gap-1.5">
-                              {exp.technologies.map((tech) => (
-                                <span key={tech} className="text-[11px] bg-primary/10 text-primary rounded-full px-2.5 py-1 font-medium">{tech}</span>
-                              ))}
-                            </div>
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </div>
-                </div>
-              )
-            })}
+            {EXPERIENCES.map((exp) => (
+              <ExperienceAccordion
+                key={exp.id}
+                experience={exp}
+                isOpen={openExp === exp.id}
+                onToggle={() => setOpenExp(openExp === exp.id ? "" : exp.id)}
+              />
+            ))}
           </div>
         </div>
       </div>

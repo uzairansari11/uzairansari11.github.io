@@ -16,14 +16,14 @@ function GitHubIcon({ className }: { className?: string }) {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="bg-card rounded-2xl border border-border/50 overflow-hidden flex flex-col h-full min-h-[400px] hover:border-primary/30 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5">
+    <div className="bg-card rounded-2xl border border-border/50 overflow-hidden flex flex-col h-full min-h-[400px] hover:border-primary/30 transition-all hover:shadow-xl hover:shadow-primary/5">
       <div className="h-40 sm:h-44 shrink-0 overflow-hidden bg-muted relative">
         <img
           src={project.image || "/placeholder.svg"}
           alt={project.title}
           className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-0 hover:opacity-100 transition-opacity" />
       </div>
       <div className="p-4 flex flex-col flex-1">
         <h3 className="font-semibold mb-1 text-sm sm:text-base">{project.title}</h3>
@@ -59,6 +59,49 @@ function ProjectCard({ project }: { project: Project }) {
   )
 }
 
+function CarouselControls({ current, total, onPrev, onNext, onDotClick }: {
+  current: number
+  total: number
+  onPrev: () => void
+  onNext: () => void
+  onDotClick: (index: number) => void
+}) {
+  return (
+    <div className="flex items-center justify-center gap-4 mt-8">
+      <button
+        type="button"
+        onClick={onPrev}
+        className="w-10 h-10 rounded-full border bg-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all"
+      >
+        <ArrowLeft className="h-4 w-4" />
+      </button>
+
+      <div className="flex items-center gap-1.5">
+        {Array.from({ length: total }).map((_, idx) => (
+          <button
+            type="button"
+            key={idx}
+            onClick={() => onDotClick(idx)}
+            className={`rounded-full transition-all ${
+              current === idx
+                ? "w-6 h-2 bg-primary shadow-md shadow-primary/30"
+                : "w-2 h-2 bg-border hover:bg-muted-foreground"
+            }`}
+          />
+        ))}
+      </div>
+
+      <button
+        type="button"
+        onClick={onNext}
+        className="w-10 h-10 rounded-full border bg-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all"
+      >
+        <ArrowRight className="h-4 w-4" />
+      </button>
+    </div>
+  )
+}
+
 export function Projects() {
   const [current, setCurrent] = useState(0)
   const total = PROJECTS.length
@@ -71,14 +114,14 @@ export function Projects() {
       <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
         <SectionHeading title={PROJECTS_CONTENT.heading.title} subtitle={PROJECTS_CONTENT.heading.subtitle} />
 
-        {/* Desktop: static 3-column grid */}
+        {/* Desktop Grid */}
         <div className="hidden lg:grid lg:grid-cols-3 gap-6 mt-16">
           {PROJECTS.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}
         </div>
 
-        {/* Mobile/tablet: transform-based carousel */}
+        {/* Mobile Carousel */}
         <div className="lg:hidden">
           <div className="overflow-hidden rounded-xl">
             <div
@@ -86,45 +129,20 @@ export function Projects() {
               style={{ transform: `translateX(-${current * 100}%)` }}
             >
               {PROJECTS.map((project) => (
-                <div key={project.id} className="w-full shrink-0 pr-0">
+                <div key={project.id} className="w-full shrink-0">
                   <ProjectCard project={project} />
                 </div>
               ))}
             </div>
           </div>
 
-          <div className="flex items-center justify-center gap-4 mt-8">
-            <button
-              type="button"
-              onClick={prev}
-              className="w-10 h-10 rounded-full border bg-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-300"
-            >
-              <ArrowLeft className="h-4 w-4" />
-            </button>
-
-            <div className="flex items-center gap-1.5">
-              {PROJECTS.map((_, idx) => (
-                <button
-                  type="button"
-                  key={idx}
-                  onClick={() => setCurrent(idx)}
-                  className={`rounded-full transition-all duration-300 ${
-                    current === idx
-                      ? "w-6 h-2 bg-primary shadow-md shadow-primary/30"
-                      : "w-2 h-2 bg-border hover:bg-muted-foreground"
-                  }`}
-                />
-              ))}
-            </div>
-
-            <button
-              type="button"
-              onClick={next}
-              className="w-10 h-10 rounded-full border bg-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all duration-300"
-            >
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          </div>
+          <CarouselControls
+            current={current}
+            total={total}
+            onPrev={prev}
+            onNext={next}
+            onDotClick={setCurrent}
+          />
         </div>
       </div>
     </section>

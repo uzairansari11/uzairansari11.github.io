@@ -354,7 +354,7 @@ export const EXPERIENCES: Experience[] = [
     id: "exp-1",
     company: "TalkWisely Platforms",
     position: "Software Engineer",
-    duration: "Apr 2024 - Present",
+    duration: "May 2024 - May 2026",
     description: [
       "Contributed to development across 3 high-impact products supporting finance, CRM, and real-time communication workflows",
       "Engineered a quotation workflow that reduced quote creation time from 2 hours to 3 minutes, decreased manual effort by 80%, and supported a 30% increase in revenue",
