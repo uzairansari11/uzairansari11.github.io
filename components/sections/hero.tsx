@@ -141,7 +141,7 @@ export function Hero() {
             </div>
 
             {/* Achievement */}
-            <div data-hero-achievement className="rounded-xl bg-card border p-4 hover:border-primary/30 transition-all opacity-0">
+            <div data-hero-achievement className="rounded-xl glass-card p-4 hover:border-primary/30 transition-all opacity-0">
               <div className="flex items-start gap-3">
                 <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center flex-shrink-0">
                   <Rocket className="h-4 w-4 text-primary" />
@@ -177,7 +177,7 @@ export function Hero() {
 
             {/* Live Projects */}
             <div data-hero-projects className="w-full max-w-md opacity-0">
-              <div className="rounded-2xl bg-card/50 backdrop-blur-sm border border-border/50 p-5 shadow-lg">
+              <div className="rounded-2xl glass p-5 shadow-lg">
                 <div className="flex items-center justify-between mb-5">
                   <h3 className="text-sm font-semibold">{HERO_CONTENT.liveProjectsSection.title}</h3>
                   <div className="flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-green-500/10">

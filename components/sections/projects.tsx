@@ -16,7 +16,7 @@ function GitHubIcon({ className }: { className?: string }) {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="bg-card rounded-2xl border border-border/50 overflow-hidden flex flex-col h-full min-h-[400px] hover:border-primary/30 transition-all hover:shadow-xl hover:shadow-primary/5">
+    <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full min-h-[400px]">
       <div className="h-40 sm:h-44 shrink-0 overflow-hidden bg-muted relative">
         <img
           src={project.image || "/placeholder.svg"}
@@ -71,7 +71,7 @@ function CarouselControls({ current, total, onPrev, onNext, onDotClick }: {
       <button
         type="button"
         onClick={onPrev}
-        className="w-10 h-10 rounded-full border bg-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all"
+        className="w-10 h-10 rounded-full glass flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/20 transition-all"
       >
         <ArrowLeft className="h-4 w-4" />
       </button>
@@ -94,7 +94,7 @@ function CarouselControls({ current, total, onPrev, onNext, onDotClick }: {
       <button
         type="button"
         onClick={onNext}
-        className="w-10 h-10 rounded-full border bg-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary hover:bg-primary/5 transition-all"
+        className="w-10 h-10 rounded-full glass flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/20 transition-all"
       >
         <ArrowRight className="h-4 w-4" />
       </button>

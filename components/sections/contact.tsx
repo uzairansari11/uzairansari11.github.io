@@ -32,7 +32,7 @@ function ContactInfoCard({ info }: { info: ContactInfo }) {
   return (
     <Component
       {...(info.clickable ? { href: info.href } : {})}
-      className={`rounded-xl border border-border/50 bg-card p-3.5 flex items-center gap-3 ${
+      className={`rounded-xl glass-card p-3.5 flex items-center gap-3 ${
         info.clickable ? "group hover:border-primary/30 transition-colors cursor-pointer" : ""
       }`}
     >
@@ -185,7 +185,7 @@ export function Contact() {
         <div className="grid gap-8 lg:grid-cols-3 mt-12">
           {/* Contact Form */}
           <div className="lg:col-span-2">
-            <div className="rounded-2xl border border-border/50 bg-card p-5 sm:p-6">
+            <div className="rounded-2xl glass-card p-5 sm:p-6">
               <h3 className="font-semibold text-base mb-1">{CONTACT_CONTENT.form.title}</h3>
               <p className="text-xs text-muted-foreground mb-5">{CONTACT_CONTENT.form.description}</p>
 

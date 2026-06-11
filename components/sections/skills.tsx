@@ -14,7 +14,7 @@ const ICON_MAP = {
 function SkillIcon({ skill }: { skill: { id: string; title: string; src: string } }) {
   return (
     <div className="flex flex-col items-center gap-2 shrink-0 group">
-      <div className="w-14 h-14 rounded-2xl bg-card border border-border/50 flex items-center justify-center hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all">
+      <div className="w-14 h-14 rounded-2xl glass-card border-border/50 flex items-center justify-center hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all">
         <img src={skill.src} alt={skill.title} className="w-8 h-8 object-contain" />
       </div>
       <span className="text-[11px] text-muted-foreground font-medium whitespace-nowrap group-hover:text-foreground transition-colors">
@@ -31,7 +31,7 @@ function SkillCategory({ category, index }: {
   const Icon = ICON_MAP[category.icon as keyof typeof ICON_MAP]
 
   return (
-    <div className="group rounded-2xl border border-border/50 bg-card p-6 hover:border-primary/30 transition-all">
+    <div className="group rounded-2xl glass-card p-6 hover:border-primary/30 transition-all">
       <div className="flex items-center gap-2.5 mb-4">
         <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
           <Icon className="h-5 w-5 text-primary" />

@@ -106,7 +106,7 @@ function ProjectCard({ project, onClick }: { project: ProjectHighlight; onClick:
     <button
       type="button"
       onClick={onClick}
-      className="group text-left border border-border/50 bg-card rounded-2xl p-6 transition-all hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+      className="group text-left glass-card rounded-2xl p-6 transition-all hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
     >
       <div className="flex items-center gap-2.5 mb-2">
         <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
@@ -144,7 +144,7 @@ function ExperienceAccordion({ experience, isOpen, onToggle }: {
     <div className="relative flex gap-4 sm:gap-6">
       {/* Timeline Icon */}
       <div className="hidden sm:flex flex-col items-center shrink-0">
-        <div className={`w-[31px] h-[31px] rounded-full bg-card border-2 flex items-center justify-center z-10 transition-all ${
+        <div className={`w-[31px] h-[31px] rounded-full glass border-2 flex items-center justify-center z-10 transition-all ${
           isOpen ? "border-primary shadow-md shadow-primary/20" : "border-border"
         }`}>
           <Briefcase className={`h-3.5 w-3.5 transition-colors ${isOpen ? "text-primary" : "text-muted-foreground"}`} />
@@ -152,7 +152,7 @@ function ExperienceAccordion({ experience, isOpen, onToggle }: {
       </div>
 
       {/* Accordion Card */}
-      <div className={`flex-1 rounded-xl border bg-card overflow-hidden transition-all ${
+      <div className={`flex-1 rounded-xl glass-card overflow-hidden transition-all ${
         isOpen ? "border-primary/30 shadow-lg shadow-primary/5" : "border-border/50 hover:border-border"
       }`}>
         <button

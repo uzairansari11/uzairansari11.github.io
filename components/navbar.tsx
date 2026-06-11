@@ -31,7 +31,7 @@ export function Navbar() {
     <header
       className={cn(
         "fixed top-0 left-0 right-0 z-50 transition-all duration-500",
-        scrolled ? "bg-background/80 backdrop-blur-2xl border-b border-border/40" : "bg-transparent"
+        scrolled ? "glass-strong border-b shadow-lg" : "bg-transparent"
       )}
     >
       <div className="container mx-auto max-w-7xl flex h-16 items-center justify-between px-6 lg:px-8">
@@ -50,7 +50,7 @@ export function Navbar() {
         </a>
 
         {/* Desktop Nav — centered pill */}
-        <nav className="hidden md:flex items-center gap-0.5 bg-muted/60 rounded-full px-1 py-0.5 border border-border/30">
+        <nav className="hidden md:flex items-center gap-0.5 glass rounded-full px-1 py-0.5">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
@@ -93,7 +93,7 @@ export function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden overflow-hidden bg-background/95 backdrop-blur-2xl border-b"
+            className="md:hidden overflow-hidden glass-strong border-b"
           >
             <nav className="container mx-auto max-w-7xl flex flex-col py-3 px-6 gap-0.5">
               {NAV_ITEMS.map((item) => (

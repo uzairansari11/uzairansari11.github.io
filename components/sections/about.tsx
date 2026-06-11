@@ -20,7 +20,7 @@ export function About() {
 
         <div className="grid gap-12 lg:grid-cols-2 lg:gap-16 items-start mt-16">
           {/* Bio Card */}
-          <div className="rounded-2xl border border-border/50 bg-card p-8 space-y-6 hover:border-border transition-colors">
+          <div className="rounded-2xl glass-card p-8 space-y-6 hover:border-border transition-colors">
             {ABOUT_CONTENT.paragraphs.map((paragraph, index) => (
               <p
                 key={index}
@@ -45,7 +45,7 @@ export function About() {
               return (
                 <div
                   key={title}
-                  className="group relative rounded-2xl bg-card border border-border/50 p-6 hover:border-primary/30 transition-all"
+                  className="group relative rounded-2xl glass-card border-border/50 p-6 hover:border-primary/30 transition-all"
                 >
                   <span className="absolute top-3 right-3 text-[10px] font-bold text-primary/30 group-hover:text-primary/60 transition-colors">
                     {num}
