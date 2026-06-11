@@ -3,13 +3,14 @@
 import { useState } from "react"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { EXPERIENCES, PROJECT_HIGHLIGHTS, EXPERIENCE_CONTENT, type ProjectHighlight } from "@/lib/constants"
-import { Briefcase, Calendar, X, ArrowRight, ExternalLink, BarChart3, Package, PhoneCall, ChevronDown } from "lucide-react"
+import { Briefcase, Calendar, X, ArrowRight, ExternalLink, BarChart3, Package, PhoneCall, ChevronDown, Clock } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 
 const PROJECT_ICONS = {
   Nourma: BarChart3,
   Lineomatic: Package,
   Pulse: PhoneCall,
+  TimeTracker: Clock,
 } as const
 
 function ProjectModal({ project, onClose }: { project: ProjectHighlight; onClose: () => void }) {
@@ -106,31 +107,42 @@ function ProjectCard({ project, onClick }: { project: ProjectHighlight; onClick:
     <button
       type="button"
       onClick={onClick}
-      className="group text-left glass-card rounded-2xl p-6 transition-all hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1"
+      className="group text-left glass-card rounded-2xl p-6 transition-all hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 flex flex-col h-full"
     >
-      <div className="flex items-center gap-2.5 mb-2">
-        <div className="w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 group-hover:bg-primary/20 transition-colors">
-          <Icon className="h-4 w-4 text-primary" />
+      {/* Header with Icon and Title */}
+      <div className="flex items-start gap-3 mb-4">
+        <div className="w-10 h-10 rounded-lg bg-background border border-border flex items-center justify-center shrink-0 group-hover:border-primary/40 transition-colors">
+          <Icon className="h-5 w-5 text-foreground" />
         </div>
-        <span className="font-bold text-sm">{project.name}</span>
+        <div className="flex-1 min-w-0">
+          <h3 className="font-bold text-base mb-1">{project.name}</h3>
+          <p className="text-sm text-muted-foreground">{project.tagline}</p>
+        </div>
       </div>
-      <p className="text-xs text-primary font-medium mb-2">{project.tagline}</p>
-      <p className="text-xs text-muted-foreground leading-relaxed line-clamp-2 mb-3">{project.description}</p>
 
+      {/* Description */}
+      <p className="text-sm text-muted-foreground leading-relaxed mb-6 line-clamp-3 flex-1">
+        {project.description}
+      </p>
+
+      {/* Metrics */}
       {project.metrics && (
-        <div className="grid grid-cols-3 gap-2 mb-3 pt-3 border-t border-border/30">
+        <div className="grid grid-cols-3 gap-4 mb-5">
           {project.metrics.map((m) => (
-            <div key={m.label} className="text-center">
-              <span className="block text-sm font-bold text-primary">{m.value}</span>
-              <span className="text-[10px] text-muted-foreground leading-tight">{m.label}</span>
+            <div key={m.label}>
+              <div className="text-xl font-bold mb-1">{m.value}</div>
+              <div className="text-xs text-muted-foreground leading-tight">{m.label}</div>
             </div>
           ))}
         </div>
       )}
 
-      <span className="inline-flex items-center gap-1 text-xs text-primary font-medium group-hover:gap-2 transition-all">
-        View details <ExternalLink className="h-3 w-3" />
-      </span>
+      {/* View Details Link */}
+      <div className="pt-4 border-t border-border/30">
+        <span className="inline-flex items-center gap-1.5 text-sm text-muted-foreground font-medium group-hover:text-primary group-hover:gap-2 transition-all">
+          View details <ExternalLink className="h-3.5 w-3.5" />
+        </span>
+      </div>
     </button>
   )
 }
@@ -215,6 +227,15 @@ function ExperienceAccordion({ experience, isOpen, onToggle }: {
 export function Experience() {
   const [selectedProject, setSelectedProject] = useState<ProjectHighlight | null>(null)
   const [openExp, setOpenExp] = useState<string>("exp-1")
+  const [currentSlide, setCurrentSlide] = useState(0)
+
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % PROJECT_HIGHLIGHTS.length)
+  }
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) => (prev - 1 + PROJECT_HIGHLIGHTS.length) % PROJECT_HIGHLIGHTS.length)
+  }
 
   return (
     <section id="experience" className="section-spacing">
@@ -223,17 +244,66 @@ export function Experience() {
 
         {/* Product Highlights */}
         <div className="content-spacing mb-20">
-          <div className="flex items-center gap-2 mb-6">
-            <Briefcase className="h-4 w-4 text-primary" />
-            <h3 className="font-semibold">{EXPERIENCE_CONTENT.sections.products}</h3>
+          <div className="flex items-center justify-between mb-6">
+            <div className="flex items-center gap-2">
+              <Briefcase className="h-4 w-4 text-primary" />
+              <h3 className="font-semibold">{EXPERIENCE_CONTENT.sections.products}</h3>
+            </div>
+
+            {/* Carousel Navigation */}
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={prevSlide}
+                className="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+                aria-label="Previous project"
+              >
+                <ArrowRight className="h-4 w-4 rotate-180" />
+              </button>
+              <button
+                type="button"
+                onClick={nextSlide}
+                className="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
+                aria-label="Next project"
+              >
+                <ArrowRight className="h-4 w-4" />
+              </button>
+            </div>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 p-2 -m-2">
-            {PROJECT_HIGHLIGHTS.map((project) => (
-              <ProjectCard
-                key={project.name}
-                project={project}
-                onClick={() => setSelectedProject(project)}
+          {/* Carousel Container */}
+          <div className="relative overflow-hidden">
+            <div
+              className="flex transition-transform duration-500 ease-out gap-6"
+              style={{ transform: `translateX(-${currentSlide * (100 / PROJECT_HIGHLIGHTS.length)}%)` }}
+            >
+              {PROJECT_HIGHLIGHTS.map((project) => (
+                <div
+                  key={project.name}
+                  className="min-w-[calc(100%-1.5rem)] sm:min-w-[calc(50%-1.5rem)] lg:min-w-[calc(25%-1.125rem)] flex-shrink-0"
+                >
+                  <ProjectCard
+                    project={project}
+                    onClick={() => setSelectedProject(project)}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Carousel Dots */}
+          <div className="flex items-center justify-center gap-2 mt-6">
+            {PROJECT_HIGHLIGHTS.map((_, idx) => (
+              <button
+                key={idx}
+                type="button"
+                onClick={() => setCurrentSlide(idx)}
+                className={`rounded-full transition-all ${
+                  currentSlide === idx
+                    ? "w-6 h-2 bg-primary shadow-md shadow-primary/30"
+                    : "w-2 h-2 bg-border hover:bg-muted-foreground"
+                }`}
+                aria-label={`Go to project ${idx + 1}`}
               />
             ))}
           </div>
