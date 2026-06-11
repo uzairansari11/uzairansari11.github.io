@@ -4,14 +4,14 @@
 
 export const PERSONAL_INFO = {
   name: "Uzair Ansari",
-  title: "Full Stack Developer",
+  title: "Frontend Engineer | Full Stack Developer",
   email: "uzairans532@gmail.com",
   phone: "+917271880500",
   phoneFormatted: "+91 (7271) 880-500",
   location: "Mumbai, India",
-  bio: "Software Engineer with 2.5+ years of experience developing scalable web applications using React, Next.js, Node.js, and Express.js. Experienced in building CRM systems, finance automation tools, and real-time communication platforms.",
+  bio: "Frontend Engineer | Full Stack Developer with 2.5+ years of experience building enterprise-grade web applications using React, Next.js, Node.js, and PostgreSQL. Spearheaded frontend development across 4 products serving 1,500+ users, delivering business impact through workflow automation, real-time applications, and analytics dashboards.",
   longBio:
-    "I'm a Full Stack Developer with 2.5+ years of professional experience building production-grade applications. I independently architected and shipped 3 major products — a real-time VoIP platform, a financial ERP system, and an enterprise CRM — serving 1,500+ active users. I specialize in the React ecosystem and take ownership from architecture to deployment.",
+    "Frontend Engineer | Full Stack Developer with 2.5+ years of experience building enterprise-grade web applications using React, Next.js, Node.js, and PostgreSQL. Spearheaded frontend development across 4 products serving 1,500+ users, delivering business impact through workflow automation, real-time applications, and analytics dashboards. Currently expanding expertise in LangChain, LangGraph, Retrieval-Augmented Generation (RAG), and Agentic AI.",
   avatarUrl: "/profile-uzair.jpeg",
   resumeUrl: "https://drive.google.com/uc?export=download&id=1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw",
   socialLinks: {
@@ -50,7 +50,7 @@ export const HERO_CONTENT = {
     showPulse: true,
   },
   description:
-    "Software Engineer with 2.5+ years of experience developing scalable web applications and product workflows. Specialized in building CRM systems, finance automation tools, and real-time communication platforms.",
+    "Frontend Engineer | Full Stack Developer with 2.5+ years of experience building enterprise-grade web applications using React, Next.js, Node.js, and PostgreSQL. Spearheaded frontend development across 4 products serving 1,500+ users.",
   cta: {
     primary: {
       text: "Get In Touch",
@@ -65,14 +65,14 @@ export const HERO_CONTENT = {
     },
   },
   stats: [
-    { icon: "Rocket", value: "3+", label: "Products Shipped" },
+    { icon: "Rocket", value: "4", label: "Products Shipped" },
     { icon: "Code2", value: "20+", label: "Technologies" },
     { icon: "Users", value: "1,500+", label: "Active Users" },
   ],
-  coreTechnologies: ["React.js", "Next.js", "TypeScript", "Node.js", "TailwindCSS", "MongoDB"],
+  coreTechnologies: ["React.js", "Next.js", "TypeScript", "PostgreSQL", "TailwindCSS", "Redux"],
   achievement: {
     title: "Key Achievement",
-    description: "Shipped 3 production products serving 1,500+ active users — reduced manual effort by 80% and boosted revenue by 30%",
+    description: "Spearheaded frontend development across 4 enterprise products — reduced manual effort by 80% and improved performance by 70%",
   },
   liveProjects: [
     { name: "AI Finance System", icon: "Sparkles" },
@@ -103,36 +103,36 @@ export const HERO_CONTENT = {
 export const ABOUT_CONTENT = {
   heading: {
     title: "Who I Am",
-    subtitle: "A developer who takes ownership — from architecture to deployment",
+    subtitle: "Frontend Engineer building enterprise-grade web applications",
   },
   paragraphs: [
-    "I'm a <strong>Software Engineer</strong> with 2.5+ years of experience building production-grade applications. I specialize in the React ecosystem with strong backend foundations in Node.js and Django.",
-    "I independently architected and shipped <strong>3 major products</strong> — from a real-time VoIP platform serving 1,500+ users to a financial ERP system that reduced manual effort by 60%. I take ownership end-to-end.",
-    "Based in <strong>Mumbai, India</strong>, I'm currently expanding into <strong>Python & Django</strong> while continuing to build with the MERN stack.",
+    "I'm a <strong>Frontend Engineer | Full Stack Developer</strong> with 2.5+ years of experience building enterprise-grade web applications. I specialize in the React ecosystem with strong backend foundations in Node.js and PostgreSQL.",
+    "I spearheaded frontend development across <strong>4 enterprise products</strong> — from a real-time VoIP platform serving 1,500+ users to an AI-powered finance platform that reduced analyst effort by 70%. I mentor junior developers and collaborate with cross-functional Agile teams.",
+    "Based in <strong>Mumbai, India</strong>, I'm currently expanding expertise in <strong>LangChain, LangGraph, RAG, and Agentic AI</strong> while continuing to build production-ready applications.",
   ],
   services: [
     {
       icon: "Globe",
       title: "Frontend Engineering",
-      desc: "Pixel-perfect, responsive UIs with React, Next.js, and modern CSS.",
+      desc: "Enterprise-grade UIs with React, Next.js, Redux, and modern UI libraries.",
       num: "01",
     },
     {
       icon: "Layers",
       title: "Backend Development",
-      desc: "Scalable APIs with Node.js, Express, Django, and MongoDB.",
+      desc: "Scalable REST APIs with Node.js, Express, PostgreSQL, and MongoDB.",
       num: "02",
     },
     {
       icon: "Code2",
       title: "Full Stack Solutions",
-      desc: "End-to-end product development from architecture to deployment.",
+      desc: "End-to-end product development with workflow automation and analytics.",
       num: "03",
     },
     {
       icon: "Radio",
-      title: "Real-Time Systems",
-      desc: "VoIP, WebRTC, live transcription, and real-time communication platforms.",
+      title: "Real-Time Applications",
+      desc: "VoIP platforms, WebRTC, live dashboards, and communication systems.",
       num: "04",
     },
   ],
@@ -338,6 +338,36 @@ export const PROJECT_HIGHLIGHTS: ProjectHighlight[] = [
       "Integrated SWR for efficient data fetching across all communication modules with caching and real-time sync",
     ],
   },
+  {
+    name: "TimeTracker",
+    tagline: "Internal Project Management & Time-Tracking Tool",
+    techStack: ["React", "Next.js", "Material UI", "Redux", "REST APIs"],
+    description:
+      "Drove frontend development of a project management and time-tracking platform that replaced a paid SaaS solution. Established a shared component library that reduced feature delivery time by 40%.",
+    metrics: [
+      { value: "40%", label: "Faster Delivery" },
+      { value: "SaaS", label: "Replacement" },
+      { value: "Shared", label: "Component Library" },
+    ],
+    keyFeatures: [
+      "Project and task management workflows",
+      "Time tracking with billable hours calculation",
+      "Team productivity dashboards and reports",
+      "Sprint planning and resource allocation",
+      "Shared component library for rapid development",
+      "Multi-project time tracking and allocation",
+    ],
+    contributions: [
+      "Drove frontend development of the project management platform, replacing a paid SaaS tool and reducing operational costs",
+      "Established a shared component library used across all 4 products, reducing feature delivery time by 40%",
+      "Built project and task management workflows with drag-and-drop interfaces for sprint planning",
+      "Developed time tracking functionality with billable hours calculation and automated timesheet generation",
+      "Created productivity dashboards showing team velocity, burndown charts, and resource utilization",
+      "Implemented multi-project time tracking allowing developers to allocate hours across multiple projects",
+      "Built reporting system for project managers to track progress, budgets, and team performance",
+      "Designed reusable form components, data tables, and UI patterns adopted across all company products",
+    ],
+  },
 ] as const
 
 export interface Experience {
@@ -356,13 +386,18 @@ export const EXPERIENCES: Experience[] = [
     position: "Software Engineer",
     duration: "May 2024 - May 2026",
     description: [
-      "Contributed to development across 3 high-impact products supporting finance, CRM, and real-time communication workflows",
-      "Engineered a quotation workflow that reduced quote creation time from 2 hours to 3 minutes, decreased manual effort by 80%, and supported a 30% increase in revenue",
-      "Developed finance automation workflows for OCR-driven document handling, 90-day cashflow forecasting, and automated vendor email draft generation — reducing up to 60% of manual intervention",
-      "Delivered low-latency VoIP workflows for 1,500+ active users, including call handling, transfers, transcripts, SMS, and WhatsApp messaging",
-      "Built complex, workflow-driven product experiences from scratch for an AI-powered finance platform, a custom CRM, and a SIP.js-based VoIP solution",
+      "Spearheaded frontend development across 4 enterprise-grade products built from scratch, serving 1,500+ active users",
+      "Mentored junior developers, conducted code reviews, and collaborated with cross-functional Agile teams",
+      "Engineered frontend for an AI-powered finance platform, reducing analyst effort by 70%",
+      "Built OCR-driven invoice processing and forecasting workflows, reducing verification time by 80%",
+      "Architected frontend for a 10+ module ERP/CRM platform with role-based workflows and dashboards",
+      "Built quotation, inventory, and procurement workflows, reducing quote creation time by 97% and errors by 90%",
+      "Built a low-latency VoIP platform using React and SIP.js, supporting 1,500+ concurrent users",
+      "Developed real-time dashboards and call management features, reducing call handling time by 35%",
+      "Drove frontend development of a project management and time-tracking platform, replacing a paid SaaS solution",
+      "Established a shared component library, reducing feature delivery time by 40%",
     ],
-    technologies: ["React", "Next.js", "SIP.js", "WebRTC", "Redux", "React Query", "TanStack Table", "Material UI", "Tailwind CSS"],
+    technologies: ["React", "Next.js", "SIP.js", "WebRTC", "Redux", "TanStack Query", "React Hook Form", "Material UI", "Tailwind CSS", "Shadcn UI"],
   },
   {
     id: "exp-2",
@@ -370,19 +405,18 @@ export const EXPERIENCES: Experience[] = [
     position: "Software Development Engineer",
     duration: "Feb 2024 - Apr 2024",
     description: [
-      "Built admin dashboards and business-facing frontend modules for e-commerce operations using Next.js, supporting reporting, operational workflows, and day-to-day usability",
-      "Created reusable UI components and API-driven workflows that improved maintainability, frontend consistency, and faster delivery of new features",
+      "Built 5+ Next.js dashboard modules supporting order management, inventory reporting, and seller analytics workflows for 5+ internal teams",
+      "Established a reusable component library and optimized data-fetching workflows, improving performance by 25%",
     ],
     technologies: ["React", "Next.js", "JavaScript", "REST APIs", "Git"],
   },
   {
     id: "exp-3",
-    company: "Clayfin Technologies",
+    company: "Clayfin Technologies Pvt. Ltd.",
     position: "Software Trainee",
     duration: "Aug 2023 - Oct 2023",
     description: [
-      "Built an office meeting management system for meeting room booking, helping streamline internal scheduling and reduce manual coordination",
-      "Developed leave management, multi-level approval, task assignment, and API-integrated workflow modules for an internal business application",
+      "Created internal workflow applications for 100+ employees, including meeting room booking and leave management systems with multi-level approval workflows",
     ],
     technologies: ["React", "Redux", "Material UI", "JavaScript"],
   },
@@ -424,51 +458,49 @@ export interface SkillCategory {
 export const SKILLS_WITH_ICONS: SkillWithIcon[] = [
   { id: "1", title: "React", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
   { id: "2", title: "Next.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
-  { id: "3", title: "React Native", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
-  { id: "4", title: "Redux", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
+  { id: "3", title: "Redux", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/redux/redux-original.svg" },
+  { id: "4", title: "TypeScript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
   { id: "5", title: "Node.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
   { id: "6", title: "Express", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" },
-  { id: "7", title: "MongoDB", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
-  { id: "8", title: "Material UI", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" },
-  { id: "9", title: "Tailwind", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
-  { id: "10", title: "TypeScript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg" },
+  { id: "7", title: "PostgreSQL", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" },
+  { id: "8", title: "MongoDB", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+  { id: "9", title: "Material UI", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg" },
+  { id: "10", title: "Tailwind", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg" },
   { id: "11", title: "JavaScript", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
   { id: "12", title: "HTML5", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
   { id: "13", title: "CSS3", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
   { id: "14", title: "Python", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
-  { id: "15", title: "Django", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
-  { id: "16", title: "WebRTC", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/socketio/socketio-original.svg" },
 ] as const
 
 export const TOOLS: Tool[] = [
-  { id: "t1", title: "VS Code", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
+  { id: "t1", title: "Git", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
   { id: "t2", title: "GitHub", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg" },
-  { id: "t3", title: "Git", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" },
-  { id: "t4", title: "Postman", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" },
+  { id: "t3", title: "Postman", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postman/postman-original.svg" },
+  { id: "t4", title: "Figma", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/figma/figma-original.svg" },
   { id: "t5", title: "Vercel", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg" },
-  { id: "t6", title: "npm", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/npm/npm-original-wordmark.svg" },
+  { id: "t6", title: "VS Code", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/vscode/vscode-original.svg" },
 ] as const
 
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
     title: "Frontend",
     icon: "Code2",
-    skills: ["React", "Next.js", "Redux", "TypeScript", "JavaScript", "Tailwind CSS", "Material UI", "Chakra UI", "GSAP"],
+    skills: ["React.js", "Next.js", "Redux", "Redux Toolkit", "TanStack Query", "React Hook Form", "TypeScript", "JavaScript", "Tailwind CSS", "Material UI", "Shadcn UI"],
   },
   {
     title: "Backend",
     icon: "Server",
-    skills: ["Node.js", "Express.js", "MongoDB", "REST APIs", "JWT Auth", "WebRTC", "SIP.js", "Python", "Django"],
+    skills: ["Node.js", "Express.js", "REST APIs", "JWT", "RBAC", "PostgreSQL", "MongoDB", "SQL"],
   },
   {
-    title: "Tools & DevOps",
+    title: "Tools & Methodologies",
     icon: "Wrench",
-    skills: ["Git", "GitHub", "VS Code", "Postman", "Vercel", "Netlify", "npm/pnpm", "Figma"],
+    skills: ["Git", "GitHub", "Postman", "Figma", "Vercel", "Netlify", "Claude Code", "Agile (Scrum)", "Code Reviews"],
   },
   {
-    title: "Core Skills",
+    title: "Expanding Into",
     icon: "Brain",
-    skills: ["System Design", "Problem Solving", "Agile Development", "Code Reviews", "Team Leadership"],
+    skills: ["LangChain", "LangGraph", "RAG", "Agentic AI", "Python"],
   },
 ] as const
 
