@@ -59,7 +59,7 @@ export function LocationMap() {
   return (
     <div
       ref={mapRef}
-      className="w-full h-full rounded-2xl overflow-hidden"
+      className="w-full h-full rounded-2xl overflow-hidden relative z-0"
       style={{ minHeight: "200px" }}
     />
   )

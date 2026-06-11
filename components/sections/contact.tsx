@@ -30,6 +30,8 @@ function ContactInfoCard({ info }: { info: ContactInfo }) {
   const Icon = ICON_MAP[info.icon as keyof typeof ICON_MAP]
   const Component = info.clickable ? "a" : "div"
   const isEmail = info.icon === "Mail"
+  const isPhone = info.icon === "Phone"
+  const showCopyButton = isEmail || isPhone
 
   return (
     <Component
@@ -51,7 +53,7 @@ function ContactInfoCard({ info }: { info: ContactInfo }) {
           }`}>
             {info.value}
           </p>
-          {isEmail && <CopyButton text={info.value} className="text-muted-foreground hover:text-primary" />}
+          {showCopyButton && <CopyButton text={info.value} className="text-muted-foreground hover:text-primary" />}
         </div>
       </div>
     </Component>

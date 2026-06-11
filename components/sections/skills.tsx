@@ -20,7 +20,7 @@ function SkillIcon({ skill }: { skill: { id: string; title: string; src: string 
         <img
           src={skill.src}
           alt={skill.title}
-          className={`w-8 h-8 object-contain ${needsInvert ? 'invert' : ''}`}
+          className={`w-8 h-8 object-contain ${needsInvert ? 'dark:invert' : ''}`}
         />
       </div>
       <span className="text-[11px] text-muted-foreground font-medium whitespace-nowrap group-hover:text-foreground transition-colors">
@@ -70,14 +70,14 @@ export function Skills() {
         <SectionHeading title={SKILLS_CONTENT.heading.title} subtitle={SKILLS_CONTENT.heading.subtitle} />
 
         {/* Scrolling Icon Marquee */}
-        <div className="relative overflow-hidden mb-12 content-spacing">
-          <div className="flex gap-10 animate-marquee">
-            {[...allIcons, ...allIcons].map((item, i) => (
-              <SkillIcon key={`${item.id}-${i}`} skill={item} />
+        <div className="relative overflow-x-auto overflow-y-hidden mb-12 content-spacing scrollbar-hide">
+          <div className="flex gap-10 px-4">
+            {allIcons.map((item) => (
+              <SkillIcon key={item.id} skill={item} />
             ))}
           </div>
-          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 left-0 w-16 bg-gradient-to-r from-background to-transparent pointer-events-none" />
+          <div className="absolute inset-y-0 right-0 w-16 bg-gradient-to-l from-background to-transparent pointer-events-none" />
         </div>
 
         {/* Category Grid */}

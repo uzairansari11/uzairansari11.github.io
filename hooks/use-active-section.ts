@@ -22,7 +22,7 @@ export function useActiveSection() {
             window.history.replaceState(null, "", `#${id}`)
           }
         },
-        { rootMargin: "-40% 0px -40% 0px", threshold: 0 }
+        { rootMargin: "-20% 0px -60% 0px", threshold: 0 }
       )
 
       observer.observe(el)

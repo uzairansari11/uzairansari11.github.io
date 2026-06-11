@@ -43,7 +43,7 @@ export function Footer() {
   }
 
   return (
-    <footer className="glass-strong border-t mt-20">
+    <footer className="glass-strong border-t mt-20 mb-16 md:mb-0">
       <div className="container mx-auto max-w-7xl px-6 lg:px-8 py-8">
         <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
           {/* Branding */}

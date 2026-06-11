@@ -153,6 +153,11 @@ function ExperienceAccordion({ experience, isOpen, onToggle }: {
   isOpen: boolean
   onToggle: () => void
 }) {
+  const handleToggle = (e: React.MouseEvent) => {
+    e.preventDefault()
+    onToggle()
+  }
+
   return (
     <div className="relative flex gap-4 sm:gap-6">
       {/* Timeline Icon */}
@@ -170,7 +175,7 @@ function ExperienceAccordion({ experience, isOpen, onToggle }: {
       }`}>
         <button
           type="button"
-          onClick={onToggle}
+          onClick={handleToggle}
           className="w-full text-left p-5 sm:p-6 flex items-start sm:items-center justify-between gap-3"
         >
           <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 flex-1 min-w-0">
@@ -198,6 +203,7 @@ function ExperienceAccordion({ experience, isOpen, onToggle }: {
               animate={{ height: "auto", opacity: 1 }}
               exit={{ height: 0, opacity: 0 }}
               transition={{ duration: 0.3, ease: "easeInOut" }}
+              className="overflow-hidden"
             >
               <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-0">
                 <div className="h-px bg-border/50 mb-5" />

@@ -5,14 +5,13 @@ import { useActiveSection } from "@/hooks/use-active-section"
 import { NAV_ITEMS } from "@/lib/constants"
 import { gsap } from "gsap"
 import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin"
-import { Menu, X } from "lucide-react"
 import { useEffect, useState } from "react"
-import { AnimatePresence, motion } from "framer-motion"
+import { motion } from "framer-motion"
+import { ThemeToggle } from "@/components/ui/theme-toggle"
 
 gsap.registerPlugin(ScrollToPlugin)
 
 export function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
   const activeSection = useActiveSection()
 
@@ -23,8 +22,11 @@ export function Navbar() {
   }, [])
 
   const scrollTo = (href: string) => {
-    setMobileMenuOpen(false)
-    gsap.to(window, { duration: 1, scrollTo: { y: href, offsetY: 72 }, ease: "power3.inOut" })
+    gsap.to(window, {
+      duration: 1.2,
+      scrollTo: { y: href, offsetY: 80 },
+      ease: "power2.out"
+    })
   }
 
   return (
@@ -50,14 +52,14 @@ export function Navbar() {
         </a>
 
         {/* Desktop Nav — centered pill */}
-        <nav className="hidden md:flex items-center gap-0.5 glass rounded-full px-1 py-0.5">
+        <nav className="hidden md:flex items-center gap-0.5 glass rounded-full px-1 py-1">
           {NAV_ITEMS.map((item) => (
             <a
               key={item.href}
               href={item.href}
               onClick={(e) => { e.preventDefault(); scrollTo(item.href) }}
               className={cn(
-                "relative px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-300",
+                "relative px-3 py-2 rounded-full text-[13px] font-medium transition-all duration-300",
                 activeSection === item.href.slice(1)
                   ? "text-primary-foreground"
                   : "text-muted-foreground hover:text-foreground"
@@ -75,46 +77,16 @@ export function Navbar() {
           ))}
         </nav>
 
-        {/* Mobile */}
-        <div className="flex md:hidden items-center gap-1">
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-9 h-9 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+        {/* Theme Toggle - Hidden on mobile since we have bottom nav */}
+        <div className="hidden md:flex items-center gap-2">
+          <ThemeToggle />
+        </div>
+
+        {/* Mobile - only theme toggle, no hamburger menu */}
+        <div className="flex md:hidden items-center">
+          <ThemeToggle />
         </div>
       </div>
-
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden overflow-hidden glass-strong border-b"
-          >
-            <nav className="container mx-auto max-w-7xl flex flex-col py-3 px-6 gap-0.5">
-              {NAV_ITEMS.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => { e.preventDefault(); scrollTo(item.href) }}
-                  className={cn(
-                    "px-4 py-2.5 rounded-lg text-sm font-medium transition-colors",
-                    activeSection === item.href.slice(1)
-                      ? "text-primary bg-primary/10"
-                      : "text-muted-foreground hover:text-foreground hover:bg-muted"
-                  )}
-                >
-                  {item.name}
-                </a>
-              ))}
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </header>
   )
 }
