@@ -17,7 +17,15 @@ const ICON_MAP = {
 
 type FormErrors = Record<string, string>
 
-function ContactInfoCard({ info }: { info: typeof CONTACT_CONTENT.contactInfo[0] }) {
+type ContactInfo = {
+  icon: string
+  label: string
+  value: string
+  href?: string
+  clickable: boolean
+}
+
+function ContactInfoCard({ info }: { info: ContactInfo }) {
   const Icon = ICON_MAP[info.icon as keyof typeof ICON_MAP]
   const Component = info.clickable ? "a" : "div"
 

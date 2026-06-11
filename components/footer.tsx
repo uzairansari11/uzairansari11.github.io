@@ -11,9 +11,15 @@ const SOCIAL_LINKS = [
   { href: PERSONAL_INFO.socialLinks.github, icon: Github, label: "GitHub" },
   { href: PERSONAL_INFO.socialLinks.linkedin, icon: Linkedin, label: "LinkedIn" },
   { href: `mailto:${PERSONAL_INFO.email}`, icon: Mail, label: "Email" }
-] as const
+]
 
-function SocialLink({ href, icon: Icon, label }: typeof SOCIAL_LINKS[0]) {
+type SocialLinkProps = {
+  href: string
+  icon: typeof Github
+  label: string
+}
+
+function SocialLink({ href, icon: Icon, label }: SocialLinkProps) {
   return (
     <a
       href={href}
