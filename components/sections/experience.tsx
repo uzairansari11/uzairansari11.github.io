@@ -228,7 +228,7 @@ export function Experience() {
             <h3 className="font-semibold">{EXPERIENCE_CONTENT.sections.products}</h3>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 p-2 -m-2">
             {PROJECT_HIGHLIGHTS.map((project) => (
               <ProjectCard
                 key={project.name}

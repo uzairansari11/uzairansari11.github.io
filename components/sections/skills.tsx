@@ -12,10 +12,16 @@ const ICON_MAP = {
 }
 
 function SkillIcon({ skill }: { skill: { id: string; title: string; src: string } }) {
+  const needsInvert = ["Express", "Next.js", "Django", "GitHub", "Vercel"].includes(skill.title)
+
   return (
-    <div className="flex flex-col items-center gap-2 shrink-0 group">
-      <div className="w-14 h-14 rounded-2xl glass-card border-border/50 flex items-center justify-center hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all">
-        <img src={skill.src} alt={skill.title} className="w-8 h-8 object-contain" />
+    <div className="flex flex-col items-center gap-2 shrink-0 group py-2">
+      <div className="w-16 h-16 rounded-2xl glass-card border-border/50 flex items-center justify-center hover:border-primary/40 hover:shadow-lg hover:shadow-primary/5 hover:-translate-y-1 transition-all">
+        <img
+          src={skill.src}
+          alt={skill.title}
+          className={`w-8 h-8 object-contain ${needsInvert ? 'invert' : ''}`}
+        />
       </div>
       <span className="text-[11px] text-muted-foreground font-medium whitespace-nowrap group-hover:text-foreground transition-colors">
         {skill.title}
@@ -75,7 +81,7 @@ export function Skills() {
         </div>
 
         {/* Category Grid */}
-        <div className="grid gap-6 sm:grid-cols-2">
+        <div className="grid gap-6 sm:grid-cols-2 p-2 -m-2">
           {SKILL_CATEGORIES.map((category, idx) => (
             <SkillCategory key={category.title} category={category} index={idx} />
           ))}

@@ -437,7 +437,7 @@ export const SKILLS_WITH_ICONS: SkillWithIcon[] = [
   { id: "13", title: "CSS3", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
   { id: "14", title: "Python", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" },
   { id: "15", title: "Django", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" },
-  { id: "16", title: "SIP.js", src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/webrtc/webrtc-original.svg" },
+  { id: "16", title: "WebRTC", src: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/socketio/socketio-original.svg" },
 ] as const
 
 export const TOOLS: Tool[] = [

@@ -115,7 +115,7 @@ export function Projects() {
         <SectionHeading title={PROJECTS_CONTENT.heading.title} subtitle={PROJECTS_CONTENT.heading.subtitle} />
 
         {/* Desktop Grid */}
-        <div className="hidden lg:grid lg:grid-cols-3 gap-6 mt-16">
+        <div className="hidden lg:grid lg:grid-cols-3 gap-6 mt-16 p-2 -m-2">
           {PROJECTS.map((project) => (
             <ProjectCard key={project.id} project={project} />
           ))}

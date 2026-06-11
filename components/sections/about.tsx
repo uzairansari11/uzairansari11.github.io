@@ -39,7 +39,7 @@ export function About() {
           </div>
 
           {/* Services Grid */}
-          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2">
+          <div className="grid gap-6 grid-cols-1 sm:grid-cols-2 p-2 -m-2">
             {ABOUT_CONTENT.services.map(({ icon, title, desc, num }) => {
               const Icon = ICON_MAP[icon as keyof typeof ICON_MAP]
               return (
