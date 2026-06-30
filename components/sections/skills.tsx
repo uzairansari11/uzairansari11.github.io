@@ -1,18 +1,26 @@
-"use client"
+'use client';
 
-import { SectionHeading } from "@/components/ui/section-heading"
-import { SKILLS_WITH_ICONS, TOOLS, SKILL_CATEGORIES, SKILLS_CONTENT } from "@/lib/constants"
-import { Code2, Server, Wrench, Brain } from "lucide-react"
+import { SectionHeading } from '@/components/ui/section-heading';
+import {
+  EXPERIENCE_CONTENT,
+  SKILL_CATEGORIES,
+  SKILLS_CONTENT,
+  SKILLS_WITH_ICONS,
+  SOFT_SKILL,
+  TOOLS,
+} from '@/lib/constants';
+import { Brain, Briefcase, Code2, Server, Users, Wrench } from 'lucide-react';
 
 const ICON_MAP = {
   Code2,
   Server,
   Wrench,
-  Brain
-}
+  Brain,
+  Users,
+};
 
 function SkillIcon({ skill }: { skill: { id: string; title: string; src: string } }) {
-  const needsInvert = ["Express", "Next.js", "Django", "GitHub", "Vercel"].includes(skill.title)
+  const needsInvert = ['Express', 'Next.js', 'Django', 'GitHub', 'Vercel'].includes(skill.title);
 
   return (
     <div className="flex flex-col items-center gap-2 shrink-0 group py-2">
@@ -27,14 +35,17 @@ function SkillIcon({ skill }: { skill: { id: string; title: string; src: string 
         {skill.title}
       </span>
     </div>
-  )
+  );
 }
 
-function SkillCategory({ category, index }: {
-  category: typeof SKILL_CATEGORIES[0]
-  index: number
+function SkillCategory({
+  category,
+  index,
+}: {
+  category: (typeof SKILL_CATEGORIES)[0];
+  index: number;
 }) {
-  const Icon = ICON_MAP[category.icon as keyof typeof ICON_MAP]
+  const Icon = ICON_MAP[category.icon as keyof typeof ICON_MAP];
 
   return (
     <div className="group rounded-2xl glass-card p-6 hover:border-primary/30 transition-all">
@@ -58,16 +69,19 @@ function SkillCategory({ category, index }: {
         ))}
       </div>
     </div>
-  )
+  );
 }
 
 export function Skills() {
-  const allIcons = [...SKILLS_WITH_ICONS, ...TOOLS]
+  const allIcons = [...SKILLS_WITH_ICONS, ...TOOLS];
 
   return (
     <section id="skills" className="section-spacing">
       <div className="section-container">
-        <SectionHeading title={SKILLS_CONTENT.heading.title} subtitle={SKILLS_CONTENT.heading.subtitle} />
+        <SectionHeading
+          title={SKILLS_CONTENT.heading.title}
+          subtitle={SKILLS_CONTENT.heading.subtitle}
+        />
 
         {/* Scrolling Icon Marquee */}
         <div className="relative overflow-hidden mb-12 content-spacing">
@@ -81,12 +95,28 @@ export function Skills() {
         </div>
 
         {/* Category Grid */}
+          <div className="flex items-center gap-2 my-6">
+            <Briefcase className="h-4 w-4 text-primary" />
+            <h3 className="font-semibold">Technical Skills</h3>
+          </div>
         <div className="grid gap-5 sm:grid-cols-2 p-2 -m-2">
+
           {SKILL_CATEGORIES.map((category, idx) => (
+            <SkillCategory key={category.title} category={category} index={idx} />
+          ))}
+        </div>
+
+          <div className="flex items-center gap-2 my-6">
+            <Briefcase className="h-4 w-4 text-primary" />
+            <h3 className="font-semibold">Soft Skills</h3>
+          </div>
+        <div className="grid gap-5  p-2 -m-2">
+
+          {SOFT_SKILL.map((category, idx) => (
             <SkillCategory key={category.title} category={category} index={idx} />
           ))}
         </div>
       </div>
     </section>
-  )
+  );
 }
