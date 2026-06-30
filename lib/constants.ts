@@ -34,9 +34,9 @@ export const PERSONAL_INFO = {
 export const NAV_ITEMS = [
   { name: "Home", href: "#home" },
   { name: "About", href: "#about" },
-  { name: "Projects", href: "#projects" },
   { name: "Experience", href: "#experience" },
   { name: "Skills", href: "#skills" },
+  { name: "Projects", href: "#projects" },
   { name: "Contact", href: "#contact" },
 ] as const
 
@@ -506,7 +506,7 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
 
 export const SKILLS_CONTENT = {
   heading: {
-    title: "My Toolkit",
+    title: "Skills",
     subtitle: "Technologies and tools I use to bring ideas to life",
   },
 } as const

@@ -21,9 +21,9 @@ export default function Home() {
     <AnimationProvider>
       <Hero />
       <About />
-      <Projects />
       <Experience />
       <Skills />
+      <Projects />
       <GitHubStats />
       <Contact />
       <BackToTop />
