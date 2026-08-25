@@ -6,6 +6,8 @@ import { GlassCard } from "@/components/ui/glass-card"
 import { Code, GitFork, Github, Star, Users } from "lucide-react"
 import { useEffect, useState } from "react"
 
+import { SectionHeading } from "@/components/ui/section-heading"
+
 const fallbackStats = [
   { label: "Stars", value: 3, icon: Star },
   { label: "Followers", value: 99, icon: Users },
@@ -35,27 +37,30 @@ export function GitHubStats() {
   }, [])
 
   return (
-    <div className="py-12 sm:py-16">
+    <div className="section-spacing">
       <div className="container mx-auto px-6 lg:px-8 max-w-7xl">
-        <div className="text-center mb-10">
-          <h3 className="text-2xl font-bold mb-2">GitHub Activity</h3>
-          <p className="text-sm text-muted-foreground">Open source contributions and coding activity</p>
-        </div>
+        <SectionHeading
+          title="GitHub Activity & Open Source"
+          subtitle="Open source contributions and coding stats"
+          tag="// OPEN SOURCE IMPACT"
+        />
 
         <div className="grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-5">
           {stats.map((stat) => (
-            <GlassCard key={stat.label} className="p-4 flex flex-col items-center text-center">
-              <stat.icon className="h-5 w-5 text-primary mb-2" />
-              <div className="text-xl font-bold">
+            <GlassCard key={stat.label} className="p-5 flex flex-col items-center text-center transition-all">
+              <div className="w-10 h-10 rounded-sm bg-secondary/80 dark:bg-zinc-800/80 border border-border dark:border-zinc-700/60 flex items-center justify-center mb-3">
+                <stat.icon className="h-5 w-5 text-foreground dark:text-zinc-200" />
+              </div>
+              <div className="text-2xl font-bold text-foreground">
                 <AnimatedCounter value={stat.value} />
               </div>
-              <p className="text-xs text-muted-foreground">{stat.label}</p>
+              <p className="text-xs text-muted-foreground mt-0.5">{stat.label}</p>
             </GlassCard>
           ))}
         </div>
 
         <div className="mt-8 flex justify-center">
-          <Button variant="outline" className="rounded-full" asChild>
+          <Button variant="outline" className="rounded-sm" asChild>
             <a href="https://github.com/uzairansari11" target="_blank" rel="noopener noreferrer">
               <Github className="mr-2 h-4 w-4" /> View GitHub Profile
             </a>

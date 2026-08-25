@@ -3,16 +3,16 @@
 interface SectionHeadingProps {
   title: string
   subtitle?: string
+  tag?: string
 }
 
-export function SectionHeading({ title, subtitle }: SectionHeadingProps) {
+export function SectionHeading({ title }: SectionHeadingProps) {
   return (
-    <div className="text-center mb-14">
-      <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-3 text-gradient">{title}</h2>
-      <div className="w-16 h-0.5 mx-auto mb-4 animated-line rounded-full" />
-      {subtitle && (
-        <p className="text-muted-foreground max-w-xl mx-auto">{subtitle}</p>
-      )}
+    <div className="text-center mb-10 space-y-2.5">
+      <h2 className="text-2xl font-medium tracking-tight sm:text-3xl text-foreground font-sans">
+        {title}
+      </h2>
+      <div className="w-8 h-0.5 mx-auto bg-foreground/80" />
     </div>
   )
 }

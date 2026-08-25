@@ -17,8 +17,8 @@ function GitHubIcon({ className }: { className?: string }) {
 
 function ProjectCard({ project }: { project: Project }) {
   return (
-    <div className="glass-card rounded-2xl overflow-hidden flex flex-col h-full min-h-[420px]">
-      <div className="h-44 sm:h-48 shrink-0 overflow-hidden bg-muted relative">
+    <div className="glass-card rounded-sm overflow-hidden flex flex-col h-full min-h-[420px]">
+      <div className="h-44 sm:h-48 shrink-0 overflow-hidden bg-slate-100 dark:bg-muted relative">
         <img
           src={project.image || "/placeholder.svg"}
           alt={project.title}
@@ -27,29 +27,29 @@ function ProjectCard({ project }: { project: Project }) {
         <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-0 hover:opacity-100 transition-opacity" />
       </div>
       <div className="p-5 sm:p-6 flex flex-col flex-1 space-y-3">
-        <h3 className="font-semibold text-base sm:text-lg">{project.title}</h3>
+        <h3 className="font-semibold text-base sm:text-lg text-foreground">{project.title}</h3>
         <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 flex-1">
           {project.description}
         </p>
         <div className="flex flex-wrap gap-2">
           {project.tags.slice(0, 4).map((tag) => (
-            <span key={tag} className="text-xs bg-primary/10 text-primary rounded-full px-2.5 py-1 font-medium">
+            <span key={tag} className="text-xs bg-secondary/80 text-foreground border border-border/80 rounded-sm px-2.5 py-1 font-medium">
               {tag}
             </span>
           ))}
           {project.tags.length > 4 && (
-            <span className="text-xs bg-secondary text-secondary-foreground rounded-full px-2.5 py-1">
+            <span className="text-xs bg-secondary text-secondary-foreground rounded-sm px-2.5 py-1">
               +{project.tags.length - 4}
             </span>
           )}
         </div>
         <div className="flex gap-3 mt-auto pt-2">
-          <Button size="sm" className="rounded-full flex-1 h-9 text-sm" asChild>
+          <Button size="sm" className="rounded-sm flex-1 h-9 text-sm font-medium" asChild>
             <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
               <ExternalLink className="mr-1.5 h-3.5 w-3.5" /> Demo
             </a>
           </Button>
-          <Button size="sm" variant="outline" className="rounded-full flex-1 h-9 text-sm" asChild>
+          <Button size="sm" variant="outline" className="rounded-sm flex-1 h-9 text-sm font-medium" asChild>
             <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
               <GitHubIcon className="mr-1.5 h-3.5 w-3.5" /> Code
             </a>
@@ -122,7 +122,7 @@ export function Projects() {
   return (
     <section id="projects" className="section-spacing bg-muted/20">
       <div className="section-container">
-        <SectionHeading title={PROJECTS_CONTENT.heading.title} subtitle={PROJECTS_CONTENT.heading.subtitle} />
+        <SectionHeading title={PROJECTS_CONTENT.heading.title} subtitle={PROJECTS_CONTENT.heading.subtitle} tag="// FEATURED WORK" />
 
         <div className="content-spacing">
           <div className="flex items-center justify-between mb-6">

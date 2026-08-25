@@ -1,11 +1,8 @@
 "use client"
 
 import { PERSONAL_INFO } from "@/lib/constants"
+import { smoothScrollTo } from "@/lib/utils"
 import { Github, Linkedin, Mail } from "lucide-react"
-import { gsap } from "gsap"
-import { ScrollToPlugin } from "gsap/dist/ScrollToPlugin"
-
-gsap.registerPlugin(ScrollToPlugin)
 
 const SOCIAL_LINKS = [
   { href: PERSONAL_INFO.socialLinks.github, icon: Github, label: "GitHub" },
@@ -26,55 +23,43 @@ function SocialLink({ href, icon: Icon, label }: SocialLinkProps) {
       target={href.startsWith("mailto") ? undefined : "_blank"}
       rel="noreferrer"
       aria-label={label}
-      className="w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center text-primary hover:bg-primary hover:text-primary-foreground transition-all"
+      className="w-8 h-8 rounded-sm bg-background border border-border flex items-center justify-center text-foreground hover:opacity-80 transition-colors"
     >
-      <Icon className="h-4 w-4" />
+      <Icon className="h-3.5 w-3.5" />
     </a>
   )
 }
 
 export function Footer() {
   const scrollToTop = () => {
-    gsap.to(window, {
-      duration: 1,
-      scrollTo: { y: "#home", offsetY: 72 },
-      ease: "power3.inOut"
-    })
+    smoothScrollTo("#home", 72)
   }
 
   return (
-    <footer className="glass-strong border-t mt-20">
-      <div className="container mx-auto max-w-7xl px-6 lg:px-8 py-8">
-        <div className="flex flex-col sm:flex-row items-center justify-between gap-6">
+    <footer className="border-t border-border mt-12 bg-background">
+      <div className="container mx-auto max-w-7xl px-6 lg:px-8 py-4">
+        <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
           {/* Branding */}
-          <div className="flex items-center gap-3">
-            <a
-              href="#home"
-              onClick={(e) => {
-                e.preventDefault()
-                scrollToTop()
-              }}
-              className="flex items-center gap-2"
-            >
-              <span className="text-lg font-black tracking-tight">
-                U<span className="text-primary">A</span>
-              </span>
-              <span className="text-muted-foreground font-light">|</span>
-              <span className="text-sm font-medium">{PERSONAL_INFO.name}</span>
-            </a>
-            <span className="hidden sm:inline text-border">|</span>
-            <span className="hidden sm:inline text-xs text-muted-foreground">{PERSONAL_INFO.title}</span>
-          </div>
+          <a
+            href="#home"
+            onClick={(e) => {
+              e.preventDefault()
+              scrollToTop()
+            }}
+            className="text-base font-semibold tracking-tight text-foreground"
+          >
+            Uzair
+          </a>
 
           {/* Social Links */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5">
             {SOCIAL_LINKS.map((link) => (
               <SocialLink key={link.label} {...link} />
             ))}
           </div>
 
           {/* Copyright */}
-          <p className="text-xs text-muted-foreground">
+          <p className="text-xs text-muted-foreground font-mono">
             &copy; {new Date().getFullYear()} {PERSONAL_INFO.name}
           </p>
         </div>

@@ -28,8 +28,11 @@ export function LocationMap() {
 
       mapInstanceRef.current = map
 
-      // Always use dark theme tiles since we have dark-only theme
-      const tileUrl = "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+      // Dynamic theme tiles
+      const isDark = document.documentElement.classList.contains("dark")
+      const tileUrl = isDark
+        ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
       L.tileLayer(tileUrl, { maxZoom: 19 }).addTo(map)
 
       // Custom marker icon
@@ -43,6 +46,12 @@ export function LocationMap() {
       L.marker(POWAI_COORDS, { icon })
         .addTo(map)
         .bindPopup("<b>Powai, Mumbai</b><br/>Maharashtra, India")
+
+      setTimeout(() => {
+        if (!cancelled && mapInstanceRef.current) {
+          mapInstanceRef.current.invalidateSize()
+        }
+      }, 250)
     }
 
     initMap()
@@ -59,8 +68,8 @@ export function LocationMap() {
   return (
     <div
       ref={mapRef}
-      className="w-full h-full rounded-2xl overflow-hidden"
-      style={{ minHeight: "200px" }}
+      className="w-full h-full min-h-[220px] rounded-sm overflow-hidden"
+      style={{ width: "100%", height: "100%", minHeight: "220px" }}
     />
   )
 }

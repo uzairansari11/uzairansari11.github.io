@@ -34,24 +34,20 @@ function ContactInfoCard({ info }: { info: ContactInfo }) {
   return (
     <Component
       {...(info.clickable ? { href: info.href } : {})}
-      className={`rounded-xl glass-card p-3.5 flex items-center gap-3 ${
-        info.clickable ? "group hover:border-primary/30 transition-colors cursor-pointer" : ""
+      className={`rounded-sm glass-card p-4 flex items-center gap-3 font-sans ${
+        info.clickable ? "group hover:opacity-90 transition-all cursor-pointer" : ""
       }`}
     >
-      <div className={`w-9 h-9 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 ${
-        info.clickable ? "group-hover:bg-primary/15 transition-colors" : ""
-      }`}>
-        <Icon className="h-4 w-4 text-primary" />
+      <div className="w-9 h-9 rounded-sm bg-secondary flex items-center justify-center shrink-0">
+        <Icon className="h-4 w-4 text-foreground" />
       </div>
       <div className="min-w-0 flex-1">
         <p className="text-[10px] text-muted-foreground mb-0.5 uppercase tracking-wide font-medium">{info.label}</p>
         <div className="flex items-center justify-between gap-2">
-          <p className={`text-xs font-semibold leading-tight ${
-            info.clickable ? "group-hover:text-primary transition-colors" : ""
-          }`}>
+          <p className="text-xs font-medium text-foreground leading-tight">
             {info.value}
           </p>
-          {isEmail && <CopyButton text={info.value} className="text-muted-foreground hover:text-primary" />}
+          {isEmail && <CopyButton text={info.value} className="text-muted-foreground hover:text-foreground" />}
         </div>
       </div>
     </Component>
@@ -77,15 +73,15 @@ function FormField({
   error?: string
   onClearError: () => void
 }) {
-  const baseClass = `w-full rounded-lg border bg-background px-3.5 py-2.5 text-sm placeholder:text-muted-foreground/60 focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all ${
-    error ? "border-red-500 focus:ring-red-500/30 focus:border-red-500" : "border-border"
+  const baseClass = `w-full rounded-sm bg-secondary text-foreground px-3.5 py-2.5 text-xs font-medium placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-all ${
+    error ? "ring-1 ring-foreground" : ""
   }`
 
   const InputComponent = rows ? "textarea" : "input"
 
   return (
     <div>
-      <label htmlFor={name} className="block text-xs font-medium mb-1.5">
+      <label htmlFor={name} className="block text-xs font-medium mb-1.5 text-foreground">
         {label} {required && <span className="text-red-500">*</span>}
       </label>
       <InputComponent
@@ -100,7 +96,7 @@ function FormField({
         suppressHydrationWarning
       />
       {error && (
-        <p className="text-red-500 text-xs mt-1 flex items-center gap-1">
+        <p className="text-red-500 dark:text-red-400 text-xs mt-1 flex items-center gap-1">
           <AlertCircle className="h-3 w-3" />
           {error}
         </p>
@@ -185,69 +181,73 @@ export function Contact() {
   return (
     <section id="contact" className="section-spacing">
       <div className="section-container">
-        <SectionHeading title={CONTACT_CONTENT.heading.title} subtitle={CONTACT_CONTENT.heading.subtitle} />
+        <SectionHeading title={CONTACT_CONTENT.heading.title} subtitle={CONTACT_CONTENT.heading.subtitle} tag="// GET IN TOUCH" />
 
-        <div className="grid gap-8 lg:grid-cols-3 content-spacing">
+        <div className="grid gap-6 lg:grid-cols-3 items-start mt-8">
           {/* Contact Form */}
-          <div className="lg:col-span-2">
-            <div className="rounded-2xl glass-card p-5 sm:p-6">
-              <h3 className="font-semibold text-base mb-1">{CONTACT_CONTENT.form.title}</h3>
-              <p className="text-xs text-muted-foreground mb-5">{CONTACT_CONTENT.form.description}</p>
+          <div className="lg:col-span-2 flex flex-col">
+            <div className="rounded-sm glass-card p-5 sm:p-6 flex-1 flex flex-col justify-between">
+              <div>
+                <h3 className="font-medium text-base mb-1 text-foreground font-sans">{CONTACT_CONTENT.form.title}</h3>
+                <p className="text-xs text-muted-foreground font-sans mb-5">{CONTACT_CONTENT.form.description}</p>
 
-              <form ref={formRef} onSubmit={handleSubmit} className="space-y-4" noValidate>
-                <div className="grid gap-4 sm:grid-cols-2">
+                <form ref={formRef} onSubmit={handleSubmit} className="space-y-4" noValidate>
+                  <div className="grid gap-4 sm:grid-cols-2">
+                    <FormField
+                      label="Name"
+                      name="name"
+                      placeholder="John Doe"
+                      error={errors.name}
+                      onClearError={() => clearError("name")}
+                    />
+                    <FormField
+                      label="Email"
+                      name="email"
+                      type="email"
+                      placeholder="john@example.com"
+                      error={errors.email}
+                      onClearError={() => clearError("email")}
+                    />
+                  </div>
+
                   <FormField
-                    label="Name"
-                    name="name"
-                    placeholder="John Doe"
-                    error={errors.name}
-                    onClearError={() => clearError("name")}
+                    label="Subject"
+                    name="subject"
+                    placeholder="Project collaboration"
+                    error={errors.subject}
+                    onClearError={() => clearError("subject")}
                   />
+
                   <FormField
-                    label="Email"
-                    name="email"
-                    type="email"
-                    placeholder="john@example.com"
-                    error={errors.email}
-                    onClearError={() => clearError("email")}
+                    label="Message"
+                    name="message"
+                    placeholder="Tell me about your project..."
+                    rows={4}
+                    error={errors.message}
+                    onClearError={() => clearError("message")}
                   />
-                </div>
 
-                <FormField
-                  label="Subject"
-                  name="subject"
-                  placeholder="Project collaboration"
-                  error={errors.subject}
-                  onClearError={() => clearError("subject")}
-                />
-
-                <FormField
-                  label="Message"
-                  name="message"
-                  placeholder="Tell me about your project..."
-                  rows={4}
-                  error={errors.message}
-                  onClearError={() => clearError("message")}
-                />
-
-                <button
-                  type="submit"
-                  className="w-full rounded-xl bg-primary text-primary-foreground font-semibold py-3 text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all"
-                >
-                  <Send className="h-4 w-4" /> Send Message
-                </button>
-              </form>
+                  <button
+                    type="submit"
+                    className="w-full rounded-sm bg-foreground text-background font-medium py-3 text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-sm"
+                  >
+                    <Send className="h-4 w-4" /> Send Message
+                  </button>
+                </form>
+              </div>
             </div>
           </div>
 
           {/* Contact Info Sidebar */}
-          <div className="space-y-3">
-            {CONTACT_CONTENT.contactInfo.map((info) => (
-              <ContactInfoCard key={info.label} info={info} />
-            ))}
+          <div className="flex flex-col justify-between gap-3 h-full">
+            <div className="space-y-3">
+              {CONTACT_CONTENT.contactInfo.map((info) => (
+                <ContactInfoCard key={info.label} info={info} />
+              ))}
+            </div>
 
             {/* Location Map */}
-            <div className="rounded-xl border border-border/50 overflow-hidden h-[220px]">
+            <div className="rounded-sm glass-card overflow-hidden flex-1 min-h-[190px]">
               <LocationMap />
             </div>
           </div>

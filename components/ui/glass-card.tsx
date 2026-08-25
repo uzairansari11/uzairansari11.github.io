@@ -11,9 +11,7 @@ export function GlassCard({ className, hover = true, children, ...props }: Glass
   return (
     <div
       className={cn(
-        "rounded-xl bg-card border border-border/50 gradient-border",
-        "transition-all duration-300 ease-out",
-        hover && "glow-card",
+        "rounded-sm glass-card transition-all duration-200",
         className
       )}
       {...props}

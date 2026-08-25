@@ -2,18 +2,23 @@
 
 import { useActiveSection } from '@/hooks/use-active-section';
 import { NAV_ITEMS } from '@/lib/constants';
-import { cn } from '@/lib/utils';
-import { AnimatePresence, motion } from 'framer-motion';
-import { gsap } from 'gsap';
-import { ScrollToPlugin } from 'gsap/dist/ScrollToPlugin';
-import { Menu, X } from 'lucide-react';
+import { cn, smoothScrollTo } from '@/lib/utils';
+import { motion } from 'framer-motion';
+import { Home, User, Briefcase, Code2, FolderKanban, Mail } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ResumeDownloadButton from './resume-download-button';
+import { ThemeToggle } from './theme-toggle';
 
-gsap.registerPlugin(ScrollToPlugin);
+const NAV_ICONS = {
+  '#home': Home,
+  '#about': User,
+  '#experience': Briefcase,
+  '#skills': Code2,
+  '#projects': FolderKanban,
+  '#contact': Mail,
+};
 
 export function Navbar() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const activeSection = useActiveSection();
 
@@ -24,15 +29,16 @@ export function Navbar() {
   }, []);
 
   const scrollTo = (href: string) => {
-    setMobileMenuOpen(false);
-    gsap.to(window, { duration: 1, scrollTo: { y: href, offsetY: 72 }, ease: 'power3.inOut' });
+    smoothScrollTo(href, 72);
   };
 
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-500',
-        scrolled ? 'glass-strong border-b shadow-lg' : 'bg-transparent',
+        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        scrolled
+          ? 'bg-background/85 dark:bg-background/85 backdrop-blur-xl border-b border-border/80 shadow-xs'
+          : 'bg-transparent',
       )}
     >
       <div className="container mx-auto max-w-7xl flex h-16 items-center justify-between px-6 lg:px-8">
@@ -43,99 +49,58 @@ export function Navbar() {
             e.preventDefault();
             scrollTo('#home');
           }}
-          className="flex items-center group"
+          className="flex items-center group font-sans"
         >
-          <span className="text-xl font-black tracking-tight">
-            U
-            <span className="relative inline-block">
-              <span className="text-primary">A</span>
-              <span className="absolute -bottom-0.5 left-0 w-full h-[2px] bg-primary rounded-full scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
-            </span>
-          </span>
-          <span className="hidden sm:inline text-xl font-light text-muted-foreground ml-1.5 tracking-tight">
-            | <span className="text-sm font-medium ml-1">Uzair Ansari</span>
+          <span className="text-xl font-semibold tracking-tight text-foreground">
+            Uzair
           </span>
         </a>
 
         {/* Desktop Nav — centered pill */}
-        <nav className="hidden md:flex items-center gap-0.5 glass rounded-full px-1 py-0.5">
-          {NAV_ITEMS.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              onClick={(e) => {
-                e.preventDefault();
-                scrollTo(item.href);
-              }}
-              className={cn(
-                'relative px-3 py-1.5 rounded-full text-[13px] font-medium transition-all duration-300',
-                activeSection === item.href.slice(1)
-                  ? 'text-primary-foreground'
-                  : 'text-muted-foreground hover:text-foreground',
-              )}
-            >
-              {activeSection === item.href.slice(1) && (
-                <motion.div
-                  layoutId="nav-active"
-                  className="absolute inset-0 bg-primary rounded-full"
-                  transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                />
-              )}
-              <span className="relative z-10">{item.name}</span>
-            </a>
-          ))}
-          <div className="ml-2">
+        <nav className="hidden md:flex items-center gap-0.5 bg-background/90 dark:bg-card/90 backdrop-blur-xl border border-border rounded-sm px-2 py-1 shadow-xs">
+          {NAV_ITEMS.map((item) => {
+            const Icon = NAV_ICONS[item.href as keyof typeof NAV_ICONS] || Home;
+            const isActive = activeSection === item.href.slice(1);
+
+            return (
+              <a
+                key={item.href}
+                href={item.href}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollTo(item.href);
+                }}
+                className={cn(
+                  'relative px-3 py-1.5 rounded-sm text-xs font-medium transition-all duration-200 flex items-center gap-1.5',
+                  isActive
+                    ? 'text-foreground font-medium'
+                    : 'text-muted-foreground hover:text-foreground',
+                )}
+              >
+                {isActive && (
+                  <motion.div
+                    layoutId="nav-active"
+                    className="absolute inset-0 bg-secondary dark:bg-zinc-800 border border-border/80 dark:border-zinc-700/60 rounded-sm shadow-xs"
+                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
+                  />
+                )}
+                <Icon className="h-3.5 w-3.5 relative z-10" />
+                <span className="relative z-10">{item.name}</span>
+              </a>
+            );
+          })}
+          <div className="ml-2 flex items-center gap-1.5 border-l border-border/60 dark:border-zinc-700/50 pl-2">
             <ResumeDownloadButton />
+            <ThemeToggle />
           </div>
         </nav>
 
-        {/* Mobile */}
-        <div className="flex md:hidden items-center gap-1">
-          <button
-            type="button"
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="w-9 h-9 rounded-lg flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted transition-colors"
-          >
-            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
-          </button>
+        {/* Mobile Header Right Controls */}
+        <div className="flex md:hidden items-center gap-2">
+          <ResumeDownloadButton />
+          <ThemeToggle />
         </div>
       </div>
-
-      <AnimatePresence>
-        {mobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            exit={{ opacity: 0, height: 0 }}
-            className="md:hidden overflow-hidden glass-strong border-b"
-          >
-            <nav className="container mx-auto max-w-7xl flex flex-col py-3 px-6 gap-0.5">
-              {NAV_ITEMS.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  onClick={(e) => {
-                    e.preventDefault();
-                    scrollTo(item.href);
-                  }}
-                  className={cn(
-                    'px-4 py-2.5 rounded-lg text-sm font-medium transition-colors',
-                    activeSection === item.href.slice(1)
-                      ? 'text-primary bg-primary/10'
-                      : 'text-muted-foreground hover:text-foreground hover:bg-muted',
-                  )}
-                >
-                  {item.name}
-                </a>
-              ))}
-             <div className="mt-2 w-full">
-
-          <ResumeDownloadButton  full={true}/>
-          </div>
-            </nav>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </header>
   );
 }

@@ -108,7 +108,7 @@ function ProjectCard({ project, onClick }: { project: ProjectHighlight; onClick:
     <button
       type="button"
       onClick={onClick}
-      className="group text-left glass-card rounded-2xl p-6 transition-all hover:border-primary/30 hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1 flex flex-col h-full"
+      className="group text-left glass-card rounded-2xl p-6 transition-all flex flex-col h-full"
     >
       {/* Header with Icon and Title */}
       <div className="flex items-start gap-3 mb-4">
@@ -158,15 +158,15 @@ function ExperienceAccordion({ experience, isOpen, onToggle }: {
       {/* Timeline Icon */}
       <div className="hidden sm:flex flex-col items-center shrink-0">
         <div className={`w-[31px] h-[31px] rounded-full glass border-2 flex items-center justify-center z-10 transition-all ${
-          isOpen ? "border-primary shadow-md shadow-primary/20" : "border-border"
+          isOpen ? "border-foreground dark:border-zinc-500 shadow-sm" : "border-border dark:border-zinc-800"
         }`}>
-          <Briefcase className={`h-3.5 w-3.5 transition-colors ${isOpen ? "text-primary" : "text-muted-foreground"}`} />
+          <Briefcase className={`h-3.5 w-3.5 transition-colors ${isOpen ? "text-foreground dark:text-zinc-200" : "text-muted-foreground"}`} />
         </div>
       </div>
 
       {/* Accordion Card */}
       <div className={`flex-1 rounded-xl glass-card overflow-hidden transition-all ${
-        isOpen ? "border-primary/30 shadow-lg shadow-primary/5" : "border-border/50 hover:border-border"
+        isOpen ? "border-foreground/30 dark:border-zinc-700 shadow-sm" : "border-border dark:border-zinc-800 hover:border-foreground/20 dark:hover:border-zinc-700"
       }`}>
         <button
           type="button"
@@ -175,10 +175,10 @@ function ExperienceAccordion({ experience, isOpen, onToggle }: {
         >
           <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4 flex-1 min-w-0">
             <div className="min-w-0">
-              <h3 className="font-bold text-base">{experience.position}</h3>
-              <p className="text-primary text-sm font-semibold">{experience.company}</p>
+              <h3 className="font-medium text-base text-foreground dark:text-zinc-100">{experience.position}</h3>
+              <p className="text-foreground dark:text-zinc-300 text-sm font-normal">{experience.company}</p>
             </div>
-            <span className="inline-flex items-center gap-1.5 text-xs bg-primary/10 text-primary rounded-full px-3 py-1.5 shrink-0 w-fit font-medium">
+            <span className="inline-flex items-center gap-1.5 text-xs bg-secondary/80 text-foreground border border-border/80 rounded-sm px-3 py-1 shrink-0 w-fit font-medium">
               <Calendar className="h-3 w-3" /> {experience.duration}
             </span>
           </div>
@@ -200,18 +200,18 @@ function ExperienceAccordion({ experience, isOpen, onToggle }: {
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               <div className="px-5 sm:px-6 pb-5 sm:pb-6 pt-0">
-                <div className="h-px bg-border/50 mb-5" />
+                <div className="h-px bg-border dark:bg-zinc-800 mb-5" />
                 <ul className="space-y-2.5 mb-5">
                   {experience.description.map((item, j) => (
-                    <li key={j} className="text-sm text-muted-foreground flex gap-2.5 leading-relaxed">
-                      <ArrowRight className="h-3.5 w-3.5 text-primary shrink-0 mt-0.5" />
+                    <li key={j} className="text-sm text-muted-foreground dark:text-zinc-400 flex gap-2.5 leading-relaxed">
+                      <ArrowRight className="h-3.5 w-3.5 text-foreground dark:text-zinc-300 shrink-0 mt-0.5" />
                       {item}
                     </li>
                   ))}
                 </ul>
                 <div className="flex flex-wrap gap-1.5">
                   {experience.technologies.map((tech) => (
-                    <span key={tech} className="text-[11px] bg-primary/10 text-primary rounded-full px-2.5 py-1 font-medium">
+                    <span key={tech} className="text-[11px] bg-secondary/80 text-foreground border border-border/70 rounded-sm px-2.5 py-0.5 font-medium">
                       {tech}
                     </span>
                   ))}
@@ -289,7 +289,7 @@ export function Experience() {
   return (
     <section id="experience" className="section-spacing">
       <div className="section-container">
-        <SectionHeading title={EXPERIENCE_CONTENT.heading.title} subtitle={EXPERIENCE_CONTENT.heading.subtitle} />
+        <SectionHeading title={EXPERIENCE_CONTENT.heading.title} subtitle={EXPERIENCE_CONTENT.heading.subtitle} tag="// CAREER & HIGHLIGHTS" />
 
         {/* Product Highlights */}
         <div className="content-spacing mb-16">

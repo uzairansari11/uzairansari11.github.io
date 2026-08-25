@@ -1,7 +1,6 @@
 "use client"
 
 import dynamic from "next/dynamic"
-import { AnimationProvider } from "@/components/animation-provider"
 import { About } from "@/components/sections/about"
 import { Contact } from "@/components/sections/contact"
 import { Experience } from "@/components/sections/experience"
@@ -18,7 +17,7 @@ const GitHubStats = dynamic(() => import("@/components/github-stats").then(m => 
 
 export default function Home() {
   return (
-    <AnimationProvider>
+    <main>
       <Hero />
       <About />
       <Experience />
@@ -27,6 +26,6 @@ export default function Home() {
       <GitHubStats />
       <Contact />
       <BackToTop />
-    </AnimationProvider>
+    </main>
   )
 }
