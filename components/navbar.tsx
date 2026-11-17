@@ -6,6 +6,7 @@ import { cn, smoothScrollTo } from '@/lib/utils';
 import { useEffect, useState } from 'react';
 import ResumeDownloadButton from './resume-download-button';
 import { BrandMark } from '@/components/ui/brand-mark';
+import { PwaInstallButton } from '@/components/pwa-install-button';
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -73,6 +74,7 @@ export function Navbar() {
 
         {/* Mobile Header Right Controls */}
         <div className="flex md:hidden items-center gap-2">
+          <PwaInstallButton onDark={!scrolled} />
           <ResumeDownloadButton onDark={!scrolled} />
         </div>
       </div>
