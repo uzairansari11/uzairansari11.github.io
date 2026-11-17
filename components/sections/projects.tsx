@@ -1,11 +1,11 @@
 "use client"
 
-import { useState, useCallback, useEffect } from "react"
-import { Button } from "@/components/ui/button"
+import { useCallback, useEffect, useState } from "react"
+import useEmblaCarousel from "embla-carousel-react"
+import { motion, useReducedMotion } from "framer-motion"
+import { ArrowLeft, ArrowRight, ExternalLink } from "lucide-react"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { PROJECTS, PROJECTS_CONTENT, type Project } from "@/lib/constants"
-import { ArrowLeft, ArrowRight, ExternalLink, Briefcase } from "lucide-react"
-import useEmblaCarousel from "embla-carousel-react"
 
 function GitHubIcon({ className }: { className?: string }) {
   return (
@@ -16,177 +16,75 @@ function GitHubIcon({ className }: { className?: string }) {
 }
 
 function ProjectCard({ project }: { project: Project }) {
+  const reduceMotion = useReducedMotion()
   return (
-    <div className="glass-card rounded-sm overflow-hidden flex flex-col h-full min-h-[420px]">
-      <div className="h-44 sm:h-48 shrink-0 overflow-hidden bg-slate-100 dark:bg-muted relative">
-        <img
-          src={project.image || "/placeholder.svg"}
-          alt={project.title}
-          className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent opacity-0 hover:opacity-100 transition-opacity" />
+    <motion.article
+      className="surface-glass group h-full overflow-hidden rounded-2xl"
+      style={{ transformPerspective: 1000 }}
+      whileHover={reduceMotion ? undefined : { y: -5, rotateX: 1, rotateY: -1 }}
+      transition={{ type: "spring", stiffness: 260, damping: 24 }}
+    >
+      <div className="aspect-[16/10] overflow-hidden bg-secondary">
+        <img src={project.image || "/placeholder.svg"} alt={`${project.title} preview`} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.035]" />
       </div>
-      <div className="p-5 sm:p-6 flex flex-col flex-1 space-y-3">
-        <h3 className="font-semibold text-base sm:text-lg text-foreground">{project.title}</h3>
-        <p className="text-sm text-muted-foreground leading-relaxed line-clamp-2 flex-1">
-          {project.description}
-        </p>
-        <div className="flex flex-wrap gap-2">
-          {project.tags.slice(0, 4).map((tag) => (
-            <span key={tag} className="text-xs bg-secondary/80 text-foreground border border-border/80 rounded-sm px-2.5 py-1 font-medium">
-              {tag}
-            </span>
-          ))}
-          {project.tags.length > 4 && (
-            <span className="text-xs bg-secondary text-secondary-foreground rounded-sm px-2.5 py-1">
-              +{project.tags.length - 4}
-            </span>
-          )}
+      <div className="p-5 sm:p-6">
+        <h3 className="text-lg font-semibold tracking-tight">{project.title}</h3>
+        <p className="mt-2 min-h-[3rem] text-sm leading-6 text-muted-foreground">{project.description}</p>
+        <div className="mt-4 flex flex-wrap gap-2">
+          {project.tags.slice(0, 3).map((tag) => <span key={tag} className="rounded-md bg-secondary px-2.5 py-1 text-[11px] font-medium text-secondary-foreground">{tag}</span>)}
         </div>
-        <div className="flex gap-3 mt-auto pt-2">
-          <Button size="sm" className="rounded-sm flex-1 h-9 text-sm font-medium" asChild>
-            <a href={project.demoUrl} target="_blank" rel="noopener noreferrer">
-              <ExternalLink className="mr-1.5 h-3.5 w-3.5" /> Demo
-            </a>
-          </Button>
-          <Button size="sm" variant="outline" className="rounded-sm flex-1 h-9 text-sm font-medium" asChild>
-            <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-              <GitHubIcon className="mr-1.5 h-3.5 w-3.5" /> Code
-            </a>
-          </Button>
+        <div className="mt-5 flex items-center gap-5 border-t border-border pt-4">
+          <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-semibold text-primary hover:underline underline-offset-4">
+            Live demo <ExternalLink className="h-3.5 w-3.5" />
+          </a>
+          <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-2 text-xs font-semibold text-foreground hover:text-primary transition-colors">
+            <GitHubIcon className="h-4 w-4" /> Source code
+          </a>
         </div>
       </div>
-    </div>
+    </motion.article>
   )
 }
 
 export function Projects() {
-  const [selectedIndex, setSelectedIndex] = useState(0)
+  const [selected, setSelected] = useState(0)
   const [scrollSnaps, setScrollSnaps] = useState<number[]>([])
-
-  const [emblaRef, emblaApi] = useEmblaCarousel({
-    loop: false,
-    align: 'start',
-    slidesToScroll: 1,
-    containScroll: 'trimSnaps',
-    dragFree: false,
-  })
-
-  const scrollPrev = useCallback(() => {
-    if (emblaApi) emblaApi.scrollPrev()
-  }, [emblaApi])
-
-  const scrollNext = useCallback(() => {
-    if (emblaApi) emblaApi.scrollNext()
-  }, [emblaApi])
-
-  const scrollTo = useCallback(
-    (index: number) => {
-      if (emblaApi) emblaApi.scrollTo(index)
-    },
-    [emblaApi]
-  )
-
-  const onSelect = useCallback(() => {
-    if (!emblaApi) return
-    setSelectedIndex(emblaApi.selectedScrollSnap())
-  }, [emblaApi])
-
-  const onInit = useCallback(() => {
-    if (!emblaApi) return
-    setScrollSnaps(emblaApi.scrollSnapList())
-  }, [emblaApi])
-
-  useEffect(() => {
-    if (!emblaApi) return
-    onInit()
-    onSelect()
-    emblaApi.on('select', onSelect)
-    emblaApi.on('reInit', onInit)
-  }, [emblaApi, onInit, onSelect])
-
-  // Keyboard navigation
-  useEffect(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowLeft') {
-        scrollPrev()
-      } else if (e.key === 'ArrowRight') {
-        scrollNext()
-      }
+  const [emblaRef, emblaApi] = useEmblaCarousel({ align: "start", containScroll: "trimSnaps", loop: false })
+  const sync = useCallback(() => {
+    if (emblaApi) {
+      setSelected(emblaApi.selectedScrollSnap())
+      setScrollSnaps(emblaApi.scrollSnapList())
     }
-
-    window.addEventListener('keydown', handleKeyDown)
-    return () => window.removeEventListener('keydown', handleKeyDown)
-  }, [scrollPrev, scrollNext])
+  }, [emblaApi])
+  useEffect(() => {
+    if (!emblaApi) return
+    sync()
+    emblaApi.on("select", sync)
+    emblaApi.on("reInit", sync)
+    return () => { emblaApi.off("select", sync); emblaApi.off("reInit", sync) }
+  }, [emblaApi, sync])
 
   return (
-    <section id="projects" className="section-spacing bg-muted/20">
+    <section id="projects" className="section-spacing">
       <div className="section-container">
-        <SectionHeading title={PROJECTS_CONTENT.heading.title} subtitle={PROJECTS_CONTENT.heading.subtitle} tag="// FEATURED WORK" />
-
-        <div className="content-spacing">
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-2">
-              <Briefcase className="h-4 w-4 text-primary" />
-              <h3 className="font-semibold">Projects | Built</h3>
-            </div>
-
-            {/* Carousel Navigation */}
-            <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={scrollPrev}
-              className="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
-              aria-label="Previous project"
-            >
-              <ArrowLeft className="h-4 w-4" />
-            </button>
-            <button
-              type="button"
-              onClick={scrollNext}
-              className="w-9 h-9 rounded-lg glass-card flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary/30 transition-all"
-              aria-label="Next project"
-            >
-              <ArrowRight className="h-4 w-4" />
-            </button>
-          </div>
-        </div>
-
-          {/* Embla Carousel - All Screens */}
-          <div className="py-4 -my-4">
-            <div className="overflow-hidden -mx-3" ref={emblaRef}>
-              <div className="flex py-2">
-                {PROJECTS.map((project) => (
-                  <div
-                    key={project.id}
-                    className="flex-none w-full sm:w-1/2 lg:w-1/3 min-w-0 px-3"
-                  >
-                  <ProjectCard project={project} />
-                </div>
-              ))}
+        <SectionHeading title={PROJECTS_CONTENT.heading.title} subtitle={PROJECTS_CONTENT.heading.subtitle} tag="Selected work" />
+        <div className="mt-10 md:mt-12">
+          <div className="mb-5 flex items-center justify-between gap-4">
+            <p className="text-xs text-muted-foreground">Drag to browse <span className="mx-1 text-primary">·</span> Select a project to open its live demo or source</p>
+            <div className="flex shrink-0 gap-2">
+            <button type="button" onClick={() => emblaApi?.scrollPrev()} disabled={!emblaApi?.canScrollPrev()} aria-label="Previous projects" className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"><ArrowLeft className="h-4 w-4" /></button>
+            <button type="button" onClick={() => emblaApi?.scrollNext()} disabled={!emblaApi?.canScrollNext()} aria-label="Next projects" className="flex h-10 w-10 items-center justify-center rounded-lg border border-border bg-card text-muted-foreground transition-colors hover:text-primary disabled:cursor-not-allowed disabled:opacity-40"><ArrowRight className="h-4 w-4" /></button>
             </div>
           </div>
-        </div>
-
-        {/* Carousel Dots */}
-        {scrollSnaps.length > 1 && (
-          <div className="flex items-center justify-center gap-2 mt-8">
-              {scrollSnaps.map((_, idx) => (
-                <button
-                  key={idx}
-                  type="button"
-                  onClick={() => scrollTo(idx)}
-                  className={`rounded-full transition-all ${
-                    selectedIndex === idx
-                      ? "w-6 h-2 bg-primary shadow-md shadow-primary/30"
-                      : "w-2 h-2 bg-border hover:bg-muted-foreground"
-                  }`}
-                  aria-label={`Go to slide ${idx + 1}`}
-                />
-              ))}
+          <div className="overflow-hidden" ref={emblaRef} role="region" aria-roledescription="carousel" aria-label="Selected projects">
+            <div className="flex -ml-3">
+              {PROJECTS.map((project) => <div key={project.id} className="min-w-0 flex-[0_0_88%] pl-3 sm:flex-[0_0_52%] lg:flex-[0_0_34%]"><ProjectCard project={project} /></div>)}
+            </div>
           </div>
-        )}
-      </div>
+          <div className="mt-6 flex justify-center gap-2" role="group" aria-label={`Project carousel position ${selected + 1} of ${scrollSnaps.length}`}>
+            {scrollSnaps.map((_, index) => <button key={index} type="button" onClick={() => emblaApi?.scrollTo(index)} aria-label={`Go to project group ${index + 1}`} aria-current={selected === index ? "true" : undefined} className={`h-1.5 rounded-full transition-all ${selected === index ? "w-7 bg-primary" : "w-1.5 bg-border"}`} />)}
+          </div>
+        </div>
       </div>
     </section>
   )

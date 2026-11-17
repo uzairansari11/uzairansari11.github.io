@@ -3,20 +3,9 @@
 import { useActiveSection } from '@/hooks/use-active-section';
 import { NAV_ITEMS } from '@/lib/constants';
 import { cn, smoothScrollTo } from '@/lib/utils';
-import { motion } from 'framer-motion';
-import { Home, User, Briefcase, Code2, FolderKanban, Mail } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import ResumeDownloadButton from './resume-download-button';
-import { ThemeToggle } from './theme-toggle';
-
-const NAV_ICONS = {
-  '#home': Home,
-  '#about': User,
-  '#experience': Briefcase,
-  '#skills': Code2,
-  '#projects': FolderKanban,
-  '#contact': Mail,
-};
+import { BrandMark } from '@/components/ui/brand-mark';
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -35,9 +24,9 @@ export function Navbar() {
   return (
     <header
       className={cn(
-        'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
+        'fixed top-0 left-0 right-0 z-50 text-white transition-all duration-300',
         scrolled
-          ? 'bg-background/85 dark:bg-background/85 backdrop-blur-xl border-b border-border/80 shadow-xs'
+          ? 'border-b border-border bg-background/95 text-foreground shadow-sm backdrop-blur-xl'
           : 'bg-transparent',
       )}
     >
@@ -49,17 +38,13 @@ export function Navbar() {
             e.preventDefault();
             scrollTo('#home');
           }}
-          className="flex items-center group font-sans"
+          className={cn("flex items-center font-sans", scrolled ? "text-foreground" : "text-white")}
         >
-          <span className="text-xl font-semibold tracking-tight text-foreground">
-            Uzair
-          </span>
+          <BrandMark className="h-9 w-9" label />
         </a>
 
-        {/* Desktop Nav — centered pill */}
-        <nav className="hidden md:flex items-center gap-0.5 bg-background/90 dark:bg-card/90 backdrop-blur-xl border border-border rounded-sm px-2 py-1 shadow-xs">
+        <nav className={cn("hidden items-center gap-1 rounded-full border p-1 backdrop-blur-xl md:flex", scrolled ? "border-border bg-card/80" : "border-white/15 bg-white/[.06]")}>
           {NAV_ITEMS.map((item) => {
-            const Icon = NAV_ICONS[item.href as keyof typeof NAV_ICONS] || Home;
             const isActive = activeSection === item.href.slice(1);
 
             return (
@@ -71,34 +56,24 @@ export function Navbar() {
                   scrollTo(item.href);
                 }}
                 className={cn(
-                  'relative px-3 py-1.5 rounded-sm text-xs font-medium transition-all duration-200 flex items-center gap-1.5',
+                  'relative rounded-full px-3.5 py-2 text-xs font-medium transition-colors lg:px-4 lg:text-sm',
                   isActive
-                    ? 'text-foreground font-medium'
-                    : 'text-muted-foreground hover:text-foreground',
+                    ? scrolled ? 'bg-secondary text-foreground' : 'bg-white/10 text-white'
+                    : scrolled ? 'text-muted-foreground hover:text-foreground' : 'text-white/65 hover:text-white',
                 )}
               >
-                {isActive && (
-                  <motion.div
-                    layoutId="nav-active"
-                    className="absolute inset-0 bg-secondary dark:bg-zinc-800 border border-border/80 dark:border-zinc-700/60 rounded-sm shadow-xs"
-                    transition={{ type: 'spring', stiffness: 400, damping: 30 }}
-                  />
-                )}
-                <Icon className="h-3.5 w-3.5 relative z-10" />
-                <span className="relative z-10">{item.name}</span>
+                {item.name}
               </a>
             );
           })}
-          <div className="ml-2 flex items-center gap-1.5 border-l border-border/60 dark:border-zinc-700/50 pl-2">
-            <ResumeDownloadButton />
-            <ThemeToggle />
+          <div className={cn("ml-1 flex items-center gap-2 border-l pl-3", scrolled ? "border-border" : "border-white/20")}>
+            <ResumeDownloadButton onDark={!scrolled} />
           </div>
         </nav>
 
         {/* Mobile Header Right Controls */}
         <div className="flex md:hidden items-center gap-2">
-          <ResumeDownloadButton />
-          <ThemeToggle />
+          <ResumeDownloadButton onDark={!scrolled} />
         </div>
       </div>
     </header>

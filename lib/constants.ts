@@ -4,24 +4,25 @@
 
 export const PERSONAL_INFO = {
   name: 'Uzair Ansari',
-  title: 'Frontend Engineer | Full Stack Developer',
+  title: 'Software Engineer – GenAI | Frontend & Full Stack',
   email: 'uzairans532@gmail.com',
   phone: '+917271880500',
   phoneFormatted: '+91 (7271) 880-500',
   location: 'Mumbai, India',
-  bio: 'Frontend Engineer | Full Stack Developer with 2.5+ years of experience building enterprise-grade web applications using React, Next.js, Node.js, and PostgreSQL. Spearheaded frontend development across 4 products serving 1,500+ users, delivering business impact through workflow automation, real-time applications, and analytics dashboards.',
+  bio: 'Software Engineer – GenAI at Newtuple Technologies, building enterprise proofs of concept, conversational interfaces, and workflow automation. Brings 2.5+ years of frontend and full-stack experience with React, Next.js, TypeScript, and Node.js, including four enterprise products serving 1,500+ users.',
   longBio:
-    'Frontend Engineer | Full Stack Developer with 2.5+ years of experience building enterprise-grade web applications using React, Next.js, Node.js, and PostgreSQL. Spearheaded frontend development across 4 products serving 1,500+ users, delivering business impact through workflow automation, real-time applications, and analytics dashboards. Currently expanding expertise in LangChain, LangGraph, Retrieval-Augmented Generation (RAG), and Agentic AI.',
+    'Software Engineer – GenAI at Newtuple Technologies, where I build enterprise proofs of concept, conversational interfaces, chat API integrations, and workflow automation for client use cases. I bring 2.5+ years of frontend and full-stack experience with React, Next.js, TypeScript, Node.js, and PostgreSQL. Previously led frontend work across four enterprise products serving 1,500+ users. I am currently deepening my skills in Python, FastAPI, SQLAlchemy, and agentic AI.',
   avatarUrl: '/profile-uzair.jpeg',
   resumeUrl: 'https://drive.google.com/uc?export=download&id=1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw',
   socialLinks: {
     github: 'https://github.com/uzairansari11',
     linkedin: 'https://linkedin.com/in/uzairansari11',
+    whatsapp: 'https://wa.me/917271880500',
     portfolio: 'https://uzairansari11.github.io',
   },
   yearsOfExperience: '2.5+',
   availability: {
-    status: 'Available for opportunities',
+    status: 'Currently at Newtuple Technologies',
     remote: true,
     onsite: true,
   },
@@ -46,11 +47,11 @@ export const NAV_ITEMS = [
 
 export const HERO_CONTENT = {
   badge: {
-    status: 'Available for opportunities',
+    status: 'Currently at Newtuple Technologies',
     showPulse: true,
   },
   description:
-    'Frontend Engineer | Full Stack Developer with 2.5+ years of experience building enterprise-grade web applications using React, Next.js, Node.js, and PostgreSQL. Spearheaded frontend development across 4 products serving 1,500+ users.',
+    'I build enterprise GenAI proofs of concept, conversational interfaces, and workflow automation at Newtuple Technologies. Previously, I led frontend delivery across four products serving 1,500+ users with React, Next.js, and TypeScript.',
   cta: {
     primary: {
       text: 'Get In Touch',
@@ -103,13 +104,13 @@ export const HERO_CONTENT = {
 
 export const ABOUT_CONTENT = {
   heading: {
-    title: 'Who I Am',
-    subtitle: 'Frontend Engineer building enterprise-grade web applications',
+    title: 'From complex workflows to clear experiences',
+    subtitle: 'A product-minded software engineer working across GenAI, frontend, and full-stack engineering.',
   },
   paragraphs: [
-    "I'm a <strong>Frontend Engineer | Full Stack Developer</strong> with 2.5+ years of experience building enterprise-grade web applications. I specialize in the React ecosystem with strong backend foundations in Node.js and PostgreSQL.",
-    'I spearheaded frontend development across <strong>4 enterprise products</strong> — from a real-time VoIP platform serving 1,500+ users to an AI-powered finance platform that reduced analyst effort by 70%. I mentor junior developers and collaborate with cross-functional Agile teams.',
-    "Based in <strong>Mumbai, India</strong>, I'm currently expanding expertise in <strong>LangChain, LangGraph, RAG, and Agentic AI</strong> while continuing to build production-ready applications.",
+    "I'm a <strong>Software Engineer – GenAI</strong> on Newtuple Technologies' Solutions Team, building enterprise proofs of concept, conversational interfaces, and workflow automation.",
+    'Previously, I led frontend development across <strong>four enterprise products</strong> at TalkWisely, spanning finance, CRM, communications, and project management for 1,500+ users. I also mentor developers and work closely with solution architects, backend teams, and stakeholders.',
+    "Based in <strong>Mumbai, India</strong>, I work with <strong>React, Next.js, TypeScript, and Node.js</strong> and am deepening my skills in <strong>Python, FastAPI, SQLAlchemy, and agentic AI</strong>.",
   ],
   services: [
     {
@@ -135,6 +136,12 @@ export const ABOUT_CONTENT = {
       title: 'Real-Time Applications',
       desc: 'VoIP platforms, WebRTC, live dashboards, and communication systems.',
       num: '04',
+    },
+    {
+      icon: 'Sparkles',
+      title: 'GenAI & Workflow Prototypes',
+      desc: 'Conversational interfaces, chat API integrations, onboarding flows, and enterprise proof-of-concept builds.',
+      num: '05',
     },
   ],
   cta: {
@@ -393,34 +400,52 @@ export interface Experience {
   duration: string;
   description: string[];
   technologies: string[];
+  location?: string;
+  group?: 'Software' | 'Earlier engineering';
 }
 
 export const EXPERIENCES: Experience[] = [
   {
+    id: 'exp-0',
+    company: 'Newtuple Technologies',
+    position: 'Software Engineer – GenAI',
+    duration: 'Sep 2026 - Present',
+    location: 'Pune Division, Maharashtra, India',
+    group: 'Software',
+    description: [
+      'Build GenAI-powered proofs of concept and product demonstrations for enterprise client use cases as part of the Solutions Team',
+      'Develop conversational cockpit interfaces and integrate chat APIs into enterprise workflows',
+      'Implement product, supplier, and finance onboarding flows with forms, inherited fields, and linked records',
+      'Configure and test workflow conditions, approval paths, clarification loops, and rework scenarios end to end',
+      'Work with solution architects and stakeholders to translate business requirements into clear, working demos',
+    ],
+    technologies: ['React', 'Next.js', 'TypeScript', 'GenAI APIs', 'Workflow Automation'],
+  },
+  {
     id: 'exp-1',
     company: 'TalkWisely Platforms',
-    position: 'Software Engineer',
+    position: 'Software Engineer | Frontend Development',
     duration: 'May 2024 - May 2026',
+    location: 'Ahmedabad, Gujarat, India',
+    group: 'Software',
     description: [
-      'Spearheaded frontend development across 4 enterprise-grade products built from scratch, serving 1,500+ active users',
-      'Mentored junior developers, conducted code reviews, and collaborated with cross-functional Agile teams',
-      'Engineered frontend for an AI-powered finance platform, reducing analyst effort by 70%',
-      'Built OCR-driven invoice processing and forecasting workflows, reducing verification time by 80%',
-      'Architected frontend for a 10+ module ERP/CRM platform with role-based workflows and dashboards',
-      'Built quotation, inventory, and procurement workflows, reducing quote creation time by 97% and errors by 90%',
-      'Built a low-latency VoIP platform using React and SIP.js, supporting 1,500+ concurrent users',
-      'Developed real-time dashboards and call management features, reducing call handling time by 35%',
-      'Drove frontend development of a project management and time-tracking platform, replacing a paid SaaS solution',
-      'Established a shared component library, reducing feature delivery time by 40%',
+      'Led frontend development across four enterprise products in finance, CRM, communications, and project management, serving more than 1,500 users',
+      'Built finance automation and cashflow forecasting workflows; improved invoice verification time by 80%',
+      'Streamlined CRM quotation workflows from two hours to three minutes through better interfaces and API integrations',
+      'Developed real-time VoIP, SMS, and WhatsApp interfaces using WebRTC, SIP.js, and Redux',
+      'Migrated finance modules from HeroUI to shadcn/ui while preserving application state, business logic, and API integrations',
+      'Created complex validated forms, improved performance with code splitting and lazy loading, and mentored three junior developers',
     ],
     technologies: [
-      'React',
+      'React.js',
       'Next.js',
+      'TypeScript',
       'SIP.js',
       'WebRTC',
       'Redux',
       'TanStack Query',
       'React Hook Form',
+      'Zod',
       'Material UI',
       'Tailwind CSS',
       'Shadcn UI',
@@ -429,30 +454,73 @@ export const EXPERIENCES: Experience[] = [
   {
     id: 'exp-2',
     company: 'Fastor7 Technology',
-    position: 'Software Development Engineer',
+    position: 'Software Development Engineer | Frontend Developer',
     duration: 'Feb 2024 - Apr 2024',
+    location: 'Delhi, India',
+    group: 'Software',
     description: [
-      'Built 5+ Next.js dashboard modules supporting order management, inventory reporting, and seller analytics workflows for 5+ internal teams',
-      'Established a reusable component library and optimized data-fetching workflows, improving performance by 25%',
+      'Built five-plus admin dashboard modules for order management, inventory reporting, and seller analytics',
+      'Created responsive interfaces and reusable Material UI components for consistent experiences',
+      'Integrated REST APIs, managed server data with React Query, and improved performance through code splitting and lazy loading',
+      'Collaborated with backend teams to deliver dashboard features and maintain reliable data flows',
     ],
-    technologies: ['React', 'Next.js', 'JavaScript', 'REST APIs', 'Git'],
+    technologies: ['React.js', 'Next.js', 'JavaScript', 'Material UI', 'React Query', 'REST APIs', 'Git'],
   },
   {
     id: 'exp-3',
-    company: 'Clayfin Technologies Pvt. Ltd.',
-    position: 'Software Trainee',
+    company: 'Clayfin',
+    position: 'Software Trainee | Frontend Developer',
     duration: 'Aug 2023 - Oct 2023',
+    location: 'Chennai, Tamil Nadu, India',
+    group: 'Software',
     description: [
-      'Created internal workflow applications for 100+ employees, including meeting room booking and leave management systems with multi-level approval workflows',
+      'Contributed to frontend development for enterprise applications in the banking and corporate domain',
+      'Built responsive UI components and features with React, JavaScript, and Material UI; followed team design patterns and review practices',
     ],
-    technologies: ['React', 'Redux', 'Material UI', 'JavaScript'],
+    technologies: ['React.js', 'JavaScript', 'Material UI', 'HTML', 'CSS', 'Git'],
+  },
+  {
+    id: 'exp-4',
+    company: 'MK Precision',
+    position: 'Mechanical Design Engineer',
+    duration: 'Oct 2021 - Jul 2022',
+    location: 'Navi Mumbai, Maharashtra, India',
+    group: 'Earlier engineering',
+    description: [
+      'Handled end-to-end product design and development, from requirements and concept design through 3D modelling, validation, prototyping, and documentation',
+      'Worked with clients and manufacturing teams to deliver functional, manufacturable designs using SolidWorks and Siemens NX',
+    ],
+    technologies: ['SolidWorks', 'Siemens NX', '3D Modelling', 'Design Validation'],
+  },
+  {
+    id: 'exp-5',
+    company: 'AMON Engineers Private Limited',
+    position: 'Intern',
+    duration: 'Oct 2020 - Dec 2020',
+    location: 'Thane, Maharashtra, India',
+    group: 'Earlier engineering',
+    description: [
+      'Worked on mechanical design and HVAC layouts, heat-load calculations, duct and riser sizing, and grill selection',
+      'Coordinated HVAC layouts with building utilities and applied industry standards to plan air distribution systems',
+    ],
+    technologies: ['AutoCAD', 'HVAC Layouts', 'Heat-Load Calculations'],
+  },
+  {
+    id: 'exp-6',
+    company: 'Indian Railways',
+    position: 'Summer Trainee',
+    duration: 'May 2017 - Jun 2017',
+    location: 'Lucknow, Uttar Pradesh, India',
+    group: 'Earlier engineering',
+    description: ['Completed training focused on diesel locomotive supercharging systems and their components'],
+    technologies: ['Diesel Locomotives', 'Mechanical Systems'],
   },
 ] as const;
 
 export const EXPERIENCE_CONTENT = {
   heading: {
     title: "Where I've Worked",
-    subtitle: '2.5+ years shipping production systems — VoIP, ERP, CRM & more',
+    subtitle: 'GenAI solutions today; enterprise software and product engineering before that',
   },
   sections: {
     products: 'Products I Built',
@@ -625,7 +693,7 @@ export const SKILL_CATEGORIES: SkillCategoryInterface[] = [
   {
     title: 'Backend',
     icon: 'Server',
-    skills: ['Node.js', 'Express.js', 'REST APIs', 'JWT', 'RBAC', 'PostgreSQL', 'MongoDB', 'SQL'],
+    skills: ['Node.js', 'Express.js', 'REST APIs', 'JWT', 'RBAC', 'PostgreSQL', 'Prisma', 'MongoDB', 'SQL'],
   },
   {
     title: 'Tools & Methodologies',
@@ -643,9 +711,9 @@ export const SKILL_CATEGORIES: SkillCategoryInterface[] = [
     ],
   },
   {
-    title: 'Expanding Into',
+    title: 'GenAI & Current Learning',
     icon: 'Brain',
-    skills: ['LangChain', 'LangGraph', 'RAG', 'Agentic AI', 'Python'],
+    skills: ['GenAI Solutions', 'Chat API Integration', 'Workflow Automation', 'Python', 'FastAPI', 'SQLAlchemy', 'Agentic AI'],
   },
 ] as const;
 
@@ -662,12 +730,12 @@ export const SKILLS_CONTENT = {
 
 export const CONTACT_CONTENT = {
   heading: {
-    title: 'Get In Touch',
-    subtitle: "Have a project in mind or want to collaborate? Let's make it happen",
+    title: "Tell me what you're building.",
+    subtitle: "Share a project, question, or idea. Reach me through the form or your preferred channel.",
   },
   form: {
     title: 'Send me a message',
-    description: "Fill out the form and I'll get back to you as soon as possible.",
+    description: "Fill in a few details and your email app will open with the message ready to send.",
     fields: {
       name: {
         label: 'Name',
@@ -731,16 +799,17 @@ export const CONTACT_CONTENT = {
       clickable: true,
     },
     {
-      icon: 'MapPin',
-      label: 'Location',
-      value: PERSONAL_INFO.location,
-      clickable: false,
-    },
-    {
       icon: 'Phone',
       label: 'Phone',
       value: PERSONAL_INFO.phoneFormatted,
       href: `tel:${PERSONAL_INFO.phone}`,
+      clickable: true,
+    },
+    {
+      icon: 'MessageCircle',
+      label: 'WhatsApp',
+      value: PERSONAL_INFO.phoneFormatted,
+      href: PERSONAL_INFO.socialLinks.whatsapp,
       clickable: true,
     },
   ],
@@ -762,6 +831,7 @@ export const FOOTER_CONTENT = {
   social: [
     { icon: 'Github', href: PERSONAL_INFO.socialLinks.github, label: 'GitHub' },
     { icon: 'Linkedin', href: PERSONAL_INFO.socialLinks.linkedin, label: 'LinkedIn' },
+    { icon: 'MessageCircle', href: PERSONAL_INFO.socialLinks.whatsapp, label: 'WhatsApp' },
     { icon: 'Mail', href: `mailto:${PERSONAL_INFO.email}`, label: 'Email' },
   ],
 } as const;

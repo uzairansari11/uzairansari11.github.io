@@ -5,7 +5,7 @@ import { Moon, Sun } from "lucide-react"
 import { motion } from "framer-motion"
 import { useEffect, useState } from "react"
 
-export function ThemeToggle({ className = "" }: { className?: string }) {
+export function ThemeToggle({ className = "", darkSurface = false }: { className?: string; darkSurface?: boolean }) {
   const { theme, toggleTheme } = useTheme()
   const [mounted, setMounted] = useState(false)
 
@@ -15,7 +15,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
 
   if (!mounted) {
     return (
-      <div className={`w-9 h-9 rounded-sm bg-secondary border border-border flex items-center justify-center ${className}`} />
+      <div className={`w-9 h-9 rounded-full ${darkSurface ? "border border-white/20 bg-white/10" : "border border-border bg-secondary"} flex items-center justify-center ${className}`} />
     )
   }
 
@@ -25,7 +25,7 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
     <button
       type="button"
       onClick={toggleTheme}
-      className={`relative w-9 h-9 rounded-sm bg-secondary border border-border flex items-center justify-center text-foreground hover:bg-secondary/80 transition-all ${className}`}
+      className={`relative w-9 h-9 rounded-full flex items-center justify-center transition-colors ${darkSurface ? "border border-white/20 bg-white/10 text-white hover:bg-white/20" : "border border-border bg-secondary text-foreground hover:bg-secondary/80"} ${className}`}
       aria-label="Toggle Theme"
       title={`Switch to ${isDark ? "Light" : "Dark"} Mode`}
     >
@@ -37,9 +37,9 @@ export function ThemeToggle({ className = "" }: { className?: string }) {
         className="flex items-center justify-center"
       >
         {isDark ? (
-          <Sun className="h-4 w-4 text-foreground" />
+          <Sun className={`h-4 w-4 ${darkSurface ? "text-white" : "text-foreground"}`} />
         ) : (
-          <Moon className="h-4 w-4 text-foreground" />
+          <Moon className={`h-4 w-4 ${darkSurface ? "text-white" : "text-foreground"}`} />
         )}
       </motion.div>
     </button>

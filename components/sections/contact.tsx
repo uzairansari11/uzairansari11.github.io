@@ -4,16 +4,17 @@ import { useRef, useState } from "react"
 import dynamic from "next/dynamic"
 import { SectionHeading } from "@/components/ui/section-heading"
 import { PERSONAL_INFO, CONTACT_CONTENT } from "@/lib/constants"
-import { Mail, MapPin, Phone, Send, AlertCircle } from "lucide-react"
+import { Mail, MapPin, Phone, MessageCircle, AlertCircle, ExternalLink, ArrowUpRight } from "lucide-react"
 import { useToast } from "@/hooks/use-toast"
 import { CopyButton } from "@/components/ui/copy-button"
 
-const LocationMap = dynamic(() => import("@/components/ui/location-map").then(m => m.LocationMap), { ssr: false })
+const LocationMap = dynamic(() => import("@/components/ui/location-map").then((module) => module.LocationMap), { ssr: false })
 
 const ICON_MAP = {
   Mail,
   MapPin,
-  Phone
+  Phone,
+  MessageCircle,
 }
 
 type FormErrors = Record<string, string>
@@ -28,29 +29,29 @@ type ContactInfo = {
 
 function ContactInfoCard({ info }: { info: ContactInfo }) {
   const Icon = ICON_MAP[info.icon as keyof typeof ICON_MAP]
-  const Component = info.clickable ? "a" : "div"
   const isEmail = info.icon === "Mail"
+  const isWhatsApp = info.icon === "MessageCircle"
 
   return (
-    <Component
-      {...(info.clickable ? { href: info.href } : {})}
-      className={`rounded-sm glass-card p-4 flex items-center gap-3 font-sans ${
-        info.clickable ? "group hover:opacity-90 transition-all cursor-pointer" : ""
-      }`}
-    >
-      <div className="w-9 h-9 rounded-sm bg-secondary flex items-center justify-center shrink-0">
-        <Icon className="h-4 w-4 text-foreground" />
+    <div className="group flex items-center gap-3 rounded-xl px-2.5 py-3 transition-colors duration-300 hover:bg-white/[.035] sm:px-3">
+      <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-primary/15 bg-primary/[.08] text-primary transition-colors duration-300 group-hover:border-primary/30 group-hover:bg-primary/[.12]">
+        <Icon className="h-4 w-4 transition-transform duration-300 group-hover:scale-110" />
       </div>
       <div className="min-w-0 flex-1">
-        <p className="text-[10px] text-muted-foreground mb-0.5 uppercase tracking-wide font-medium">{info.label}</p>
+        <p className="mb-1 text-[9px] font-semibold uppercase tracking-[.16em] text-muted-foreground">{info.label}</p>
         <div className="flex items-center justify-between gap-2">
-          <p className="text-xs font-medium text-foreground leading-tight">
-            {info.value}
-          </p>
-          {isEmail && <CopyButton text={info.value} className="text-muted-foreground hover:text-foreground" />}
+          {info.clickable ? (
+            <a href={info.href} target={isWhatsApp ? "_blank" : undefined} rel={isWhatsApp ? "noreferrer" : undefined} className="min-w-0 truncate text-xs font-medium leading-tight text-foreground transition-colors hover:text-primary focus-visible:rounded-sm">
+              {info.value}
+            </a>
+          ) : <p className="text-xs font-medium leading-tight text-foreground">{info.value}</p>}
+          <div className="flex shrink-0 items-center gap-3">
+            {isWhatsApp && <a href={info.href} target="_blank" rel="noreferrer" className="hidden items-center gap-1 text-[11px] font-semibold text-primary transition-colors hover:text-foreground sm:inline-flex">Chat <ArrowUpRight className="h-3 w-3" /></a>}
+            {(isEmail || isWhatsApp) && <CopyButton text={info.value} className="text-muted-foreground hover:text-foreground" />}
+          </div>
         </div>
       </div>
-    </Component>
+    </div>
   )
 }
 
@@ -73,8 +74,8 @@ function FormField({
   error?: string
   onClearError: () => void
 }) {
-  const baseClass = `w-full rounded-sm bg-secondary text-foreground px-3.5 py-2.5 text-xs font-medium placeholder:text-muted-foreground focus:outline-none focus:ring-1 focus:ring-foreground transition-all ${
-    error ? "ring-1 ring-foreground" : ""
+  const baseClass = `w-full rounded-xl border border-border bg-background px-4 py-3 text-sm text-foreground placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-primary/30 transition-all ${
+    error ? "border-destructive ring-2 ring-destructive/15" : ""
   }`
 
   const InputComponent = rows ? "textarea" : "input"
@@ -82,13 +83,14 @@ function FormField({
   return (
     <div>
       <label htmlFor={name} className="block text-xs font-medium mb-1.5 text-foreground">
-        {label} {required && <span className="text-red-500">*</span>}
+        {label} {required && <span className="text-primary">*</span>}
       </label>
       <InputComponent
         id={name}
         name={name}
         type={type}
         placeholder={placeholder}
+        autoComplete={name === "name" ? "name" : name === "email" ? "email" : "off"}
         required={required}
         {...(rows ? { rows } : {})}
         onChange={onClearError}
@@ -179,24 +181,28 @@ export function Contact() {
   }
 
   return (
-    <section id="contact" className="section-spacing">
-      <div className="section-container">
-        <SectionHeading title={CONTACT_CONTENT.heading.title} subtitle={CONTACT_CONTENT.heading.subtitle} tag="// GET IN TOUCH" />
+    <section id="contact" className="section-spacing relative isolate overflow-hidden">
+      <div className="pointer-events-none absolute -right-40 top-24 h-[28rem] w-[28rem] rounded-full bg-primary/[.045] blur-[110px]" aria-hidden="true" />
+      <div className="section-container relative z-10">
+        <SectionHeading title={CONTACT_CONTENT.heading.title} subtitle={CONTACT_CONTENT.heading.subtitle} tag="LET’S CONNECT" />
 
-        <div className="grid gap-6 lg:grid-cols-3 items-start mt-8">
+        <div className="mt-10 space-y-5 lg:mt-12 lg:space-y-6">
           {/* Contact Form */}
-          <div className="lg:col-span-2 flex flex-col">
-            <div className="rounded-sm glass-card p-5 sm:p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <div className="surface-glass rounded-[1.5rem] p-5 sm:p-8 lg:p-9">
               <div>
-                <h3 className="font-medium text-base mb-1 text-foreground font-sans">{CONTACT_CONTENT.form.title}</h3>
-                <p className="text-xs text-muted-foreground font-sans mb-5">{CONTACT_CONTENT.form.description}</p>
+                <div className="mb-7 border-b border-border/70 pb-5 sm:mb-8 sm:pb-6">
+                  <p className="mb-2 text-[10px] font-semibold uppercase tracking-[.2em] text-primary">01 / Start here</p>
+                  <h3 className="font-sans text-xl font-semibold tracking-tight text-foreground sm:text-2xl">{CONTACT_CONTENT.form.title}</h3>
+                  <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">{CONTACT_CONTENT.form.description}</p>
+                </div>
 
                 <form ref={formRef} onSubmit={handleSubmit} className="space-y-4" noValidate>
                   <div className="grid gap-4 sm:grid-cols-2">
                     <FormField
                       label="Name"
                       name="name"
-                      placeholder="John Doe"
+                      placeholder="Your name"
                       error={errors.name}
                       onClearError={() => clearError("name")}
                     />
@@ -204,7 +210,7 @@ export function Contact() {
                       label="Email"
                       name="email"
                       type="email"
-                      placeholder="john@example.com"
+                      placeholder="you@example.com"
                       error={errors.email}
                       onClearError={() => clearError("email")}
                     />
@@ -213,7 +219,7 @@ export function Contact() {
                   <FormField
                     label="Subject"
                     name="subject"
-                    placeholder="Project collaboration"
+                    placeholder="What would you like to discuss?"
                     error={errors.subject}
                     onClearError={() => clearError("subject")}
                   />
@@ -221,7 +227,7 @@ export function Contact() {
                   <FormField
                     label="Message"
                     name="message"
-                    placeholder="Tell me about your project..."
+                    placeholder="A few details about your project or idea..."
                     rows={4}
                     error={errors.message}
                     onClearError={() => clearError("message")}
@@ -229,26 +235,39 @@ export function Contact() {
 
                   <button
                     type="submit"
-                    className="w-full rounded-sm bg-foreground text-background font-medium py-3 text-sm flex items-center justify-center gap-2 hover:opacity-90 transition-all shadow-sm"
+                    className="group flex h-12 w-full items-center justify-center gap-2 rounded-full bg-primary px-7 py-3 text-sm font-semibold text-primary-foreground shadow-[0_10px_30px_-14px_rgba(215,183,126,.7)] transition-all hover:-translate-y-0.5 hover:shadow-[0_14px_36px_-14px_rgba(215,183,126,.75)] sm:w-fit"
                   >
-                    <Send className="h-4 w-4" /> Send Message
+                    <Mail className="h-4 w-4" /> Open email draft <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
                   </button>
+                  <p className="text-center text-xs text-muted-foreground sm:text-left">You can review and edit the message before sending.</p>
                 </form>
               </div>
             </div>
           </div>
 
-          {/* Contact Info Sidebar */}
-          <div className="flex flex-col justify-between gap-3 h-full">
-            <div className="space-y-3">
-              {CONTACT_CONTENT.contactInfo.map((info) => (
-                <ContactInfoCard key={info.label} info={info} />
-              ))}
+          <div className="grid items-stretch gap-5 lg:grid-cols-2 lg:gap-6">
+            {/* Contact options */}
+            <div className="surface-glass rounded-2xl p-3 sm:p-4">
+              <div className="px-3 pb-3 pt-2">
+                <p className="text-[10px] font-semibold uppercase tracking-[.2em] text-primary">02 / Direct contact</p>
+                <p className="mt-1.5 text-sm text-muted-foreground">Email, phone, or WhatsApp—pick what works for you.</p>
+              </div>
+              <div className="divide-y divide-border/70">
+                {CONTACT_CONTENT.contactInfo.map((info) => (
+                  <ContactInfoCard key={info.label} info={info} />
+                ))}
+              </div>
             </div>
-
-            {/* Location Map */}
-            <div className="rounded-sm glass-card overflow-hidden flex-1 min-h-[190px]">
-              <LocationMap />
+            {/* Location */}
+            <div className="surface-glass overflow-hidden rounded-2xl">
+              <div className="flex items-center justify-between gap-3 px-4 py-4 sm:px-5">
+                <div className="flex items-center gap-3">
+                  <span className="grid h-10 w-10 place-items-center rounded-xl bg-primary/10 text-primary"><MapPin className="h-4 w-4" /></span>
+                  <div><span className="block text-sm font-semibold">Sakinaka, Mumbai</span><span className="mt-0.5 block text-xs text-muted-foreground">Maharashtra, India</span></div>
+                </div>
+                <a href="https://www.google.com/maps/search/?api=1&query=Sakinaka%2C%20Mumbai" target="_blank" rel="noreferrer" className="inline-flex shrink-0 items-center gap-1.5 text-xs font-semibold text-primary hover:underline underline-offset-4">Open map <ExternalLink className="h-3.5 w-3.5" /></a>
+              </div>
+              <div className="h-[250px] border-t border-border sm:h-[280px]" role="region" aria-label="Map showing Sakinaka, Mumbai"><LocationMap /></div>
             </div>
           </div>
         </div>

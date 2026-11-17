@@ -27,11 +27,16 @@ export function truncateText(text: string, maxLength: number): string {
 export function smoothScrollTo(href: string, offsetY = 72) {
   if (typeof window === "undefined") return
 
+  const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches
+  const scrollDuration = prefersReducedMotion ? 0 : 1.05
+  gsap.killTweensOf(window)
+
   if (!href || href === "#" || href === "#home") {
     gsap.to(window, {
-      duration: 0.8,
+      duration: scrollDuration,
       scrollTo: { y: 0, autoKill: false },
-      ease: "power2.out",
+      ease: "power3.inOut",
+      overwrite: true,
     })
     return
   }
@@ -42,9 +47,10 @@ export function smoothScrollTo(href: string, offsetY = 72) {
   if (target) {
     const targetTop = target.getBoundingClientRect().top + window.scrollY - offsetY
     gsap.to(window, {
-      duration: 0.8,
+      duration: scrollDuration,
       scrollTo: { y: Math.max(0, targetTop), autoKill: false },
-      ease: "power2.out",
+      ease: "power3.inOut",
+      overwrite: true,
     })
   } else {
     window.scrollTo({

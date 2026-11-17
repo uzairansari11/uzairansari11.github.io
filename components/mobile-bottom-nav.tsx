@@ -3,7 +3,6 @@
 import { useActiveSection } from "@/hooks/use-active-section"
 import { NAV_ITEMS } from "@/lib/constants"
 import { cn, smoothScrollTo } from "@/lib/utils"
-import { motion } from "framer-motion"
 import { Home, User, Code2, Briefcase, FolderKanban, Mail } from "lucide-react"
 
 const ICON_MAP = {
@@ -25,7 +24,7 @@ export function MobileBottomNav() {
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 md:hidden pb-[env(safe-area-inset-bottom,8px)]">
       <div className="mx-4 mb-2">
-        <nav className="bg-background/90 dark:bg-zinc-900/90 backdrop-blur-xl border border-border/60 dark:border-zinc-800 rounded-2xl px-2 py-2 shadow-lg shadow-black/10 dark:shadow-black/40 flex items-center justify-evenly">
+        <nav aria-label="Mobile navigation" className="flex items-center justify-evenly rounded-2xl border border-white/10 bg-[#20211e]/95 px-2 py-2 text-white shadow-2xl shadow-black/30 backdrop-blur-xl">
           {NAV_ITEMS.map((item) => {
             const Icon = ICON_MAP[item.href as keyof typeof ICON_MAP] || Home
             const isActive = activeSection === item.href.slice(1)
@@ -36,22 +35,16 @@ export function MobileBottomNav() {
                 type="button"
                 onClick={() => scrollTo(item.href)}
                 aria-label={item.name}
+                aria-current={isActive ? "location" : undefined}
                 className={cn(
-                  "relative flex flex-col items-center justify-center w-11 h-11 rounded-xl transition-colors gap-0.5",
+                  "relative flex h-12 w-12 flex-col items-center justify-center gap-1 rounded-xl transition-colors",
                   isActive
-                    ? "text-foreground"
-                    : "text-muted-foreground active:text-foreground"
+                    ? "bg-[#d7b77e] text-[#171816]"
+                    : "text-white/55 active:text-white"
                 )}
               >
-                {isActive && (
-                  <motion.div
-                    layoutId="mobile-nav-active"
-                    className="absolute inset-0 bg-secondary/80 dark:bg-zinc-800 rounded-xl"
-                    transition={{ type: "spring", stiffness: 400, damping: 30 }}
-                  />
-                )}
-                <Icon className="h-4 w-4 relative z-10" />
-                <span className="relative z-10 text-[9px] leading-none font-medium">{item.name}</span>
+                <Icon className="h-4 w-4" />
+                <span className="text-[9px] leading-none font-medium">{item.name}</span>
               </button>
             )
           })}

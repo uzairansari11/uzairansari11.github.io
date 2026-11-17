@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react"
 import "leaflet/dist/leaflet.css"
 
-const POWAI_COORDS: [number, number] = [19.1203, 72.8963]
+const SAKINAKA_COORDS: [number, number] = [19.1034, 72.8883]
 
 export function LocationMap() {
   const mapRef = useRef<HTMLDivElement>(null)
@@ -20,32 +20,32 @@ export function LocationMap() {
       if (cancelled || !mapRef.current) return
 
       const map = L.map(mapRef.current, {
-        center: POWAI_COORDS,
-        zoom: 13,
+        center: SAKINAKA_COORDS,
+        zoom: 14,
         zoomControl: false,
-        attributionControl: false,
+        attributionControl: true,
+        scrollWheelZoom: false,
       })
 
       mapInstanceRef.current = map
 
-      // Dynamic theme tiles
-      const isDark = document.documentElement.classList.contains("dark")
-      const tileUrl = isDark
-        ? "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
-        : "https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png"
-      L.tileLayer(tileUrl, { maxZoom: 19 }).addTo(map)
+      L.tileLayer("https://tile.openstreetmap.org/{z}/{x}/{y}.png", {
+        maxZoom: 19,
+        attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>',
+      }).addTo(map)
+      L.control.zoom({ position: "topright" }).addTo(map)
 
-      // Custom marker icon
       const icon = L.divIcon({
-        html: `<div style="width:16px;height:16px;background:hsl(var(--primary));border-radius:50%;border:3px solid white;box-shadow:0 2px 8px rgba(0,0,0,0.3)"></div>`,
-        iconSize: [16, 16],
-        iconAnchor: [8, 8],
-        className: "",
+        html: '<span class="portfolio-map-marker"><span class="portfolio-map-marker__pulse"></span><span class="portfolio-map-marker__core"></span></span>',
+        iconSize: [36, 36],
+        iconAnchor: [18, 18],
+        className: "portfolio-map-icon",
       })
 
-      L.marker(POWAI_COORDS, { icon })
+      L.marker(SAKINAKA_COORDS, { icon })
         .addTo(map)
-        .bindPopup("<b>Powai, Mumbai</b><br/>Maharashtra, India")
+        .bindTooltip("Sakinaka, Mumbai", { permanent: true, direction: "top", offset: [0, -18], className: "portfolio-map-tooltip" })
+        .bindPopup("<strong>Sakinaka</strong><br/>Mumbai, Maharashtra, India")
 
       setTimeout(() => {
         if (!cancelled && mapInstanceRef.current) {
@@ -68,8 +68,8 @@ export function LocationMap() {
   return (
     <div
       ref={mapRef}
-      className="w-full h-full min-h-[220px] rounded-sm overflow-hidden"
-      style={{ width: "100%", height: "100%", minHeight: "220px" }}
+      className="portfolio-map-canvas h-full min-h-[230px] w-full overflow-hidden"
+      style={{ width: "100%", height: "100%", minHeight: "230px" }}
     />
   )
 }

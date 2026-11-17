@@ -5,9 +5,7 @@ import {
   EXPERIENCE_CONTENT,
   SKILL_CATEGORIES,
   SKILLS_CONTENT,
-  SKILLS_WITH_ICONS,
   SOFT_SKILL,
-  TOOLS,
 } from '@/lib/constants';
 import { Brain, Briefcase, Code2, Server, Users, Wrench } from 'lucide-react';
 
@@ -19,25 +17,6 @@ const ICON_MAP = {
   Users,
 };
 
-function SkillIcon({ skill }: { skill: { id: string; title: string; src: string } }) {
-  const needsInvert = ['Express', 'Next.js', 'Django', 'GitHub', 'Vercel'].includes(skill.title);
-
-  return (
-    <div className="flex flex-col items-center gap-2 shrink-0 group py-2">
-      <div className="w-16 h-16 rounded-2xl glass-card flex items-center justify-center transition-all">
-        <img
-          src={skill.src}
-          alt={skill.title}
-          className={`w-8 h-8 object-contain ${needsInvert ? 'dark:invert' : ''}`}
-        />
-      </div>
-      <span className="text-[11px] text-muted-foreground font-medium whitespace-nowrap group-hover:text-foreground transition-colors">
-        {skill.title}
-      </span>
-    </div>
-  );
-}
-
 function SkillCategory({
   category,
   index,
@@ -48,21 +27,21 @@ function SkillCategory({
   const Icon = ICON_MAP[category.icon as keyof typeof ICON_MAP];
 
   return (
-    <div className="group rounded-sm glass-card p-5 sm:p-6 transition-all font-sans">
-      <div className="flex items-center gap-2.5 mb-4">
-        <div className="w-8 h-8 rounded-sm bg-secondary flex items-center justify-center border border-border/60">
-          <Icon className="h-4 w-4 text-foreground" />
+    <div className="surface-glass group rounded-2xl p-6 transition-all duration-300 hover:-translate-y-1 sm:p-7">
+      <div className="mb-5 flex items-center gap-3">
+        <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/10 text-primary">
+          <Icon className="h-4 w-4" />
         </div>
-        <h3 className="font-medium text-sm text-foreground">{category.title}</h3>
-        <span className="ml-auto text-[11px] font-mono font-medium text-muted-foreground opacity-60">
-          0{index + 1}
+        <h3 className="text-base font-semibold tracking-tight text-foreground">{category.title}</h3>
+        <span className="ml-auto text-[10px] font-semibold uppercase tracking-[.14em] text-primary">
+          {String(index + 1).padStart(2, '0')}
         </span>
       </div>
       <div className="flex flex-wrap gap-2">
         {category.skills.map((skill) => (
           <span
             key={skill}
-            className="text-xs bg-secondary/80 text-foreground border border-border/60 rounded-sm px-2.5 py-1 font-normal cursor-default"
+            className="cursor-default rounded-md border border-border/70 bg-background/70 px-3 py-1.5 text-xs font-medium text-muted-foreground transition-colors hover:border-primary/35 hover:text-foreground"
           >
             {skill}
           </span>
@@ -73,8 +52,6 @@ function SkillCategory({
 }
 
 export function Skills() {
-  const allIcons = [...SKILLS_WITH_ICONS, ...TOOLS];
-
   return (
     <section id="skills" className="section-spacing">
       <div className="section-container">
@@ -84,19 +61,8 @@ export function Skills() {
           tag="// TECHNICAL SKILLS"
         />
 
-        {/* Scrolling Icon Marquee */}
-        <div className="relative overflow-hidden mb-10 content-spacing [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-          <div className="flex gap-10 animate-marquee">
-            {[...allIcons, ...allIcons].map((item, i) => (
-              <SkillIcon key={`${item.id}-${i}`} skill={item} />
-            ))}
-          </div>
-          <div className="absolute inset-y-0 left-0 w-24 bg-gradient-to-r from-background to-transparent pointer-events-none" />
-          <div className="absolute inset-y-0 right-0 w-24 bg-gradient-to-l from-background to-transparent pointer-events-none" />
-        </div>
-
         {/* Category Grid */}
-        <div className="grid gap-5 sm:grid-cols-2">
+        <div className="mt-10 grid gap-4 sm:grid-cols-2 lg:mt-12 xl:grid-cols-3">
           {SKILL_CATEGORIES.map((category, idx) => (
             <SkillCategory key={category.title} category={category} index={idx} />
           ))}
