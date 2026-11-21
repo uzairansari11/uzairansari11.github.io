@@ -101,7 +101,7 @@ export default function Home() {
         <div className="section-heading"><div><span className="section-label">THE JOURNEY</span><h2>Experience</h2></div><p>What I owned, what I shipped,<br className="desktop-break"/> and the impact it made.</p></div>
       <div className="timeline">{experience.map((job) => <article className="job" key={job.company}>
           <div className="job-rail"><span className={`timeline-dot ${job.current ? 'live' : ''}`}/></div>
-          <div className="job-heading"><div className="job-company"><a className="company-logo" href={job.companyUrl} target="_blank" rel="noreferrer" aria-label={`Visit ${job.company} official website`} title={`${job.company} official website`}><img src={job.logo} alt={`${job.company} logo`}/><ArrowUpRight className="company-site-arrow" size={13}/></a><div><h3>{job.company}{job.current && <span className="now">CURRENT</span>}</h3><p>{job.role}</p></div></div><div className="job-place"><span>{job.period}</span><small>{job.place}</small></div></div>
+          <div className="job-heading"><div className="job-company"><a className="company-logo" href={job.companyUrl} target="_blank" rel="noreferrer" aria-label={`Visit ${job.company} official website`} title={`${job.company} official website`}><img src={job.logo} alt={`${job.company} logo`}/><ArrowUpRight className="company-site-arrow" size={13}/></a><div><h3>{job.company}{job.current && <span className="now">Present</span>}</h3><p>{job.role}</p></div></div><div className="job-place"><span>{job.period}</span><small>{job.place}</small></div></div>
           <ul>{job.points.map((point) => <li key={point}>{point}</li>)}</ul>
           <div className="tag-row">{job.tags.map((tag) => <span key={tag}>{tag}</span>)}</div>
         </article>)}</div>
