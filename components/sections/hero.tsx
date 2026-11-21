@@ -28,7 +28,7 @@ export function Hero() {
                 Explore my work <ArrowUpRight className="h-4 w-4" />
               </a>
               <a href={PERSONAL_INFO.resumeUrl} target="_blank" rel="noopener noreferrer" className="inline-flex h-12 items-center gap-2 rounded-full border border-white/20 px-6 text-sm font-semibold text-white transition-colors hover:border-white/50 hover:bg-white/5">
-                <Download className="h-4 w-4" /> Résumé
+                <Download className="h-4 w-4" /> Resume
               </a>
             </div>
 
