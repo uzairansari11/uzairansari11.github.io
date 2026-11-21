@@ -10,10 +10,16 @@ const databaseUrl = process.env.DATABASE_URL
 if (!databaseUrl) throw new Error('DATABASE_URL is missing. Run `neon env pull` first.')
 
 const portfolio = JSON.parse(await readFile(new URL('../data/portfolio.json', import.meta.url), 'utf8'))
-const driveFileId = process.env.RESUME_DRIVE_FILE_ID ?? new URL(portfolio.profile.resumeUrl).searchParams.get('id')
+const resumeUrl = portfolio.profile.resumeUrl
+const resumeUrlMatch = resumeUrl.match(/(?:\/d\/|[?&]id=)([^/&?]+)/)
+const driveFileId = process.env.RESUME_DRIVE_FILE_ID ?? resumeUrlMatch?.[1]
 if (!driveFileId) throw new Error('Could not determine the Google Drive resume file ID.')
 
-const response = await fetch(`https://drive.google.com/uc?export=download&id=${encodeURIComponent(driveFileId)}`)
+const isGoogleDocsFile = resumeUrl.includes('docs.google.com/document')
+const downloadUrl = isGoogleDocsFile
+  ? `https://docs.google.com/document/d/${encodeURIComponent(driveFileId)}/export?format=pdf`
+  : `https://drive.google.com/uc?export=download&id=${encodeURIComponent(driveFileId)}`
+const response = await fetch(downloadUrl)
 if (!response.ok) throw new Error(`Google Drive download failed: HTTP ${response.status}`)
 const fileBytes = Buffer.from(await response.arrayBuffer())
 if (!fileBytes.subarray(0, 5).equals(Buffer.from('%PDF-'))) {

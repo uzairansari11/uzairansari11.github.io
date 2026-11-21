@@ -13,7 +13,7 @@ SET content = jsonb_set(content, '{profile,summary}', to_jsonb('Your updated sum
 WHERE id = 'main';
 ```
 
-`resume_sync` stores the latest PDF downloaded from the public Google Drive link, its SHA-256, and extracted text. Run `npm run db:sync-resume` after changing the Drive PDF. The sync is idempotent and only replaces the saved copy when the file hash changes. This command can be scheduled by the app's hosting provider once its deployment and secret storage are configured.
+`resume_sync` stores a PDF snapshot exported from the public Google Drive résumé, its SHA-256, and extracted text. `npm run db:sync-resume` supports both uploaded PDF files and Google Docs documents. For Google Docs it exports the document as PDF; for uploaded PDFs it downloads the file directly. Run the command after changing the Drive résumé. The sync is idempotent and only replaces the saved copy when the file hash changes. This command can be scheduled by the app's hosting provider once its deployment and secret storage are configured.
 
 The PDF is currently shared for link access, so this sync uses its Drive file ID without a Google API secret. If Drive sharing is restricted later, configure Drive API credentials and update the downloader before running the sync.
 

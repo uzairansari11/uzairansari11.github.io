@@ -1,5 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  distDir: process.env.PORTFOLIO_BUILD_DIR || '.next',
   compress: true,
   poweredByHeader: false,
   serverExternalPackages: ['pdfkit'],

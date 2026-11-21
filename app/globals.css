@@ -128,6 +128,26 @@ body{font-size:16px}
 @media(max-width:680px){.portfolio-loading{padding:0 18px}.portfolio-skeleton{padding-top:15px}.skeleton-nav{gap:10px}.skeleton-nav i{width:28px}.skeleton-hero{grid-template-columns:82px minmax(0,1fr);gap:15px;min-height:185px;padding:22px 0}.skeleton-portrait{width:78px;height:100px}.skeleton-identity .name-line{height:28px}.skeleton-contact{display:none}.skeleton-socials i{width:28px;height:28px}.skeleton-summary{gap:10px;padding:17px 0}.skeleton-summary .text-line{width:98%}.skeleton-resume{width:48px;height:34px}.skeleton-stats{grid-template-columns:repeat(2,1fr);margin:17px 0 42px}.skeleton-stats>div{min-height:65px;padding:10px;border-bottom:1px solid #222}.skeleton-stats>div:nth-child(2){border-right:0}.skeleton-stats>div:nth-child(3),.skeleton-stats>div:nth-child(4){border-bottom:0}.skeleton-stats .metric-line{height:18px}.skeleton-section{margin-bottom:40px}.skeleton-section-heading .heading-line{width:130px;height:23px}.skeleton-section-heading .side-line{width:88px}.skeleton-experience{padding-left:17px}.skeleton-experience article:before{left:-21px}.skeleton-job-heading .date-line{width:58px}.skeleton-skills{grid-template-columns:1fr;gap:9px}.skeleton-skills>div{padding:13px}.skeleton-skills .skill-icon{width:34px;height:34px}.skeleton-projects{grid-template-columns:1fr;gap:9px}.skeleton-projects article{display:grid;grid-template-columns:94px 1fr;column-gap:12px;align-items:center;padding:10px}.skeleton-projects .project-image{grid-row:span 3;height:68px;margin:0}.skeleton-projects .company-line{margin:0 0 5px}.skeleton-projects .bullet-line{margin-bottom:5px}.skeleton-loading-note{right:12px;bottom:10px;padding:8px 10px}.skeleton-loading-note .loader-live{font-size:8px}.skeleton-loading-note .loader-progress{width:55px}}
 @media(prefers-reduced-motion:reduce){.shimmer:after,.loader-live i,.loader-progress span{animation:none}}
 
+/* Add a little more breathing room to section copy while keeping project cards compact. */
+.content-section,.skills-section{margin-bottom:124px}
+.section-heading{margin-bottom:42px}
+.job{padding-top:34px;padding-bottom:36px}
+.job ul{line-height:1.9;margin-top:21px;margin-bottom:19px}
+.job li{margin-block:7px}
+.skill-grid{gap:17px}
+.skill-card{row-gap:18px;padding-block:24px}
+.skill-logo-grid{row-gap:12px}
+.company-projects{gap:17px}
+.company-project{padding:20px}
+.project-grid{gap:20px}
+.project-card-body{padding:19px}
+.project-card-body>p{line-height:1.85}
+.education-list article{padding-block:22px}
+.contact-section{margin-top:24px;padding:38px}
+@media(max-width:900px){.content-section,.skills-section{margin-bottom:102px}.section-heading{margin-bottom:34px}.job{padding-top:29px;padding-bottom:31px}.skill-grid{gap:13px}.skill-card{padding-block:19px}.project-grid{gap:16px}.project-card-body{padding:16px}.contact-section{padding:30px}}
+@media(max-width:680px){.content-section,.skills-section{margin-bottom:88px}.section-heading{margin-bottom:28px}.job{padding-top:25px;padding-bottom:28px}.job ul{margin-block:17px;line-height:1.85}.job li{margin-block:6px}.skill-grid{gap:12px}.skill-card{padding-block:16px;row-gap:13px}.company-projects{gap:12px}.project-grid{gap:16px}.project-card-body{padding:16px}.education-list article{padding-block:19px}.contact-section{margin-top:15px;padding:24px}}
+@media(max-width:380px){.content-section,.skills-section{margin-bottom:76px}.section-heading{margin-bottom:23px}.job{padding-top:21px;padding-bottom:24px}.skill-card{padding:13px}.project-card-body{padding:14px}.contact-section{padding:19px}}
+
 /* Refined project cards and the solid-color icon palette. */
 .skill-logo{color:var(--logo-color);border-color:#2c2c2c;background:#0b0b0b}
 .skill-logo>svg{color:var(--logo-color)}
