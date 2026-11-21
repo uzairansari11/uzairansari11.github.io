@@ -1,13 +1,14 @@
 "use client"
 
-import { ArrowUpRight, Github, Linkedin, Mail, MessageCircle } from "lucide-react"
+import { ArrowUpRight, Mail, MessageCircle } from "lucide-react"
+import { FaGithub, FaLinkedinIn } from "react-icons/fa"
 import { PERSONAL_INFO } from "@/lib/constants"
 import { smoothScrollTo } from "@/lib/utils"
 import { BrandMark } from "@/components/ui/brand-mark"
 
 const SOCIAL_LINKS = [
-  { href: PERSONAL_INFO.socialLinks.github, icon: Github, label: "GitHub" },
-  { href: PERSONAL_INFO.socialLinks.linkedin, icon: Linkedin, label: "LinkedIn" },
+  { href: PERSONAL_INFO.socialLinks.github, icon: FaGithub, label: "GitHub" },
+  { href: PERSONAL_INFO.socialLinks.linkedin, icon: FaLinkedinIn, label: "LinkedIn" },
   { href: PERSONAL_INFO.socialLinks.whatsapp, icon: MessageCircle, label: "WhatsApp" },
   { href: `mailto:${PERSONAL_INFO.email}`, icon: Mail, label: "Email" },
 ]

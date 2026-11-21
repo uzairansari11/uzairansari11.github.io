@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <rect width="800" height="450" fill="#080808"/>
+  <path d="M0 352h800" stroke="#242424"/>
+  <rect x="205" y="78" width="267" height="301" rx="14" fill="#111" stroke="#353535" stroke-width="2"/>
+  <path d="M250 135h144M250 165h176M250 195h129M250 225h154" stroke="#646464" stroke-width="8" stroke-linecap="round"/>
+  <rect x="250" y="266" width="89" height="62" rx="8" fill="#172011" stroke="#8bbd50" stroke-width="2"/>
+  <path d="M271 298l12 12 30-32" stroke="#c4ef71" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M472 214h86a17 17 0 0 1 17 17v37a17 17 0 0 1-17 17h-30l-23 24v-24h-33a17 17 0 0 1-17-17v-37a17 17 0 0 1 17-17Z" fill="#121a25" stroke="#75caff" stroke-width="2"/>
+  <circle cx="488" cy="250" r="4" fill="#75caff"/><circle cx="514" cy="250" r="4" fill="#75caff"/><circle cx="540" cy="250" r="4" fill="#75caff"/>
+  <text x="400" y="409" fill="#f4f4f4" font-family="Arial,sans-serif" font-size="19" font-weight="700" letter-spacing="4" text-anchor="middle">DOCMIND</text>
+  <text x="400" y="432" fill="#828282" font-family="Arial,sans-serif" font-size="9" letter-spacing="2.5" text-anchor="middle">YOUR DOCUMENTS. ONE CONVERSATION.</text>
+</svg>

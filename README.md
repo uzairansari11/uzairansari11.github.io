@@ -1,42 +1,37 @@
-# Uzair Ansari | Portfolio
+# Uzair Ansari — Portfolio
 
-Welcome to my personal portfolio website. This project showcases my work, skills, and experience as a Frontend Developer. It highlights the projects I have built, the technologies I work with, and my approach to creating modern, responsive, and user-friendly web applications.
+Next.js portfolio powered by Neon Postgres. Portfolio content is fetched from Neon at request time; the résumé preview and download are generated from the same database content.
 
-## About Me
-
-I am a Frontend Developer focused on building clean, scalable, and high-quality user interfaces. I enjoy turning ideas into real products and working on applications that solve practical business problems. My main focus is on creating responsive layouts, reusable components, smooth user experiences, and maintainable frontend architecture.
-
-## Features
-
-- Modern and responsive portfolio design
-- Project showcase section
-- Skills and technology overview
-- About me section
-- Contact section
-- Deployed online for easy access
-
-## Tech Stack
-
-This portfolio is built with:
-
-- React
-- JavaScript
-- HTML5
-- CSS3
-- Git and GitHub
-- Vercel
-
-## Live Demo
-
-You can view the live portfolio here:
-
-[https://uzairansari11.vercel.app/](https://uzairansari11.vercel.app/)
-
-## Getting Started
-
-To run this project locally, follow these steps.
-
-### 1. Clone the repository
+## Run locally
 
 ```bash
-git clone https://github.com/uzairansari11/uzairansari11.github.io.git
+npm install
+cp .env.example .env.local
+# Set DATABASE_URL in .env.local
+npm run dev
+```
+
+To seed the portfolio database, set `DATABASE_URL` and run:
+
+```bash
+npm run db:seed
+```
+
+The scripts in `db/` document the schema and the manual résumé import from its public Google Drive source. `data/portfolio.json` is the editable seed template; the live portfolio reads the Neon row.
+
+## Deploy on Vercel
+
+Import the `uzairansari11/uzairansari11.github.io` GitHub repository into Vercel and keep the detected **Next.js** framework and default build settings. Add `DATABASE_URL` in Vercel Project Settings → Environment Variables for Production (and Preview/Development if desired). The database must already contain the `portfolio_content` table and the `main` row; run `npm run db:seed` locally once if needed.
+
+Deploy from this folder with:
+
+```bash
+npm run build
+npm run deploy
+```
+
+`npm run deploy` uses the Vercel CLI and may prompt you to link this folder to your Vercel project the first time. Do not commit `.env.local` or put database credentials in client-side variables.
+
+## Neon
+
+`neon.ts` and `.neon` retain the existing Neon project configuration. See `db/README.md` for data and résumé sync details.

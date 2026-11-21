@@ -1,0 +1,518 @@
+{
+  "profile": {
+    "name": "Uzair Ansari",
+    "eyebrow": "SOFTWARE ENGINEER \u00b7 GENAI",
+    "role": "Frontend Engineer \u00b7 Full Stack Developer",
+    "location": "Mumbai, India",
+    "currentEmployer": "Newtuple Technologies",
+    "email": "uzairans532@gmail.com",
+    "phone": "917271880500",
+    "linkedin": "https://linkedin.com/in/uzairansari11",
+    "github": "https://github.com/uzairansari11",
+    "photo": "/uzair-ansari.jpeg",
+    "resumeUrl": "https://drive.google.com/uc?export=download&id=1OT-kgHq6aB7NFX32qP5AJUISBtMEM8jw",
+    "summary": "Frontend Engineer | Full Stack Developer with 2.5+ years of experience building enterprise-grade web applications using React, Next.js, Node.js, and PostgreSQL. Spearheaded frontend development across 4 products serving 1,500+ users, delivering business impact through workflow automation, real-time applications, and analytics dashboards. Currently expanding expertise in LangChain, LangGraph, Retrieval-Augmented Generation (RAG), and Agentic AI.",
+    "availability": {
+      "status": "employed",
+      "label": "Currently at Newtuple Technologies"
+    }
+  },
+  "highlights": [
+    {
+      "value": "dynamic_experience",
+      "label": "Software experience*"
+    },
+    {
+      "value": "4",
+      "label": "Enterprise products"
+    },
+    {
+      "value": "1,500+",
+      "label": "Users supported"
+    },
+    {
+      "value": "80%",
+      "label": "Less invoice verification time"
+    }
+  ],
+  "experience": [
+    {
+      "company": "Newtuple Technologies",
+      "companyUrl": "https://www.newtuple.com/",
+      "logo": "/companies/newtuple.png",
+      "place": "Pune, India",
+      "period": "Sep 2026 \u2014 Present",
+      "role": "Software Engineer \u2013 GenAI",
+      "current": true,
+      "points": [
+        "Build enterprise GenAI proofs of concept and product demos for client use cases on the Solutions Team.",
+        "Develop conversational interfaces, chat API integrations, onboarding flows, and workflow automation.",
+        "Configure approval paths, clarification loops, and rework scenarios across product, supplier, and finance onboarding.",
+        "Work with solution architects and stakeholders to turn business requirements into clear, working experiences."
+      ],
+      "tags": [
+        "GenAI",
+        "React",
+        "Next.js",
+        "TypeScript",
+        "Workflow automation"
+      ]
+    },
+    {
+      "company": "TalkWisely Platforms",
+      "companyUrl": "https://talkwisely.io/",
+      "logo": "/companies/talkwisely.svg",
+      "place": "Ahmedabad, India",
+      "period": "May 2024 \u2014 May 2026",
+      "role": "Software Engineer \u00b7 Frontend",
+      "points": [
+        "Led frontend development across four enterprise products in finance, CRM, communications, and project management for 1,500+ users.",
+        "Built frontend workflows for an AI-powered finance platform, reducing analyst effort by 70% and invoice verification time by 80%.",
+        "Delivered a 10+ module ERP-style CRM and VoIP platform for 1,500+ concurrent users; CRM workflows cut quote creation time by 97% and errors by 90%.",
+        "Built live calling and call-management features that reduced call handling time by 35%; also shipped messaging and real-time dashboards.",
+        "Replaced a paid project-management SaaS tool with an internal platform and shared component library, improving feature delivery speed by 40%.",
+        "Mentored junior developers, conducted code reviews, and worked with cross-functional Agile teams."
+      ],
+      "tags": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "WebRTC",
+        "Redux",
+        "TanStack Query"
+      ]
+    },
+    {
+      "company": "Fastor7 Technology",
+      "companyUrl": "https://www.fastor7.com/",
+      "logo": "/companies/fastor7.svg",
+      "place": "Delhi, India",
+      "period": "Feb 2024 \u2014 Apr 2024",
+      "role": "Software Development Engineer \u00b7 Frontend",
+      "points": [
+        "Built 5+ Next.js dashboard modules for order management, inventory reporting, and seller analytics across 5+ internal teams.",
+        "Created a reusable component library and optimized data fetching, improving performance by 25%."
+      ],
+      "tags": [
+        "React",
+        "Next.js",
+        "Material UI",
+        "React Query"
+      ]
+    },
+    {
+      "company": "Clayfin",
+      "companyUrl": "https://clayfin.ai/",
+      "logo": "/companies/clayfin.svg",
+      "place": "Chennai, India",
+      "period": "Aug 2023 \u2014 Oct 2023",
+      "role": "Software Trainee \u00b7 Frontend",
+      "points": [
+        "Created workflow apps for 100+ employees, including meeting-room booking and leave management with multi-level approvals."
+      ],
+      "tags": [
+        "React",
+        "JavaScript",
+        "Material UI"
+      ]
+    }
+  ],
+  "skillGroups": [
+    {
+      "title": "Frontend",
+      "icon": "Code2",
+      "skills": [
+        {
+          "name": "React.js",
+          "icon": "SiReact",
+          "color": "#61dafb"
+        },
+        {
+          "name": "Next.js",
+          "icon": "SiNextdotjs",
+          "color": "#f4f4f4"
+        },
+        {
+          "name": "Redux",
+          "icon": "SiRedux",
+          "color": "#a88bfa"
+        },
+        {
+          "name": "Redux Toolkit",
+          "icon": "SiRedux",
+          "color": "#a88bfa"
+        },
+        {
+          "name": "TanStack Query",
+          "icon": "SiReact",
+          "color": "#f2c94c"
+        },
+        {
+          "name": "React Hook Form",
+          "icon": "SiReact",
+          "color": "#ec5990"
+        },
+        {
+          "name": "Tailwind CSS",
+          "icon": "SiTailwindcss",
+          "color": "#38bdf8"
+        },
+        {
+          "name": "Material UI",
+          "icon": "SiMui",
+          "color": "#4da5ff"
+        },
+        {
+          "name": "shadcn/ui",
+          "icon": "SiShadcnui",
+          "color": "#f4f4f4"
+        }
+      ]
+    },
+    {
+      "title": "Backend",
+      "icon": "Workflow",
+      "skills": [
+        {
+          "name": "Node.js",
+          "icon": "SiNodedotjs",
+          "color": "#83cd29"
+        },
+        {
+          "name": "Express.js",
+          "icon": "SiExpress",
+          "color": "#f4f4f4"
+        },
+        {
+          "name": "FastAPI",
+          "icon": "SiFastapi",
+          "color": "#009688"
+        },
+        {
+          "name": "Redis",
+          "icon": "SiRedis",
+          "color": "#ff4438"
+        },
+        {
+          "name": "Prisma ORM",
+          "icon": "SiPrisma",
+          "color": "#8bc6c5"
+        },
+        {
+          "name": "REST APIs",
+          "icon": "Workflow",
+          "color": "#c4ef71"
+        },
+        {
+          "name": "JWT \u00b7 RBAC",
+          "icon": "Code2",
+          "color": "#b9a1ff"
+        }
+      ]
+    },
+    {
+      "title": "Data & languages",
+      "icon": "Database",
+      "skills": [
+        {
+          "name": "MongoDB",
+          "icon": "SiMongodb",
+          "color": "#47a248"
+        },
+        {
+          "name": "PostgreSQL",
+          "icon": "SiPostgresql",
+          "color": "#699eca"
+        },
+        {
+          "name": "JavaScript",
+          "icon": "SiJavascript",
+          "color": "#f7df1e"
+        },
+        {
+          "name": "TypeScript",
+          "icon": "SiTypescript",
+          "color": "#3178c6"
+        },
+        {
+          "name": "Python",
+          "icon": "SiPython",
+          "color": "#ffcf4a"
+        },
+        {
+          "name": "HTML5",
+          "icon": "SiHtml5",
+          "color": "#e34f26"
+        }
+      ]
+    },
+    {
+      "title": "GenAI \u00b7 learning",
+      "icon": "Bot",
+      "skills": [
+        {
+          "name": "LangChain",
+          "icon": "SiLangchain",
+          "color": "#7ac29a"
+        },
+        {
+          "name": "LangGraph",
+          "icon": "SiLanggraph",
+          "color": "#75d5bd"
+        },
+        {
+          "name": "RAG",
+          "icon": "Search",
+          "color": "#91a7ff"
+        },
+        {
+          "name": "Agentic AI",
+          "icon": "Bot",
+          "color": "#c4ef71"
+        }
+      ]
+    },
+    {
+      "title": "Tools & practices",
+      "icon": "Layers3",
+      "skills": [
+        {
+          "name": "Git",
+          "icon": "SiGit",
+          "color": "#f05032"
+        },
+        {
+          "name": "GitHub",
+          "icon": "SiGithub",
+          "color": "#f4f4f4"
+        },
+        {
+          "name": "Postman",
+          "icon": "SiPostman",
+          "color": "#ff6c37"
+        },
+        {
+          "name": "Figma",
+          "icon": "SiFigma",
+          "color": "#f24e1e"
+        },
+        {
+          "name": "Vercel",
+          "icon": "SiVercel",
+          "color": "#f4f4f4"
+        },
+        {
+          "name": "Netlify",
+          "icon": "SiNetlify",
+          "color": "#32c3c8"
+        }
+      ]
+    }
+  ],
+  "companyProjects": [
+    {
+      "name": "AI-Powered Finance Platform",
+      "company": "TalkWisely \u00b7 Finance",
+      "icon": "ChartNoAxesCombined",
+      "metric": "80%",
+      "metricLabel": "less time verifying invoices",
+      "description": "Built OCR-based invoice processing and finance forecasting workflows. The automation reduced analyst effort by 70% and invoice verification time by 80%.",
+      "tags": [
+        "React",
+        "Next.js",
+        "TypeScript",
+        "OCR",
+        "TanStack Query"
+      ],
+      "color": "green"
+    },
+    {
+      "name": "Custom ERP-Style CRM",
+      "company": "TalkWisely \u00b7 Enterprise CRM",
+      "icon": "Workflow",
+      "metric": "97%",
+      "metricLabel": "less time creating quotes",
+      "description": "Built frontend workflows for a 10+ module ERP/CRM covering quotations, inventory, procurement, role-based access, and dashboards. Quote errors fell by 90%.",
+      "tags": [
+        "React",
+        "Next.js",
+        "Material UI",
+        "SWR"
+      ],
+      "color": "violet"
+    },
+    {
+      "name": "Pulse \u00b7 VoIP Communications",
+      "company": "TalkWisely \u00b7 Communications",
+      "icon": "PhoneCall",
+      "metric": "35%",
+      "metricLabel": "less call handling time",
+      "description": "Built a low-latency VoIP interface with call controls and real-time dashboards. The platform supported 1,500+ concurrent users.",
+      "tags": [
+        "Next.js",
+        "SIP.js",
+        "WebRTC",
+        "Redux"
+      ],
+      "color": "blue"
+    },
+    {
+      "name": "Project & Time Tracker",
+      "company": "TalkWisely \u00b7 Internal platform",
+      "icon": "Clock3",
+      "metric": "40%",
+      "metricLabel": "faster feature delivery",
+      "description": "Helped replace a paid project-management SaaS tool with an internal platform. A shared component library sped up delivery across four products.",
+      "tags": [
+        "React",
+        "Next.js",
+        "Redux",
+        "Material UI"
+      ],
+      "color": "orange"
+    }
+  ],
+  "projects": [
+    {
+      "name": "DocMind",
+      "type": "GenAI \u00b7 Document knowledge assistant",
+      "description": "Upload documents, organize them into collections, and ask questions in a contextual AI chat. I built the authenticated Next.js app experience, document workflows, and responsive interface.",
+      "image": "/projects/docmind-cover.svg",
+      "stack": [
+        "Next.js",
+        "TypeScript",
+        "TanStack Query",
+        "shadcn/ui",
+        "Lucide"
+      ],
+      "kind": [
+        "GenAI",
+        "Full stack"
+      ],
+      "demo": "",
+      "code": "https://github.com/uzairansari11/DocMind",
+      "video": "https://www.linkedin.com/feed/update/urn:li:activity:7488164486437081088/"
+    },
+    {
+      "name": "Clothify",
+      "type": "Full stack \u00b7 E-commerce",
+      "description": "A full-stack clothing store with product discovery, cart, wishlist, checkout, order management, admin dashboards, and role-based access.",
+      "image": "/projects/clothify.png",
+      "stack": [
+        "React",
+        "Redux",
+        "Express",
+        "MongoDB",
+        "JWT",
+        "Tailwind CSS"
+      ],
+      "kind": [
+        "Full stack"
+      ],
+      "demo": "https://clothify-rho.vercel.app/",
+      "code": "https://github.com/uzairansari11/Clothify"
+    },
+    {
+      "name": "Gadget Galaxy",
+      "type": "Full stack \u00b7 E-commerce",
+      "description": "A responsive store for phone cases and tech accessories, with product search, filtering, and cart flows.",
+      "image": "/projects/gadgetgalaxy.png",
+      "stack": [
+        "React",
+        "Redux",
+        "Node.js",
+        "Express",
+        "MongoDB"
+      ],
+      "kind": [
+        "Full stack"
+      ],
+      "demo": "https://gadgetgalaxy.netlify.app/",
+      "code": "https://github.com/uzairansari11/native-order-609"
+    },
+    {
+      "name": "Crocs Land",
+      "type": "Frontend \u00b7 E-commerce",
+      "description": "A footwear storefront with a browsable product catalogue, cart management, and checkout experience.",
+      "image": "/projects/crocsland.png",
+      "stack": [
+        "React",
+        "Redux",
+        "JavaScript",
+        "Chakra UI"
+      ],
+      "kind": [
+        "Frontend"
+      ],
+      "demo": "https://crocsland-8rzn-git-main-uzairansari11.vercel.app/",
+      "code": "https://github.com/uzairansari11/Crocsland"
+    },
+    {
+      "name": "Home Elementary",
+      "type": "Frontend \u00b7 Marketplace",
+      "description": "A home and furniture marketplace with category browsing, product details, and a responsive shopping flow.",
+      "image": "/projects/homeelementry.png",
+      "stack": [
+        "React",
+        "Redux",
+        "JavaScript",
+        "Chakra UI"
+      ],
+      "kind": [
+        "Frontend"
+      ],
+      "demo": "https://eminent-tin-5074.vercel.app/",
+      "code": "https://github.com/uzairansari11/eminent-tin-5074"
+    },
+    {
+      "name": "Apna E-Cart",
+      "type": "Frontend \u00b7 Consumer electronics",
+      "description": "An electronics retail experience with product search, wishlists, cart management, and order tracking.",
+      "image": "/projects/apnaEcart.png",
+      "stack": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Local Storage"
+      ],
+      "kind": [
+        "Frontend"
+      ],
+      "demo": "https://apna-e-cart.vercel.app/",
+      "code": "https://github.com/uzairansari11/Apna-E-Cart"
+    },
+    {
+      "name": "Cult Body",
+      "type": "Frontend \u00b7 Fitness",
+      "description": "A fitness products and training platform for browsing gear, booking sessions, and tracking goals.",
+      "image": "/projects/cultbody.png",
+      "stack": [
+        "JavaScript",
+        "HTML",
+        "CSS",
+        "Local Storage"
+      ],
+      "kind": [
+        "Frontend"
+      ],
+      "demo": "https://cultbody-uzairansari11.vercel.app/",
+      "code": "https://github.com/uzairansari11/Cult-Body"
+    }
+  ],
+  "education": [
+    {
+      "school": "Masai School",
+      "program": "Full Stack Web Development",
+      "period": "Jul 2022 \u2014 May 2023",
+      "logo": "/education/masai-logo.webp",
+      "url": "https://www.masaischool.com/"
+    },
+    {
+      "school": "Dr. A.P.J. Abdul Kalam Technical University",
+      "program": "B.Tech in Engineering",
+      "period": "Jul 2018 \u2014 May 2021",
+      "logo": "/education/aktu-seal.png",
+      "url": "https://aktu.ac.in/"
+    }
+  ]
+}

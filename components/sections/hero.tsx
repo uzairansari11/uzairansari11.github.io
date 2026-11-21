@@ -1,6 +1,7 @@
 "use client"
 
-import { ArrowDown, ArrowUpRight, Download, Github, Linkedin, Mail, MessageCircle } from "lucide-react"
+import { ArrowDown, ArrowUpRight, Download, Mail, MessageCircle } from "lucide-react"
+import { FaGithub, FaLinkedinIn } from "react-icons/fa"
 import { PERSONAL_INFO, HERO_CONTENT } from "@/lib/constants"
 import { smoothScrollTo } from "@/lib/utils"
 
@@ -34,8 +35,8 @@ export function Hero() {
             <div className="mt-10 flex flex-wrap items-center gap-5 text-sm text-white/55">
               <span className="inline-flex items-center gap-2"><span className="h-2 w-2 rounded-full bg-[#d7b77e]" /> {PERSONAL_INFO.location}</span>
               <span className="hidden h-4 w-px bg-white/20 sm:block" />
-              <a href={PERSONAL_INFO.socialLinks.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition-colors hover:text-white"><Github className="h-4 w-4" /> GitHub</a>
-              <a href={PERSONAL_INFO.socialLinks.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition-colors hover:text-white"><Linkedin className="h-4 w-4" /> LinkedIn</a>
+              <a href={PERSONAL_INFO.socialLinks.github} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition-colors hover:text-white"><FaGithub className="h-4 w-4" /> GitHub</a>
+              <a href={PERSONAL_INFO.socialLinks.linkedin} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition-colors hover:text-white"><FaLinkedinIn className="h-4 w-4" /> LinkedIn</a>
               <a href={PERSONAL_INFO.socialLinks.whatsapp} target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 transition-colors hover:text-white"><MessageCircle className="h-4 w-4" /> WhatsApp</a>
               <a href={`mailto:${PERSONAL_INFO.email}`} className="inline-flex items-center gap-2 transition-colors hover:text-white"><Mail className="h-4 w-4" /> Email</a>
             </div>

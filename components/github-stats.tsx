@@ -3,7 +3,8 @@
 import { AnimatedCounter } from "@/components/ui/animated-counter"
 import { Button } from "@/components/ui/button"
 import { GlassCard } from "@/components/ui/glass-card"
-import { Code, GitFork, Github, Star, Users } from "lucide-react"
+import { Code, GitFork, Star, Users } from "lucide-react"
+import { FaGithub } from "react-icons/fa"
 import { useEffect, useState } from "react"
 
 import { SectionHeading } from "@/components/ui/section-heading"
@@ -62,7 +63,7 @@ export function GitHubStats() {
         <div className="mt-8 flex justify-center">
           <Button variant="outline" className="rounded-sm" asChild>
             <a href="https://github.com/uzairansari11" target="_blank" rel="noopener noreferrer">
-              <Github className="mr-2 h-4 w-4" /> View GitHub Profile
+              <FaGithub className="mr-2 h-4 w-4" /> View GitHub Profile
             </a>
           </Button>
         </div>
